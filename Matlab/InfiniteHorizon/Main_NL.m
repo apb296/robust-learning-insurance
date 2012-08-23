@@ -38,7 +38,7 @@ Para.m=model;
 % This defines the sparsity of the grid. Currently it uses thrice as many
 % points as the order of approximation. This can be increased but will make
 % the program slower
-VGridSize=Para.OrderOfApproximationV*3;
+VGridSize=OrderOfApproximationV*3;
 
 % Grid for State-Space. The value function has one contiuous state variable
 % v or the initial promised value and one dicrete variable z capturing the
@@ -53,14 +53,14 @@ load('Data/coeffEU.mat');
 c0=cEU0;
 % -- Solve the Value function by Iterating on the Bellman equation --------
 disp('...Solving Model - ')
-disp(Para.m)
+disp(model)
 c=c0;
 
 
 for i=1:NIter
     tic
      ExitFlag=zeros(GridSize,1);
-     parfor GridInd=1:Para.GridSize
+     parfor GridInd=1:GridSize
       z=zSlice(GridInd);
         v=vSlice(GridInd);
        xInit=PolicyRules(GridInd,:);
@@ -103,9 +103,9 @@ ExitFlag(3*GridSize/4+1:GridSize)=ExitFlag(GridSize/2+1:3*GridSize/4);
 end
 coeff=c([1 3],:);
 % ----- STORING THE RESULTS-------------------------------------------------
-CoeffFileName=['CoeffRU_NL_' int2str(Para.m) '.mat'];                       % Coeffecients
-FSpaceFileName=['QNL_' int2str(Para.m) '.mat'];                             % Value functions
-ParaFileName=['Para_NL_' int2str(Para.m) '.mat'];                           % Para
+CoeffFileName=['CoeffRU_NL_' int2str(m) '.mat'];                       % Coeffecients
+FSpaceFileName=['QNL_' int2str(m) '.mat'];                             % Value functions
+ParaFileName=['Para_NL_' int2str(m) '.mat'];                           % Para
 
 
 save(['Data/' FSpaceFileName],'Q');
@@ -133,7 +133,7 @@ end
 %c(3,:)=coeff(2,:);
 %c(4,:)=coeff(2,:);
 
-% for z=1:Para.ZSize
+% for z=1:ZSize
 %     tic
 %     for v=1:VGridSize
 %         resQNew=getQNew(z,VGrid(z,v),c,Q,Para);
@@ -143,14 +143,14 @@ end
 %         LambdaStarRatio(z,v)=resQNew.LambdaStar(2)/resQNew.LambdaStar(3);
 %         VStar(z,v,:)=resQNew.VStar;
 %         DelVStar(z,v,:)=resQNew.VStar-VGrid(z,v);
-%         for zstar=1:Para.ZSize
+%         for zstar=1:ZSize
 %         resQNew=getQNew(zstar,VStar(z,v,zstar),c,Q,Para);
 %         ConsShareStar(z,v,zstar)=resQNew.ConsShare;
 %         end
 
 % end
 
-%ConsFileName=['Cons_NL_' int2str(Para.m) '.mat'];
-%VStarFileName=['VStar_NL_' int2str(Para.m) '.mat'];
+%ConsFileName=['Cons_NL_' int2str(m) '.mat'];
+%VStarFileName=['VStar_NL_' int2str(m) '.mat'];
 %save(ConsFileName,'Cons','ConsShare')
 %save(VStarFileName,'VStar')
