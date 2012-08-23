@@ -19,7 +19,7 @@ close all
 %% Set the Parallel Config
 err=[];
 try
-    matlabpool
+    matlabpool close
 catch err
 end
 if isempty(err)
@@ -47,6 +47,8 @@ Para.VGridSize=VGridSize;
 
 [Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para);
 Para.GridSize=GridSize;
+Para.VGrid=VGrid;
+Para.VSuperMax=VSuperMax;
 % To initialize the coeffecient we use the EU solution as the starting
 % point
 [x_state,PolicyRules,cEU0]=InitializeC(Para,VGrid,VGridSize,Q);
