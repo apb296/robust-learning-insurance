@@ -1,0 +1,364 @@
+\documentclass[a4paper,12pt]{article}
+%\documentstyle [12pt]{article}
+
+\usepackage{mylay}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin {document}
+%generates the title
+\null
+
+\medskip
+\bigskip
+\bigskip
+\centerline{\LARGE Heterogenoues Agents with Robust Learning}
+\medskip
+\medskip
+\centerline{\LARGE PROPOSAL}
+\centerline{}
+\medskip
+\centerline{}
+\bigskip
+
+
+%\tiny\scriptsize\footnotesize\small\normalsize\large\Large\LARGE\huge\Huge
+\normalsize
+\vspace{5 cm}
+\vspace{8 cm}
+\centerline{\bf Anmol Bandhari, Andrea Tamoni}
+%\centerline{\bf Universit\`{a} Bocconi}
+\centerline{\bf \today}
+
+\newpage
+\vspace{7cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+%Insert the table of content
+\tableofcontents
+
+%\newpage
+%%Insert the list of figures
+%\listoffigures
+
+
+\vfill
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{page}{1}
+\pagestyle{plain}
+\numberwithin{equation}{section} 
+\bibliographystyle{amsplain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation}
+\noindent This proposal tries to analyze the nature of risk sharing in an environment with multiple agents who have `fragile' beliefs. In particular we characterize the effect of learning on optimal consumption-portfolio decisions and asset prices in a setup where agents entertain doubts about model misspecification and learn about some hidden state.
+We think this question is interesting because it allows us to disentangle the effect of the following features on asset markets:
+
+\begin{enumerate}
+	\item Consumption smoothing
+	\item Risk - Sensitive preferences
+	\item Heterogeneous (fragile) beliefs 
+\end{enumerate}
+
+\noindent This question tries to link three strands of literature -
+\begin{enumerate}
+	\item General equilibrium with agents with specification fears - Tallarini, Anderson, Colacito
+	\item Learning under ambiguity - Epstein-Scnieder, Hansen-Sargent-Barrilas
+	\item Asset Markets with heterogeneous beliefs - Harrison Kreps, Scheinkman-Xiong, Basak etc
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outline}
+The basic mechanism we would like to study is the interplay between insurance and pessimism in a general equilibrium framework. Ex-ante identical guys may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that ambiguity averse agents who fear for the worst model will choose different decision rules including how they learn about hidden state variables. We think the basic ideas can be explored in the following variations of a 2-person 2 state GE framework.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c | c |c |}
+\hline
+    Model   & Aggregate Risk & Markets \\ \hline \hline
+    Model 1 & No  & Complete  \\
+    Model 2 & Yes & Complete   \\
+    Model 3 & No & Bond Economy  \\ 
+    Model 4 & Yes & Bond Economy  \\ \hline
+ \end{tabular}
+  \caption{Model Variants}
+  \label{tab:ModVar}
+\end{table}
+
+Each of these environments can be studied with the following features to undertand the link between insurance and pesssimism as mentioned before,
+
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c||c|c|}
+\hline
+     & Expected Utility & Model Ambiguity \\ \hline \hline
+No Learning & BenchMark & Exponential twisting \\ \hline
+Learning & Standard Filtering & Fragile Beliefs \\ \hline
+  \end{tabular}
+  \caption{Leanring and Ambiguity}
+  \label{tab:LearnAmb}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Setup}
+In this section, we propose the simplest possible model with all the necessary ingredients necessary to asnwer the above questions.
+
+\begin{enumerate}
+	\item Agents: $I$ is the  set of agents. In particular we assume there are two types of households in the economy. Hence $I= \{1,2\}$
+	\item Technology : Exchange economy
+	\item Endowments  : Aggregate endowment $\bar{X}_t = 1$ and is distributed as $e^1_t=s_t$ and $e^2_t=1-s_t$ where $s_t$ is Markov $\left\langle  S, P^{*} \right\rangle$ 
+	\item Preferences : $\forall i \in I $
+	
+\begin{itemize}
+	\item Let $\left\langle  P_a^i(j) , \pi_a^i (j) \right\rangle$ describe the approximating model of agent $i$ where $j \in \{1,2\}$ is a time invariant hidden state that indexes the two possible transition matrices and $ \pi_a^i (j)$ is the prior probability of agent $i$ over the hidden state.
+	\item  Risk aversion  - $\gamma$ , Subjective discount factor - $\delta$ and penalty parameter - $\theta $
+\end{itemize}
+ \noindent The agents have the same $\left\langle \gamma, \delta, \theta \right\rangle$ but may potentially differ in the choice of approximating models 
+ \item Markets  : A complete set of arrow securities
+ \end{enumerate}
+\section{Agents Problem}
+\noindent The Agent's problem could be characterized as a solution to one of the following two Bellman Recursions :
+\[\check{V}^i(a^i_t(s^t),s^t,j)=u^i(c(s^t))+\delta \mathbb{T}^i_1\left[
+\check{V}^{i*}(a_{t+1}(s^{t+1}),s^{t+1},j)\right]\]
+and
+\[V^i(a^i_t(s^t),s^t,\pi_t(s^t))=\max_{a_{t+1}(s^{t+1}),c_t(s^t)} \mathbb{T}^i_2\left[\check{V}^i(a_{t+1}(s^{t+1}),s^{t+1},\pi(s^{t+1}))\right]\]
+
+s.t.
+
+$\forall t, s^t$
+\[c^i(s^t)+\sum_{s_{t+1} | s^t}q(s_{t+1} | s^t)a^i(s^{t+1})=a^i(s^t)+e^i(s^t)\]
+
+or
+
+\[V^i(a^i_t(s^t),s^t,\pi_t(s^t))=\max_{a_{t+1}(s^{t+1}),c_t(s^t)}\mathbb{T}^i_2\left[ u^i(c(s^t))+\delta\mathbb{T}^i_1\left[V^{i*}(a_{t+1}(s^{t+1}),s^{t+1},\pi_{t+1}(s^{t+1})\right]\right]\]
+
+s.t.
+
+$\forall t, s^t$
+\[c^i(s^t)+\sum_{s_{t+1} | s^t}q(s_{t+1} | s^t)a^i(s^{t+1})=a^i(s^t)+e^i(s^t)\]
+
+\noindent The operators $\mathbb{T}^i_1(j),\mathbb{T}^i_2$ distort the transition matrix $P_a^i(j)$ and the outcome of the filter $\pi_t(s^t)$ respectively
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equilibrium}
+\noindent Given the above setup we can define the Recursive Competitive Equilibrium (RCE). 
+\noindent A RCE is a set of $\left\langle C_t , Z_t , q_t , \tilde{\pi}_t, \tilde{P}(j) \right\rangle$ where 
+\begin{enumerate}
+	\item $C_t=\{c^1_t,c^2_t\},Z_t=\{z^1_t,z^2_t\}$ are the optimal consumption -portfolio plans for the agents problems
+	\item $q_t$ are the market clearing asset prices
+	\item  $\tilde{\pi}_t = \{\tilde{\pi}^1_t, \tilde{\pi}^2_t\}, \tilde{P}_t(j)=\{ \tilde{P}_t^1(j), \tilde{P^2}_t(j)\}$ are the worst case state and transition probabilities
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Planner's problem with `fragile' beliefs}
+\noindent For a given $c^i(s^{\infty}), \pi^i_a(j)$ let $\{\tilde{\pi}^i_t, \tilde{P}_t^i(j)\}$ be the worst case densities associated to agent $i$. 
+
+\noindent Let $\tilde{\pi}^i_{\infty}(c^i(s^{\infty}))=\lim_{t\to\infty}\tilde{\pi}^i_t$ and $\tilde{\mathbb{E}}^{c^i(s^{\infty})}$ be the expectation operator w.r.t $\tilde{\pi}^i_{\infty}(c^i(s^{\infty}))$
+
+
+\noindent The (sequential) Planner's problem is described as follows. The planner attaches nonnegative Pareto weight $\lambda$ on the
+consumers and chooses allocations $\{c^i_t(s^t)\}_{t=0}^{\infty}$ and $i \in I$ to maximize:
+\[
+\max_{\{c^1_t(s^t),c^2_t(s^t)\}} \sum_i\left[\lambda^i \tilde{\mathbb{E}}^{c^i(s^{\infty})}\left[\sum_t\sum_{s^t}\delta^tu^i(c^i(s^t))\right]\right ]
+\]
+subject to the feasibility constraints
+s.t $\forall t, s^t$
+\[c^1(s^t)+c^2(s^t)=e(s^t)\]
+\noindent Note : The planner respects the `fragile' beliefs  in this formulation. The recursive version is not obvious
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Research directions}
+\begin{enumerate}
+	\item Write down a simple version of this setup which can be solved in a tractable fashion
+	\item Formulate the recursive version of the planner's problem
+	
+	\item Understand the impact of each feature by solving the three environments
+	
+\begin{itemize}
+	\item Expected Utility with objective probability $(S,P^*)$
+	\item HS preferences for robustness with complete information on hidden state
+	\item HS preferences for robustness with learning
+\end{itemize}
+
+
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{2 Periods Economy - Incomplete Markets}
+In this section we study an economy with heterogeneous households and incomplete markets. To study how market incompleteness we have to
+restrict the means of risk sharing among all economic agents in the economy. In particular, we allow only one type of security to be traded: risk-free one-period discount bonds, whose par value is one unit of consumption good. The price of the bond is the reciprocal of the gross real interest rate.
+
+If the asset market is to clear in this closed economy, the net saving by the first household must be equal to the net borrowing by the
+second household, and vice versa.
+
+Assume $s_t$ is Markov $\left\langle  S, P^{*} \right\rangle$ where
+\begin{align*}
+                 S &= \lbrace s_H, s_L \rbrace \\
+P(s',s,\alpha) = \mathbb{P}(\alpha) &= \begin{bmatrix}
+	\alpha	        &1-\alpha \\
+	1-\alpha        &\alpha
+\end{bmatrix} 
+\end{align*}
+The agent $i$ has prior $\pi^i_0(\alpha)$. The agent $i$ problem is
+\begin{align*}
+V_0(a_0^i,s_0,\pi^i_0) &= \max_{c_0^i,a_1^i} \mathbf{T}^2 \{u(c_0^i) + \delta\mathbf{T}^1 V_1(a_1^i(s_1), s_1, \pi_1) \} \\
+\textrm{s.t.} & \\
+              & c_0^i +  q(s_0) a_1^i = s_0 + a^i_0(s_0) 
+\end{align*}
+In the last period $t=1$ the agent $i$ consumes all his wealth, i.e.
+\[
+V_1(a_1^i, s_1, \pi_1) = u(a_1^i + s_1)
+\]
+\begin{align*}
+\mathbf{T}_1(\alpha,a_1^i,s_0)    &= -\theta_1^i \log \sum_{s_1 \in \{s_H,s_L\}}{p_{s_1|s_0}(\alpha) \exp\left\{{\frac{-u(a_1^i + s_1)}{\theta_1^i}}\right\}} \\
+\bar{\mathbf{T}}_1(\alpha,a_1^i,a_0^i,s_0)&= u\left[ s_0 + a_0^i(s_0) - q(s_0) a_1^i\right] + \delta \mathbf{T}_1(\alpha,a_1^i,s_0) \\
+\mathbf{T}_2(\pi_0^i,a_1^i,a_0^i,s_0)   &=-\theta_2 \log \sum_{\alpha}{\pi_0(\alpha)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha, a_1^i,a_0,s_0)}{\theta_2} \right\}}
+\end{align*}
+Let's compute the following object for all $i$ and $s_1 \in \{s_H,s_L\}$
+\begin{align}
+\frac{\partial \mathbf{T}_1(\alpha,a_1^i,s_0)}{\partial a_1^i} &= -\theta_1^i \sum_{s_1}{ \frac{p_{s_1|s_0}(\alpha) \exp\left\{{\frac{-u(a_1^i + s_1)}{\theta_1^i}}\right\}\frac{-1}{\theta_1^i} \frac{\partial u(\cdot)}{\partial c}\Big |_{c_1=a_1^i + s_1}}{\sum_{s_1}{p_{s_1|s_0}(\alpha) \exp\left\{{\frac{-u(a_1^i + s_1)}{\theta_1^i}}\right\}}}}  \nonumber\\
+&=\sum_{s_1}{ \frac{p_{s_1|s_0}(\alpha) \exp\left\{{\frac{-u(a_1^i + s_1)}{\theta_1^i}}\right\} \frac{\partial u(\cdot)}{\partial c}\Big |_{c_1=a_1^i + s_1}}{\sum_{s_1}{p_{s_1|s_0}(\alpha) \exp\left\{{\frac{-u(a_1^i + s_1)}{\theta_1^i}}\right\}}}}  \nonumber\\
+&=\sum_{s_1}{\tilde{p}_{s_1 \mid s_0}(\alpha) \frac{\partial u(\cdot)}{\partial c}\Big |_{c_1=a_1^i + s_1}} \label{eq:T1}\\
+\frac{\partial \bar{\mathbf{T}}_1(\alpha,a_1^i,a_0^i,s_0)}{\partial a_1^i} &= -u_c(\cdot)\vert_{w_0} q(s_0) + \delta \frac{\partial \mathbf{T}_1(\alpha,a_1^i,s_0)}{\partial a_1^i} \label{eq:T11} \\
+\frac{\partial \mathbf{T}_2(a_1^i,a_0^i,s_0)}{\partial a_1^i}    &= -\theta_2 \frac{\pi_0(\alpha)\exp\left \{ - \frac{\bar{\mathbf{T}}_1(\alpha, a_1^i,a_0^i,s_0)}{\theta_2} \right\}}{\sum_{\alpha}{\pi_0(\alpha)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha,a_1^i,a_0^i,s_0)}{\theta_2} \right\}}} \frac{-1}{\theta_2} \frac{\partial \bar{\mathbf{T}}_1(\alpha,a_1^i,s_0)}{\partial a_1^i} \nonumber\\
+&=\frac{\pi_0(\alpha)\exp\left \{ - \frac{\bar{\mathbf{T}}_1(\alpha, a_1^i,a_0^i,s_0)}{\theta_2} \right\}}{\sum_{\alpha}{\pi_0(\alpha)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha, a_1^i,a_0^i,s_0)}{\theta_2} \right\}}} \frac{\partial \bar{\mathbf{T}}_1(\alpha,a_1^i,a_0^i,s_0)}{\partial a_1^i} \nonumber \\
+&= \tilde{\pi}_0(\alpha) \frac{\partial \bar{\mathbf{T}}_1(\alpha,a_1^i,a_0^i,s_0)}{\partial a_1^i} \label{eq:T2}
+\end{align}
+where we define the distorted transition probability as
+\[
+\tilde{p}_{s_1 \mid s_0}(\alpha) = \frac{p_{s_1|s_0}(\alpha) \exp\left\{{\frac{-u(a_1^i + s_1)}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\alpha) \exp\left\{{\frac{-u(a_1^i + s_1)}{\theta_1^i}}\right\}}}
+\]
+and the distorted prior as
+\[
+\tilde{\pi}_0(\alpha) \equiv \frac{\pi_0(\alpha)\exp\left \{ - \frac{\bar{\mathbf{T}}_1(\alpha, a_1^i,a_0^i,s_0)}{\theta_2} \right\}}{\sum_{\alpha}{\pi_0(\alpha)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha, a_1^i,a_0^i,s_0)}{\theta_2} \right\}}}
+\]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{2 Periods Economy - Complete Markets}
+Following \cite{CS08} and \cite{CS09} we start with a hidden Markov model for endowment $e_t$. In particular we assume that the endowment process follows a two-point process
+\begin{align*}
+E_t = &
+\begin{cases}
+E_h &\text{ if $S_t = 1$}, \\
+E_l &\text{ if $S_t = 0$}. 
+\end{cases}
+\end{align*}
+We assume that this model represents the true but unknown process for endowment.
+Assume $s_t$ is Markov $\left\langle  S, P^{*} \right\rangle$ where
+\begin{align*}
+                 S &= \lbrace e_H s_H, e_H s_L,  e_L s_H, e_L s_L \rbrace \\
+P(s',s,\alpha, \beta) = \mathbb{P}(\alpha,\beta) &= \begin{bmatrix}
+	f(\alpha,\beta)	        &\ldots  &\ldots  &\ldots \\
+	\ldots                  &f(\alpha,\beta) &\ldots  &\ldots
+\end{bmatrix} 
+\end{align*}
+
+The agent $i$ has prior $\pi^i_0(\alpha,\beta)$. The agent $i$ problem is
+\begin{align*}
+V_0(a_0^i,e_0,s_0,\pi^i_0) &= \max_{c_0,A_1^i(s_1)} \mathbf{T}^2 \{u(c_0) + \delta\mathbf{T}^1 V_1(A_1^i(s_1), s_1, \pi_1) \} \\
+\textrm{s.t.} & \\
+              & c_0^i +  \sum_{s_1}{q(s_1\mid s_0) a_1^i(s_1)} = e_0 s_0 + a^i_0(s_0) 
+\end{align*}
+where $a_1^i(s_1)$ denotes agent $i$'s claims to time $t+1$ consumption and $q(s_1\mid s_0)$ gives the price of one unit of time $t+1$ consumption of good contingent on the realization $s_{t+1}$ at $t+1$.
+In the last period $t=1$ the agent $i$ consumes all his wealth, i.e.
+\[
+V_1(A_1^i(s_1), e_1, s_1, \pi_1) = u(A_1^i(s_1) + e_1 s_1)
+\]
+\begin{align*}
+\mathbf{T}_1(\alpha, \beta, a_1^i, s_0)    &= -\theta_1^i \log \sum_{s_1 \in S}{p_{s_1|s_0}(\alpha,\beta) \exp\left\{{\frac{-u(a_1^i(s_1) + e_1 s_1)}{\theta_1^i}}\right\}} \\
+\bar{\mathbf{T}}_1(\alpha, \beta, a_1^i, a_0^i, s_0)&= u\left[ e_0 s_0 + a_0^i (s_0) - \sum_{s_1 \in S}{q(s_1\mid s_0) a_1^i(s_1)}\right] + \delta \mathbf{T}_1(\alpha,\beta, a_1^i,s_0) \\
+\mathbf{T}_2(\pi_0^i, a_1^i, a_0^i, s_0)   &=-\theta_2 \log \sum_{\alpha}{\pi_0(\alpha,\beta)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha, \beta, a_1^i,a_0^i, s_0)}{\theta_2} \right\}}
+\end{align*}
+Let's compute the following object for all $i$ and $s_1 \in \{s_H,s_L\}$
+\begin{align}
+\frac{\partial \mathbf{T}_1(\alpha, \beta, a_1^i, s_0)}{\partial a_1^i(s_1)} &= -\theta_1^i \frac{p_{s_1|s_0}(\alpha,\beta) \exp\left\{{\frac{-u(a_1^i(s_1) + e_1 s_1)}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\alpha,\beta) \exp\left\{{\frac{-u(a_1^i(s_1) + s_1)}{\theta_1^i}}\right\}}} \frac{-1}{\theta_1^i} \frac{\partial u(\cdot)}{\partial c}\Big |_{c_1=a_1^i(s_1) + e_1 s_1}  \nonumber\\
+&=\frac{p_{s_1|s_0}(\alpha,\beta) \exp\left\{{\frac{-u(a_1^i(s_1) + e_1 s_1)}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\alpha,\beta) \exp\left\{{\frac{-u(a_1^i(s_1) + e_1 s_1)}{\theta_1^i}}\right\}}}\frac{\partial u(\cdot)}{\partial c}\Big |_{c_1=a_1^i(s_1) + e_1 s_1} \nonumber\\
+&=\tilde{p}_{s_1 \mid s_0}(\alpha,\beta) \frac{\partial u(\cdot)}{\partial c}\Big |_{c_1=a_1^i(s_1) + e_1 s_1} \label{eq:T1}\\
+\frac{\partial \bar{\mathbf{T}}_1(\alpha,\beta,a_1^i,a_0^i,s_0)}{\partial a_1^i(s_1)} &= -u_c(\cdot)\vert_{w_0} q(s_1\mid s_0) + \delta \frac{\partial \mathbf{T}_1(\alpha,\beta,a_1^i,s_0)}{\partial a_1^i(s_1)} \label{eq:T11} \\
+\frac{\partial \mathbf{T}_2(a_1^i(s_1),a_0^i,s_0)}{\partial a_1^i(s_1)}    &= -\theta_2 \frac{\pi_0(\alpha,\beta)\exp\left \{ - \frac{\bar{\mathbf{T}}_1(\alpha,\beta, a_1^i(s_1),a_0^i,s_0)}{\theta_2} \right\}}{\sum_{\alpha}{\pi_0(\alpha,\beta)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha,\beta,a_1^i(s_1),a_0^i,s_0)}{\theta_2} \right\}}} \frac{-1}{\theta_2} \frac{\partial \bar{\mathbf{T}}_1(\alpha,\beta,a_1^i(s_1),s_0)}{\partial a_1^i(s_1)} \nonumber\\
+&=\frac{\pi_0(\alpha,\beta)\exp\left \{ - \frac{\bar{\mathbf{T}}_1(\alpha, \beta, a_1^i(s_1),a_0^i,s_0)}{\theta_2} \right\}}{\sum_{\alpha}{\pi_0(\alpha,\beta)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha, \beta, a_1^i(s_1),a_0^i,s_0)}{\theta_2} \right\}}} \frac{\partial \bar{\mathbf{T}}_1(\alpha,\beta,a_1^i(s_1),a_0^i,s_0)}{\partial a_1^i(s_1)} \nonumber \\
+&= \tilde{\pi}_0(\alpha,\beta) \frac{\partial \bar{\mathbf{T}}_1(\alpha,\beta,a_1^i(s_1),a_0^i,s_0)}{\partial a_1^i(s_1)} \label{eq:T2}
+\end{align}
+where we define the distorted transition probability as
+\[
+\tilde{p}_{s_1 \mid s_0}(\alpha,\beta) = \frac{p_{s_1|s_0}(\alpha,\beta) \exp\left\{{\frac{-u(a_1^i(s_1) + s_1)}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\alpha,\beta) \exp\left\{{\frac{-u(a_1^i(s_1) + s_1)}{\theta_1^i}}\right\}}}
+\]
+%and the distorted prior as
+%\[
+%\tilde{\pi}_0(\alpha) \equiv \frac{\pi_0(\alpha)\exp\left \{ - \frac{\bar{\mathbf{T}}_1(\alpha, A_1^i(s_1),a_0^i,s_0)}{\theta_2} \right\}}{\sum_{\alpha}{\pi_0(\alpha)\exp\left \{ -\frac{\bar{\mathbf{T}}_1(\alpha, A_1^i(s_1),a_0^i,s_0)}{\theta_2} \right\}}}
+%\]
+%\subsection{Log Utility Case}
+%Assume $u(c) = \log(c)$. Then equation \eqref{eq:T1} becomes
+%\begin{align*}
+%\frac{\partial \mathbf{T}_1(\alpha,A_1^i,s_0)}{\partial A_1^i(s_1)} &= \frac{p_{s_1|s_0}(\alpha)(A_1^i(s_1) + s_1)^{-\frac{1}{\theta_1^i}}}{\sum_{s_1}{p_{s_1|s_0}(\alpha) (A_1^i(s_1) + s_1)^{-\frac{1}{\theta_1^i}}}} \frac{1}{(A_1^i(s_1) + s_1)} \\
+%&= \frac{p_{s_1|s_0}(\alpha) (A_1^i(s_1) + s_1)^{-\frac{1}{\theta_1^i}- 1}}{\sum_{s_1}{p_{s_1|s_0}(\alpha) (A_1^i(s_1) + s_1)^{-\frac{1}{\theta_1^i}}}} 
+%\end{align*}
+%and equation \eqref{eq:T11}
+%\begin{align*}
+%\frac{\partial \bar{\mathbf{T}}_1(\alpha,A_1^i,a_0^i,s_0)}{\partial A_1^i(s_1)} \Big |_{s_1=s_H} &= -\frac{1}{s_0 + a_0^i(s_0) - \sum_{s_1}{q(s_1\mid s_0) A_1^i(s_1)}} q(s_H\mid s_0) + \beta \frac{\partial \mathbf{T}_1(\alpha,A_1^i,s_0)}{\partial A_1^i(s_H)} \\
+%\frac{\partial \bar{\mathbf{T}}_1(\alpha,A_1^i,a_0^i,s_0)}{\partial A_1^i(s_1)} \Big |_{s_1=s_L} &= -\frac{1}{s_0 + a_0^i(s_0) - \sum_{s_1}{q(s_1\mid s_0) A_1^i(s_1)}} q(s_L\mid s_0) + \beta \frac{\partial \mathbf{T}_1(\alpha,A_1^i,s_0)}{\partial A_1^i(s_L)}
+%\end{align*}
+\subsection{Pareto problem}
+The planner attaches nonnegative Pareto weights $\lambda$ and $1-\lambda$  on the consumers and chooses allocations to maximize:
+\[
+\lambda V_0^1(s_0)+ (1-\lambda) V_0^2(s_0)
+\]
+subject to the feasibility constraints:
+\[
+c_t^1(s_t) + c_t^2(s_t) \le e_t(s_t)
+\]
+where 
+\begin{align*}
+V_0^i(s_0) &= u(c_0^i) + \delta\mathbf{T}^1 V_1(c_1^i(s_1), s_1, \pi_1) \\
+           &= u(c_0^i) - \delta \theta_1^i \log \sum_{s_1 \in S}{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^i)}{\theta_1^i}}\right\}}\\
+\end{align*}
+The FOC wrt $c_0$ yields:
+\[
+\frac{u^{\prime}(c_0^1)}{u^{\prime}(c_0^2)} = \frac{1-\lambda}{\lambda}
+\]
+The FOC wrt $c_{i,1}$ yields:
+\begin{align*}
+\frac{\frac{\partial \mathbf{T}_1(\alpha, \beta, c_1^1, s_0)}{\partial c_1^1(s_1)}}{\frac{\partial \mathbf{T}_1(\alpha, \beta, c_1^2, s_0)}{\partial c_2^2(s_1)}} &= \frac{1-\lambda}{\lambda}\\
+\frac{
+\frac{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^1(s_1))}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^1(s_1))}{\theta_1^i}}\right\}}}\frac{\partial u(\cdot)}{\partial c}\Big |_{c_1^1}
+}
+{
+\frac{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^2(s_1))}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^2(s_1))}{\theta_1^i}}\right\}}}\frac{\partial u(\cdot)}{\partial c}\Big |_{c_1^2}
+} &= \frac{1-\lambda}{\lambda} \\
+\frac{
+\frac{\exp\left\{{\frac{-u(c_1^1(s_1))}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^1(s_1))}{\theta_1^i}}\right\}}}\frac{\partial u(\cdot)}{\partial c}\Big |_{c_1^1}
+}
+{
+\frac{\exp\left\{{\frac{-u(c_1^2(s_1))}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^2(s_1))}{\theta_1^i}}\right\}}}\frac{\partial u(\cdot)}{\partial c}\Big |_{c_1^2}
+} &= \frac{1-\lambda}{\lambda}
+\end{align*}
+where in the last line we simplify the common term $p_{s_1|s_0}(\cdot,\beta)$.
+Alternatively
+\begin{align*}
+\frac{\frac{\partial u(\cdot)}{\partial c}\Big |_{c_1^1}}{\frac{\partial u(\cdot)}{\partial c}\Big |_{c_1^2}} &= \mathcal{W}(s_t)
+\end{align*}
+where we define the time $t=1$ history $s^t$ ratio of Pareto weights.
+\begin{align*}
+\mathcal{W}(s_t) \equiv
+\frac{
+\frac{\exp\left\{{\frac{-u(c_1^2(s_1))}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^2(s_1))}{\theta_1^i}}\right\}}}
+}
+{
+\frac{\exp\left\{{\frac{-u(c_1^1(s_1))}{\theta_1^i}}\right\}}{\sum_{s_1}{p_{s_1|s_0}(\cdot,\beta) \exp\left\{{\frac{-u(c_1^1(s_1))}{\theta_1^i}}\right\}}}
+}\frac{1-\lambda}{\lambda}
+\end{align*}
+for all $t \ge 1$ and $\mathcal{W}(s_0) = \frac{1-\lambda}{\lambda}$. The ratio of the Pareto weights, $\mathcal{M}(s_t)$ ... see \cite{Anderson2005}
+\subsection{Characterizing asset prices}
+We can support a Pareto optimal allocation with a sequential trading of one-period Arrow securities. In the present context it suffices to trade two arrow securities each period. Their prices are denoted $Q^H_{t}(s^t)$ and $Q^L_{t}(s^t)$.
+\begin{align*}
+Q^H_{t}(s_1) &= \\
+Q^L_{t}(s_1)  &=
+\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\bibliographystyle{plain}
+\bibliography{myreferences}
+
+\end{document}

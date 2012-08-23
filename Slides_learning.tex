@@ -1,0 +1,457 @@
+\documentclass{beamer}
+%\usetheme{Madrid} % My favorite!
+%\usetheme{Boadilla} % Pretty neat, soft color.
+\usetheme{default}
+%\usetheme{Warsaw}
+%\usetheme{Bergen} % This template has nagivation on the left
+%\usetheme{Frankfurt} % Similar to the default 
+%with an extra region at the top.
+%\usecolortheme{seahorse} % Simple and clean template
+%\usetheme{Darmstadt} % not so good
+% Uncomment the following line if you want %
+% page numbers and using Warsaw theme%
+% \setbeamertemplate{footline}[page number]
+%\setbeamercovered{transparent}
+%\setbeamercovered{invisible}
+% To remove the navigation symbols from 
+% the bottom of slides%
+\setbeamertemplate{navigation symbols}{} 
+%
+
+%\usepackage{subfig}
+\usepackage{amsmath}    % need for subequations
+\usepackage{verbatim}   % useful for program listings
+\usepackage{color}      % use if color is used in text
+\usepackage{subfigure}  % use for side-by-side figures
+\usepackage{hyperref}   % use for hypertext links, including those to external documents and URLs
+\usepackage{amssymb,latexsym, amsmath}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{multirow}
+
+%\usepackage{subcaption}
+%\usepackage{caption} 
+%\usepackage{subcaption}
+%\usepackage{bm} % For typesetting bold math (not \mathbold)
+%\logo{\includegraphics[height=0.6cm]{yourlogo.eps}}
+\theoremstyle{Definition}
+\newtheorem{defi}{Definition}
+\newtheorem{propo}{Proposition}
+%\graphicspath{{graphs//}}
+
+\title{Ambiguity Insurance and Learning}
+
+
+\date{\today}
+% \today will show current date. 
+% Alternatively, you can specify a date.
+%
+\begin{document}
+%
+\begin{frame}
+\titlepage
+\end{frame}
+%--------------------------------------------------------------------------------------------%
+
+
+\begin{frame}
+\frametitle{Motivation}
+\begin{figure}
+  \begin{center}
+   
+   \includegraphics[scale=.5]{overview.png}
+  \end{center} 
+		
+	\end{figure}
+
+\end{frame}
+%--------------------------------------------------------------------------------------------%
+
+
+\begin{frame}
+\frametitle{Question}
+Study Optimal Insurance in world where agents face Knightian Uncertainty
+
+\begin{itemize}
+	\item With Knightian uncertainty there is feedback between \emph{Risk Perceptions} and \emph{Risk Sharing}.
+	\item This link affects how Optimal Risk Sharing schemes look.
+\end{itemize}
+
+Applications : Disentangle the effect of the following features on asset markets:
+
+\begin{enumerate}
+	\item Risk Sharing/Consumption smoothing
+	\item Model Ambiguity/Uncertainty
+	\item Learning
+\end{enumerate}
+
+\end{frame}
+%--------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Basic Mechanism - Simple Example}
+
+Consider a simple example:
+
+
+
+
+Let $Y(z)$ be a risky endowment to be shared amongst $K$ agents who value consumption by $u(c)=\frac{c^{1-\gamma}}{1-\gamma}$
+
+
+
+
+Denote a feasible risk sharing arrangement by $\alpha = [\alpha_1 \dots \alpha_K]$ such that $\sum \alpha_i=1$
+
+
+
+
+Now suppose that the agents do not trust the distribution of $Y$. 
+
+
+
+\end{frame}
+%--------------------------------------------------------------------------------------------%
+
+
+
+
+\begin{frame}
+\frametitle{Basic Mechanism - Simple Example}
+\[V^R (\alpha)=\min_{m}\mathbb{E}m[u(\alpha_iY)+\theta\log(m)]\]
+such that 
+$Em=1$
+ The choice for $m^*$
+\[m_i^*\propto \exp\left\{\frac {-\alpha^{1-\gamma}_iy^{1-\gamma}}{\theta(1-\gamma)}\right\}\]
+
+An ex-post Bayesian interpretation : Agents have (diverse) priors given by $p(y)m^*_i(y)$. Note that this depends on $\alpha$ as long as $\gamma \neq 1$.
+
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Basic Mechanism - Insurance and Heterogeneous Beliefs}
+There are 3 broad ways why of modeling agents with diverse beliefs
+\begin{enumerate}
+	\item Exogenous 
+	\item Asymmetric Information : Different Information  
+	\item Rational Inattention  : Differences in processing of Information
+	\item Model Ambiguity : Agents `choose' to have different beliefs because their continuation values vary differently. 
+\end{enumerate}
+
+\small{
+\emph{ Ex-ante identical guys may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that ambiguity averse agents who fear for the worst model will choose different decision rules including how they learn about hidden state variables}}
+\end{frame}
+
+%--------------------------------------------------------------------------------------------%
+
+
+\begin{frame}
+\frametitle{Setup}
+	\begin{enumerate}
+		\item \textbf{Agents}  : $I$ is the  set of agents, where $I= \{1,2\}$
+		\item \textbf{Technology} : Exchange economy
+		\item \textbf{Endowments}  : Two Shocks - Size and Distribution of aggregate endowment - $z=(y,s)$. Let $P(y^{*},s^* | y,s)$ be the transition matrix
+		\tiny{
+$$\bordermatrix{\text{}&y_ls_l&y_ls_h&y_hs_l&y_hs_h\cr
+                y_ls_l&\alpha\beta&  \alpha(1-\beta)  & (1-\alpha)\beta& (1-\alpha)(1-\beta)\cr
+                y_ls_h&   \alpha(1-\beta) &  \alpha\beta &(1-\alpha)(1-\beta) & (1-\alpha)\beta\cr
+                y_hs_l&   (1-\alpha)(\beta) &  (1-\alpha)(1-\beta )&\alpha\beta & \alpha(1-\beta)\cr
+                y_hs_h&  (1-\alpha)(1-\beta) &  (1-\alpha)\beta &\alpha(1-\beta) & \alpha\beta }$$}
+                \normalsize{
+
+\item \textbf{Information Structure} : 4 state variables  - 2 observable $(s,y)$ and  2 unobservable $(\alpha,\beta)$. Let $M=\{m : m=(\alpha,\beta)\}$ be the set of models on the table. The prior over the hidden state variables is denoted by $\pi(m)_{m \in M}$}
+ 	\end{enumerate}
+\end{frame}
+%-------------------------------------------------------------------------------------------------------------------------------------------------------%
+
+\begin{frame}
+\frametitle{Setup - Preferences}
+\textbf{Preferences} : Following Hansen and Sargent [2007] the preferences of the agent are described by 2 sets of objects, 
+\begin{itemize}
+	\item \textbf{Ambiguity}
+%	
+$\forall i \in I,$
+\begin{enumerate}
+	\item Approximating Models :   $\left\langle  P^i, \pi^i \right\rangle$
+	\item Entropy Penalty - $\theta_j^i$ where $j=1$ captures the doubts about the hidden state and $j=2$ about the transition matrix
+\end{enumerate}
+\item \textbf{Time and Risk} :
+\begin{enumerate}
+	\item Risk Aversion - $\gamma^i$
+	\item Subjective discount factor - $\delta^i$
+\end{enumerate}
+ \end{itemize}
+
+\small{The agents can have potentially different preferences but I will mostly concentrate on the cases where the only differences in the agent is their endowment stream}
+%
+\end{frame}
+
+\begin{frame}
+\frametitle{Planner's Problem}
+Let z=(y,s)
+
+$\mathcal{Q}(v,z,\pi)$ be the maximum lifetime discounted utility of agent 1 given that $v$ is the promised lifetime discounted utility of agent 2.
+
+\[\mathcal{Q}(v,z,\pi)=\max_{c,v^*(z^*)} \mathbb{T}_2\left[u^1(c)+\delta \mathbb{T}_1 \mathcal{Q}(v^*,z^*,\pi^*)\right]\]
+s.t
+\[\mathbb{T}_2\left[u^2(y-c)+\delta \mathbb{T}_1 v^*\right]\geq v\] 
+\[\pi^*(m)\propto \pi(m)P(z^*|z,m)\]
+\end{frame}
+%-------------------------------------------------------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Planner's Problem - FOC}
+\small{
+\[u^1_c(c)=\lambda u^2_c(y-c)\]
+\[\left(\sum_{m \in M}\tilde{\pi}^1(m)\tilde{P^1}_z(z^* |z,m)\right)\lambda^*=\lambda\left(\sum_{m \in M}\tilde{\pi}^2(m)\tilde{P^2}_z(z^* |z,m)\right) \]
+\[\tilde{P}^1 \propto P\exp\left\{\frac{-\mathcal{Q}(v^*,z^*,\pi^*)}{\theta^1}\right\}\]
+\[\tilde{P}^2 \propto P\exp\left\{\frac{-v^*}{\theta^1}\right\}\]
+\[\tilde{\pi}^1 \propto \pi \exp\left\{-\frac{ u^1(c)+\delta \mathbb{T}^1_2 \mathcal{Q}(v^*,z^*,\pi^*) }{\theta^2}\right\}\]
+\[\tilde{\pi}^1 \propto \pi \exp\left\{-\frac{u^2(y-c)+\delta \mathbb{T}^2_2 v^*}{\theta^2}\right\}\]
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Planner's Problem - 3 Periods}
+With 2 Models and 3 periods, we have the terminal value function
+
+\[\mathcal{Q}(v^*,z^*,\pi^*) = u(y^*-u^{-1}(v^*))\]
+
+the following calibration for the next few slides
+\begin{enumerate}
+	\item $\alpha =[ .5;.95]$
+	\item $\beta=[.5;.9]$
+	\item $\gamma=2$
+	\item $y(z)=\bar{y}(1+g(z))$
+	\item $\theta_2=\frac{\theta_1}{10}$
+	\item $g(z)=-10\%$ if $z=1,2$ and $10\%$ otherwise
+\end{enumerate}
+
+I will consider 2 cases, No Learning ($\pi(1)=1$) and Learning ($\pi(1)=0.5$). For both the cases the corresponding Benchmark will be Expected Utility ($\theta_1=\theta_2=\infty$).
+
+
+\end{frame}
+
+%-------------------------------------------------------------------------------------------------------------------------------------------------------%
+\begin{frame}
+\frametitle{Results - Without Learning}
+\begin{enumerate}
+	\item In both, the Benchmark case and ambiguity consumption is proportional to aggregate output.
+	
+
+\emph{	No distortion in idiosyncratic risk conditional on aggregate output.}
+	
+	\item However with ambiguity, the proportion is \textbf{time-varying}. In particular it depends on the aggregate output.
+	
+	\emph{Agents distort aggregate risk}.
+	
+	\end{enumerate}
+
+
+	
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Results - Without Learning : Consumption Vol}
+\begin{table}[tbp]
+	\centering
+		\begin{tabular}{|l|l|l|l|l|}
+\hline			
+& \multicolumn{2}{|c|} {T=1} & \multicolumn{2}{|c|} {T=2} \\
+\hline
+& BM & Amb & BM & Amb \\
+\hline
+\multirow{2}{*} {Agent 1} & 10.00\% 	& 10.22\% 	& 10.00\% 		& 10.52\% \\
+
+													& (10.00\%)& (10.26\%)	& (10.00\%)	& ( 10.58\%) \\
+\hline
+\multirow {2}{*}{Agent 2} & 10.00\% 	& 7.79\% 	& 	10.00\% 		& 4.87 \% \\
+
+													& (10.00\%)& (8.72\%)	& (10.00\%)	& (7.20 \%) \\
+\hline													
+													
+		\end{tabular}
+	\caption{Volatility of future consumption for both agents. The numbers in the parentheses denote the volatilities for an alternative choice of $v_0$ }
+	\label{tab:ConsumptionVolatility}
+\end{table}
+
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{Relative Consumption -Without Learning}
+ \begin{figure}
+ {\includegraphics[scale=.35]{RelCons.png}}
+ \caption{\tiny{Relative Consumption for Agent 1. The dotted lines represent the benchmark. The filled circles are for low aggregate endowment and the colors represent different initial promised values}}
+  \end{figure}
+  \end{frame}
+  
+\begin{frame}
+\frametitle{Risk Sharing and Risk Perceptions}
+\begin{itemize}
+	\item The planner insures agents against idiosyncratic risk but they have to bear aggregate risk.
+	\item How aggregate risk is distributed affects perception of risk, hence \textbf{\emph{optimal risk sharing}}
+	\item The Planner respects this link by varying the Lagrange multipliers across aggregate states 
+\end{itemize}
+Recall the FOC
+\[\left[\tilde{P^1}(z^* |z)\right]\lambda^*(z^*)=\lambda\left[\tilde{P^2}(z^* |z)\right] \]
+\end{frame}
+
+\begin{frame}
+\frametitle{Implications for Asset Prices}
+Define the \emph{Shadow prices for Arrow securities} as follows
+\[q(z^*|z)=\delta \left[\tilde{P^1}(z^* |z)\right]\lambda^*(z^*)\]
+and Market Price of Risk as
+\[MPR(z)=\frac{\sigma[q(z^*|z)]}{E[q(z^*|z)]}\]
+
+\begin{itemize}
+	\item In the IID world  $P(z^*|z,1) = .25$ for all $z^*$ , further under the benchmark we have $\lambda^*(z^*)=\lambda$, so there is no volatility in the pricing kernel.
+	\item Under Ambiguity, since $\tilde{P}^1$ and $\lambda^*(z^*)$ both vary with the aggregate state we have time varying volatility in the pricing kernel.
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Market Price of Risk -Without Learning}
+ \begin{figure}
+ {\includegraphics[scale=.35]{MPRNoL.png}}
+ \caption{\tiny{The dotted lines represent the benchmark. The filled circles are for low aggregate endowment and the colors represent different initial promised values}}
+  \end{figure}
+  \end{frame}
+  
+  \begin{frame}
+\frametitle{Results - With Learning}
+\begin{itemize}
+\item With Learning  - Consumption is no longer proportional to output. 	
+\item Why ?
+\begin{enumerate}
+	\item Agents are not indifferent to compound lotteries
+	\item They  have heterogeneous beliefs about the hidden states
+\end{enumerate}
+
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Compound Lotteries}
+Consider a case when agents do not distrust the learning process - $\theta_2=\infty$ and  $Y(z_1)=Y(z_2)$.
+We can have $\lambda^*(z_1)=\lambda^*(z_2)$ iff
+\scriptsize{
+\[\frac{\pi[\tilde{P}^1(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_1 | z_0,2)]}{\pi[\tilde{P}^2(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_1 | z_0,2)]} = \frac{\pi[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_2 | z_0,2)]}{\pi[\tilde{P}^2(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_2 | z_0,2)]}\]
+	}
+	or
+\scriptsize{
+\[\frac{\pi[\tilde{P}^1(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_1 | z_0,2)]}{\pi[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_2 | z_0,2)]} = \frac{\pi[\tilde{P}^2(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_1 | z_0,2)]}{\pi[\tilde{P}^2(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_2 | z_0,2)]}\]
+	}	 
+In the Benchmark case we have $\tilde{P}^1=\tilde{P}^2=P$, hence LHS=RHS
+  \end{frame}
+  
+ \begin{frame}
+\frametitle{Compound Lotteries}
+Consider as with No-Learning case agents do not distort idiosyncratic risk or ,agree on the relative likelihood of $z_1,z_2$ wrt each model
+\[\frac{[\tilde{P}^1(z_1|z_0,m)]}{[\tilde{P}^1(z_2|z_0,m)]}= \frac{[\tilde{P}^2(z_1|z_0,m)]}{[\tilde{P}^2(z_2|z_0,m)]}=\frac{[P^1(z_1|z_0,m)]}{[P(z_2|z_0,m)]}=\kappa(m)\]
+
+So we have LHS as
+
+\scriptsize{
+\[\frac{\pi\kappa(1)[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)\kappa(2)[\tilde{P}^2(z_1 | z_0,2)]}{\pi[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_2 | z_0,2)]}\]
+}
+
+This is equal across agents only if 
+\begin{itemize}
+	\item $\kappa(1)=\kappa(2)$
+	\item $\tilde{P}(z_2 | z_0,1)=\tilde{P}(z_2 | z_0,2)$
+\end{itemize}
+
+\emph{So, even if the agents do not distrust learning we may have heterogeneous beliefs due to attitudes towards compounding of lotteries.}
+The next few slides will have $\theta1 <\infty$
+  \end{frame} 
+  \begin{frame}
+\frametitle{Distorted Priors}
+ \begin{figure}
+ {\includegraphics[scale=.35]{DistPriors.png}}
+ \caption{\tiny{The dotted lines represent the benchmark (Bayesian Learning). The filled circles are for low aggregate endowment and the colors represent different agents}}
+  \end{figure}
+	
+ 
+ 
+  \end{frame}
+
+\begin{frame}
+\frametitle{Relative Consumption - With Learning}
+\begin{figure}
+ {\includegraphics[scale=.35]{RelConsL.png}}
+ \caption{\tiny{The dotted lines represent the benchmark. The filled circles are for low aggregate endowment and the colors represent different initial promised values}}
+  \end{figure}
+	
+ 
+ 
+  \end{frame}
+  
+  \begin{frame}
+\frametitle{Consumption Vol- With Learning}
+Individual consumption now features conditional (on aggregate output) volatility. 
+
+\begin{table}[tbp]
+	\centering
+		\begin{tabular}{|l|l|l|l|l|}
+\hline			
+& \multicolumn{2}{|c|} {T=1} & \multicolumn{2}{|c|} {T=2} \\
+\hline
+& Low Y & High Y & Low Y & High Y\\
+\hline
+\multirow{2}{*} {Agent 1} & .16\% 	& .02\% 	& .03\% 		& .03\% \\
+
+													& (.27\%)& (.05\%)	& (.10\%)	& ( .04\%) \\
+\hline
+\multirow {2}{*}{Agent 2} & 1.51\% 	& .24\% 	& 	.27\% 		& .40 \% \\
+
+													& (1.28\%)& (.28\%)	& (.47\%)	& (.43\%) \\
+\hline													
+													
+		\end{tabular}
+	\caption{Conditional volatility of future consumption for both agents. The numbers in the parentheses denote the volatilities for an alternative choice of $v_0$ }
+	\label{tab:ConsumptionVolatility}
+\end{table}
+
+
+  \end{frame}
+  
+  
+%  
+  \begin{frame}
+\frametitle{Asset Prices - With Learning}
+ 
+\begin{enumerate}
+	\item Under the Benchmark , we have transitory variations in the pricing kernel from Bayesian Learning.
+	\item However these are independent of the initial promised value $v_0$ (or the wealth distribution)
+	\item With Ambiguity the Market Price of Risk varies with the promised values. Hence will have transitory as well as non transitory variations.
+\end{enumerate}
+ 
+  \end{frame}
+  
+  \begin{frame}
+  \frametitle{Relative Market Price of Risk}
+  
+  \begin{figure}
+ {\includegraphics[scale=.35]{MPRL.png}}
+ \caption{\tiny{The dotted lines represent the benchmark. The filled circles are for low aggregate endowment and the colors represent different initial promised values}}
+  \end{figure}
+	
+The values are relative to the Benchmark
+
+ 
+  \end{frame}
+
+\begin{frame}
+\frametitle{Research Directions}
+\begin{enumerate}
+\item Characterize the Wealth Dynamics in a decentralized economy using the solution of planners problem 
+	\item Solve the planners problem with infinite horizon 
+	\item Solve a bond economy - First with 3 periods and then extend to infinite horizon
+	\end{enumerate}
+\end{frame}  
+\end{document}	
+

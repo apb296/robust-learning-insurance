@@ -1,0 +1,258 @@
+\documentclass[a4paper,12pt]{article}
+%\documentstyle [12pt]{article}
+
+\usepackage{mylay}
+
+\usepackage{Styles/chicago}
+\bibliographystyle{chicago}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin {document}
+
+\title{Ambiguity Insurance and Learning \thanks{\textbf{This draft is both preliminary and incomplete. Do not circulate.}}}
+\author{Anmol Bhandari \thanks{Economics Department; New York University \texttt{apb296@nyu.edu}} \and {Andrea Tamoni} \thanks{ Universit\`{a} Bocconi \texttt{andrea.tamoni@unibocconi.it}}}
+%\date{10 March 2011}
+\maketitle
+
+This proposal tries to analyze the nature of risk sharing in an environment with multiple agents who have `fragile' beliefs. In particular we characterize the effect of learning on optimal consumption-portfolio decisions and asset prices in a setup where agents entertain doubts about model misspecification and learn about some hidden state.
+\newpage
+
+%generates the title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newpage
+%Insert the table of content
+%\tableofcontents
+
+%\newpage
+%%Insert the list of figures
+%\listoffigures
+
+
+%\vfill
+%\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{page}{1}
+\pagestyle{plain}
+\numberwithin{equation}{section} 
+\bibliographystyle{amsplain}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\noindent This proposal tries to analyze the nature of risk sharing in an environment with multiple agents who have `fragile' beliefs.  In particular we characterize the effect of learning on optimal consumption-portfolio decisions and asset prices in a setup where agents entertain doubts about model misspecification and learn about some hidden state. By `fragile' beliefs we refer to the situation when the agent departs from using Bayes Law for updating posteriors of hidden state (for eg. in presence of ambiguity).
+
+\noindent We think this question is interesting because it allows us to disentangle the effect of the following features on asset markets:
+
+\begin{enumerate}
+	\item Consumption smoothing
+	\item Risk - Sensitive preferences
+	\item Heterogeneous (fragile) beliefs 
+\end{enumerate}
+
+\noindent This question tries to link three strands of literature -
+\begin{enumerate}
+	\item General equilibrium with agents with specification fears - Tallarini [2000], Anderson [2005]
+	\item Learning under ambiguity -  Epstein and Schneider [2007]
+	\item Asset Markets with heterogeneous beliefs - Harrison Kreps [1978] , Scheinkman-Xiong [2003] , Basak etc
+\end{enumerate}
+\section{Mechanism}
+Following Hansen and Sargent [2005], Hansen and Sargent [2007], we introduce model misspecification by considering martingale distortions to the reference
+model probability law. As Hansen and Sargent [2007] show, the martingale distortion can be factored into distortions of the conditional distribution of the underlying state and the evolution law of the hidden state. This distortion depends on how continuation values for an individual vary in the next period.
+
+\noindent The basic mechanism we would like to study is the interplay between insurance and pessimism in a general equilibrium framework. Ex-ante identical guys may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that ambiguity averse agents who fear for the worst model will choose different decision rules including how they learn about hidden state variables.
+
+\noindent For example in a setting with incomplete market (bond economy) presence of ambiguity shifts the asset supply curve to the right. This works like a tightening of borrowing constraint and would cause a mean preserving contraction in asset distribution, a fall in the real interest rate and perhaps even an overshooting kind of effect outlined in Lorenzoni and Guerrieri [2010]. The figure below shows how the saving behavior of an agent changes as we introduce model ambiguity and learning.
+
+  \begin{figure}[htb]
+  \centering
+  \includegraphics[scale=.4]{BondDemand.png}
+  \caption{Changes is supply of savings}
+ \end{figure}
+
+
+
+\noindent We think the basic ideas can be explored in the following variations of a 2-person 2 state GE framework.
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c | c |c |}
+\hline
+    Model   & Aggregate Risk & Markets \\ \hline \hline
+    Model 1 & No  & Complete  \\
+    Model 2 & Yes & Complete   \\
+    Model 3 & No & Bond Economy  \\ 
+    Model 4 & Yes & Bond Economy  \\ \hline
+ \end{tabular}
+  \caption{Model Variants}
+  \label{tab:ModVar}
+\end{table}
+
+\noindent Each of these environments can be studied with the following features to understand the link between insurance and pessimism as mentioned before,
+
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c||c|c|}
+\hline
+     & Expected Utility & Model Ambiguity \\ \hline \hline
+No Learning & benchmarks & Exponential twisting \\ \hline
+Learning & Standard Filtering & Fragile Beliefs \\ \hline
+  \end{tabular}
+  \caption{Learning and Ambiguity}
+  \label{tab:LearnAmb}
+\end{table}
+
+\subsection{Belief Heterogenity - Pessimism or Assymetric Information}
+
+
+Lars Hansen in his 2007 Richard Ely Lecture concludes that  
+
+\textit{``\ldots My models imposed homogeneity on investors. This allowed me to compute a single tilted probability model and simplified my analysis. While introducing heterogeneity among investors will complicate model solution, it has intriguing possibilities. The investors will slant probabilities in different directions giving rise  of a form of ex post heterogeneity in beliefs. There is much more to be done \ldots''}
+\footnote{Lars Hansen, American Economic Review [2007] }
+
+\noindent This environment has elements which address the above quote.
+
+There are 3 broad ways why of modelling agents with diverse beliefs
+\begin{enumerate}
+	\item Exogeneous : Just assume that they have and see the consequences of how they interact
+	\item Asymetric Information : Agents see different signals, hence believe different things. But this route faces some problem in an equilibrium situation, when endogenous variables like price, asset trades may preclude the effect of asymetric information.
+	\item Rational Inattention : Agents have different entropy budgets, hence end up processing the same signal differently. 
+	\item Robust Learning : Agents `choose' to have different beliefs because their continuation values vary differently. 
+\end{enumerate}
+We explore the last channel in this paper
+
+\section{Setup}
+\noindent We describe  a simple setup for the above question.
+
+\begin{enumerate}
+	\item Agents  : $I$ is the  set of agents, where $I= \{1,2\}$
+	\item Technology : Exchange economy described by 2 shock process which are jointly Markov describing aggregate and idiosyncratic risks faced by the two agents. Let $P_{s,y}$ denote the transition matrix, and has the following structure,
+	\[P_{s,y}(s^{*},y^* | s,y) \propto P_s(s^* |s)P_y(y^*|y)C_p(s^*,y^*)\]
+Where 
+\[s \sim \text{M}\left\{\Omega_s,P_s(\alpha)\right\}\quad y \sim \text{M}\left \{\Omega_y,P_s(\beta)\right\} \quad \& \quad C_p (\alpha,\beta)\text{ captures the correlation structure}\]
+For eg : 
+\begin{align*}
+                 \Omega_s &= \lbrace s_H, s_L \rbrace \\
+P_s(s^*,s,\alpha) = \mathbb{P}(\alpha) &= \begin{bmatrix}
+	\alpha	        &1-\alpha \\
+	1-\alpha        &\alpha
+\end{bmatrix} 
+\end{align*}
+
+\noindent The endowments for a particular agent $i$ is some function $e^i(s,y)$ such that $\sum_{i \in I} e^{i}(s,y)=y$
+\item Information Structure :  There are 4 state variables in this economy with 2 observable $(s,y)$ and 2 unobservable $(\alpha,\beta)$. The prior over the hidden state variables also follows a similar structure,
+\[\pi_{\alpha,\beta}(\alpha,\beta) = \pi_{\alpha} (\alpha)\pi_{\beta} (\beta)C_\pi(\alpha,\beta)\]
+	\item Preferences : Following Hansen and Sargent [2007] the preferences of the agent are described by 2 sets of objects, 
+\begin{itemize}
+	\item Ambiguity 
+	
+\begin{enumerate}
+	\item Approximating Models : Each agent has an approximating model in his mind , $\left\langle  P_{s,y}^i, \pi_{\alpha,\beta}^i \right\rangle$, corresponding to the transition matrices and the prior over hidden states 
+	\item Entropy Penalty - $\theta^i$
+\end{enumerate}
+\item Time and Risk : The time and risk preferences are CRRA with the following parameters 
+\begin{enumerate}
+	\item Risk Aversion - $\gamma^i$
+	\item Subjective discount factor - $\delta^i$
+\end{enumerate}
+ 
+\end{itemize}
+
+ \noindent The agents can have potentially different preferences but we will mostly concentrate on the cases where the only differences in the agent is their endowment stream.
+ 
+ \item Markets : As stated in the motivation we will think of 2 market structures, complete and incomplete. Alternative market structures will be given by a portfolio constraint on agent of the form $\Gamma(a^i)=0$ where $a^i=a^i(s^*,y^* | s,y)$ are the potential one-period ahead arrow securities. 
+ 
+For eg. a bond economy is implemented with
+\[\left\{\Gamma(a^i)=0 | a^i(s^*,y^* | s,y)=a^i(s^{**},y^{**} | s,y) \quad \forall (s^*,y^*) , (s^{**},y^{**}) \in \Omega_s \times \Omega_y \right\}\]
+
+ \end{enumerate}
+\section{Agents Problem}
+\noindent Let $z=(s,y)$ the agent's problem could be characterized as a solution to the following two Bellman Recursions :
+
+\[V^i(a^i_t(z^t),z^t,\pi_t(z^t))=\max_{a_{t+1}(z^{t+1}),c_t(z^t)}\mathbb{T}^i_2\left[ u^i(c(z^t))+\delta\mathbb{T}^i_1\left[V^{i*}(a_{t+1}(z^{t+1}),z^{t+1},\pi_{t+1}(z^{t+1})\right]\right]\]
+
+s.t.
+
+$\forall t, z^t$
+\[c^i(z^t)+\sum_{z_{t+1} | z^t}q(z_{t+1} | z^t)a^i(z^{t+1})=a^i(z^t)+e^i(z^t)\]
+\[\Gamma(a_{t+1	}^i)=0\]
+
+
+\noindent The operators $\mathbb{T}^i_1,\mathbb{T}^i_2$ `distorted' conditional expectation operators which help the agent design policies that are robust to model uncertainty. Formally,
+\[\mathbb{T}^i_1 V^* = -\theta^i \log\sum_{s,y} \exp\left\{-\frac{V^*}{\theta^i}\right\}P^i_{s,y}(s^*,y^*)\]
+\[\mathbb{T}^i_2 V' = -\theta^i \log\sum_{\alpha,\beta} \exp\left\{-\frac{V'}{\theta^i}\right\}\pi^i_{\alpha,\beta}(\alpha,\beta)\]
+In our case, $V'=u^i+\delta\mathbb{T}^i V^*$
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equilibrium}
+\noindent Given the above setup we can define the Recursive Competitive Equilibrium(RCE). 
+\noindent A RCE is a set of $\left\langle C_t , A_t , q_t , \tilde{\pi}_t, \tilde{P}(j) \right\rangle$ where 
+\begin{enumerate}
+	\item $C_t=\{c^1_t,c^2_t\},A_t=\{a^1_t,a^2_t\}$ are the optimal consumption-portfolio plans for the agents problems
+	\item $q_t$ are the market clearing asset prices
+	\item  $\tilde{\pi}_t = \{\tilde{\pi}^1_t, \tilde{\pi}^2_t\}, \tilde{P}_t(j)=\{ \tilde{P}_t^1(j), \tilde{P^2}_t(j)\}$ are the worst case state and transition probabilities
+\end{enumerate}
+
+\section{Planner's problem with `fragile' beliefs}
+We present two versions of the planners problem for the complete market case, a sequential and next recursive
+\subsection{Sequential}
+\noindent For a given $c^i(z^{\infty}), \pi^i_a(j)$ let $\{\tilde{\pi}^i_t, \tilde{P}_t^i(j)\}$ be the worst case densities associated to agent $i$. 
+
+\noindent Let $\tilde{\pi}^i_{\infty}(c^i(z^{\infty}))=\lim_{t\to\infty}\tilde{\pi}^i_t$ and $\tilde{\mathbb{E}}^{c^i(z^{\infty})}$ be the expectation operator w.r.t $\tilde{\pi}^i_{\infty}(c^i(z^{\infty}))$
+
+
+\noindent The (sequential) Planner's problem is described as follows :
+
+\[\max_{\{c^1_t(z^t),c^2_t(z^t)\}} \sum_i\left[\alpha^i \tilde{\mathbb{E}}^{c^i(z^{\infty})}\left[\sum_t\sum_{z^t}\beta^tu^i(c^i(z^t))\right]\right ]\]
+
+s.t $\forall t, z^t$
+\[c^1(z^t)+c^2(z^t)=1\]
+
+
+\noindent Note : The planner respects the `fragile' beliefs  in this formulation.
+
+\subsection{Recursive}
+In a two agent setup we can describe the planners problem by characterizing the utility possibility frontier or the Pareto curve. Let $P(v,z)$ be the maximum lifetime discounted utility of agent 1 given that $v$ is the lifetime discounted utility of agent 2.
+\[P(v,z,\pi)=\max_{c,v^*(z^*)} \mathbb{T}^1_1\left(u^1(c)+\delta \mathbb{T}^1_2 P(v^*,z^*,\pi^*)\right)\]
+s.t
+\[\mathbb{T}^2_1\left(u^2(y-c)+\delta \mathbb{T}^2_2 v^*\right)\geq v\] 
+The constraint is similiar to a promise keeping constraint towards the second agent. Let $\lambda$ be the Lagrange multiplier for the promise keeping constraint, the  first order conditions for this problem are,
+\[u^1_c(c)=\lambda u^2_c(y-c)\]
+\[\left(\sum_{\alpha,\beta}\tilde{\pi}^1_{\alpha,\beta}(\alpha,\beta)\tilde{P^1}_z(z^* |z,\alpha,\beta)\right)\lambda^*=\lambda\left(\sum_{\alpha,\beta}\tilde{\pi}^2_{\alpha,\beta}(\alpha,\beta)\tilde{P^2}_z(z^* |z,\alpha,\beta)\right) \]
+\[\tilde{P}^1 \propto P^1\exp\left\{\frac{P(v^*,z^*)}{\theta^1}\right\}\]
+\[\tilde{P}^2 \propto P^2\exp\left\{\frac{v^*}{\theta^2}\right\}\]
+\[\tilde{\pi}^1 \propto \pi^1 \exp\left\{-\frac{ u^1(c)+\delta \mathbb{T}^1_2 P(v^*,z^*,\pi^*) }{\theta^1}\right\}\]
+\[\tilde{\pi}^1 \propto \pi^2 \exp\left\{-\frac{u^2(y-c)+\delta \mathbb{T}^2_2 v^*}{\theta^2}\right\}\]
+
+\noindent Note that as compared to expected utility, the Lagrange Multiplier $\lambda$ is not constant but state dependent. The solution to the planner's problem can be easily mapped to objects in the RCE.
+\section{Research directions}
+\begin{enumerate}
+	\item Write down a simple version of this setup which can be solved in a tractable fashion for both a complete and incomplete market setting
+		\item Understand the impact of each feature by solving the three environments
+	
+\begin{itemize}
+	\item Expected Utility with objective probability $(S,P^*)$
+	\item HS preferences for robustness with complete information on hidden state
+	\item HS preferences for robustness with learning
+
+
+\end{itemize}
+
+\item Investigate the limiting behavior/steady state properties of this economy
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% REFERENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage %
+\vskip90pt %
+\nocite{*}
+\bibliography{myreferences}
+\clearpage
+
+\end{document}

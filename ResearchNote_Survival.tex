@@ -1,0 +1,290 @@
+% Created 2011-03-03 Thu 14:24
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{graphicx} 
+%\usepackage{subfigure} 
+\usepackage{longtable} 
+\usepackage{xcolor}
+\usepackage[colorlinks=true, urlcolor=cyan, linkcolor=olive]{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage{subfig}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{pdflscape}  
+
+
+\tolerance=1000
+\usepackage{color}
+\usepackage{listings}
+\lstset{
+language=R,
+keywordstyle=\color{blue!75!black},
+commentstyle=\color{red!75!black},
+stringstyle=\color{green!75!black},
+basicstyle=\ttfamily\footnotesize,
+columns=fullflexible,
+tabsize=4,
+backgroundcolor=\color{white!95!black},
+basewidth={0.5em,0.4em}
+}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom={\color[rgb]{0.5,0,0}}}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{theorem}{Theorem}
+
+\newtheorem{lemma}{Lemma}
+
+\providecommand{\alert}[1]{\textbf{#1}}
+\begin{document}
+
+
+
+\title{Research Note  - Characterizing Survival with Knightian uncertainty}
+\author{Anmol Bhandari \thanks{Economics Department; New York University \texttt{apb296@nyu.edu}}}
+%\date{03 March 2011}
+\maketitle
+In this note I examine the Market Selection Hypothesis in presence of Knightian uncertainty. In this enviroment there are two belief selection mechanisms which interact with each other. While the market weeds out irrational beleifs via wealth transfers and the agents themselves are dealing with multiple priors. Taking a stand on ambiguity preferences (Hansen Sargent [2008]), we have a feedback between pessimism and market selection affecting asymptotic suvival. 
+\newpage
+
+\section{Introduction}
+\noindent \emph{Natural selection} of rational agents via markets has been a folklore since Friedman (1953). For subjective expected utility preferences, Blume and Easley (2006) study this in complete market setting and characterize the necessary/sufficient conditions for survival by exploiting the link between Pareto optimality and market selection. Amongst other things they establish that attitudes towards risk are immaterial for determining survival. In particular relative discount factors and relative etnropies of beliefs with respect to the truth are key determinants of the market selection hypothesis. 
+
+\noindent In this note I extend their analysis to an environment with Knightian uncertainty. In this context it refers to an environment where risk cannot be perfectly quantified by an an agent. A specific source of Knightian uncertainty is the statistical closeness of different models of risk. \footnote{By ``model of risk' - I refer to a probability measure over future contingencies}.A feature common to any model of Knightian uncertainty as against a Bayesian benchmark is the presence of multiple priors and a rule describing how the decision maker selects a relevant prior. With Hansen Sargent preferences, the decision maker confronts these different models of risk by following a \textbf{\emph{robust}} approach. In particular he makes use of an hypothetical `malevolent agent' to design decision rules that are robust to the potential misspecification he is worried about. 
+
+\noindent A recurring theme in the formulation of ``statistical closeness'' will be the notion of ``Relative Entropy''. \footnote{This is also referred to the \emph{Kullback-Leiblar divergence} . It arises as the exponent of the probability error in an hypothesis test between two distributions}
+\begin{definition}
+Consider two P and Q two absolutely continuous measures over a set X, the relative entropy between P, and Q is defined as 
+\[\mathcal{E}_{P,Q} = \int_{X}\log\frac{{dP}}{dQ}dP\]
+Let $m=\frac{{dP}}{dQ}$, we can write the above as $\mathbb{E}_Q [m \log m]$
+\end{definition}
+
+There are two related ways of formalizing the robust approach under the fear of model misspecification. 
+\begin{enumerate}
+	\item Multiplier Preferences : \[\max_{a}\min_{m\geq 0; \mathbb{E}m=1} \mathbb{E}m\{V(X,a) + \theta \log m \}\]
+	\item Constraint Preferences : \[\max_{a}\min_{m\geq 0; \mathbb{E}m=1} \mathbb{E}\{V(X,a) \}\]
+	s.t 
+	\[\mathbb{E}m\log m \leq \eta\]
+	
+\end{enumerate}
+The minimization in both the problem reflects the misspecification fears. In some sense the agent explores set a models in the vicinity of a reference model penalized by $\theta$ (or the controlled by $\eta$) to make sure he optimizes in the worst case scenario. In the next few section I will use the generalization of the multiplier preferences to incorporate dynamic ambiguity
+
+\section{Setup}
+	\begin{enumerate}
+		\item \textbf{Agents}  : $I$ is the  set of agents, where $I= \{1,2\}$
+		\item \textbf{Technology} : Exchange economy
+		\item \textbf{Uncertainty}  : The underlying uncertainty is described by a probability space $\langle \Sigma,\mathcal{B}(\Sigma), p \rangle$ with the natural filtration $\mathcal{F}_t$.
+		
+	\[\Sigma=\{\sigma | \sigma = (\sigma_0,\dots) \in \mathcal{S}^{\infty}\}\]
+	\[\sigma^t =(\sigma_0,\dots,\sigma_t)\]
+	Random variables on this space are stochastic process denoted by $x=\{x_t(\sigma)\}^{\infty}_{t=0}$		
+\item Endowments : $\{e^i\}_{i \in I}$ such that
+\[\sup_{t,\sigma} e^{i}_t(\sigma) \in [f \quad F] \quad \forall i \in I\]
+	
+		\item \textbf{Endowmwnts} :
+ 	\end{enumerate}
+\textbf{Preferences} : Following Hansen and Sargent [2007] the preferences of the agent are described by 2 sets of objects, 
+\begin{itemize}
+	\item \textbf{Ambiguity}
+%	
+$\forall i \in I,$
+\begin{enumerate}
+	\item Approximating Models :   $  p^i $
+	\item Entropy Penalty - $\theta^i$ 
+\end{enumerate}
+\item \textbf{Time and Risk} :
+\begin{enumerate}
+	\item Felicity function : $u^i()$ such that it is strictly concave,monotonic and satisfies Inada conditions
+	\item Subjective discount factor - $\delta^i$
+\end{enumerate}
+ \end{itemize}
+
+Assume that $p,p^1,p^2$ satisfy the Markov property.
+
+\noindent Consumption Plan  c : $\Sigma \to \mathbb{R}^{\infty}_{+} $ s.t
+		\[c_t(\sigma)\text{ is } \quad\mathcal{F}_t \text{ measurable}\]
+	
+\noindent This notation allows us to write the preferences of the agent in a recursive manner 
+
+\[V^i_{t,\text{\textbf{c}}}(\sigma)=\left[u^i(c_t)+\delta\mathbb{T}_t^{\theta^i} V^i_{t+1}(\sigma)\right]\]
+
+and 
+\[U^i[c]=V^i_{0,c}\]
+where
+
+\begin{definition}
+Operator $\mathbb{T}^{\theta}_t : \mathcal{L}^2(\mathcal{F}_{t+1}) \to \mathcal{L}^2(\mathcal{X}_{t}) $ is given by
+\[\mathbb{T}_t[W_{t+1}|\theta] = \min_{m_{t+1}; \mathbb{E}[m_{t+1}|\mathcal{F}_t]=1} \mathbb{E}\left[m_{t+1}\left( W_{t+1} +\theta \log(m_{t+1})\right)| \mathcal{F}_t\right] \]
+\end{definition}
+This family of operators $\{\mathbb{T}_t\}$, indexed by $t$  repalce the usual conditional expectation operators by taking the expection under the worst-case measures given by the solution of the above problem and an adjustment for the entropy penalty. We could also interpret this as the indirect utility function of the time $t$ `malovolent'' agent.
+
+
+\section{Planner's Problem}
+
+\noindent $V^i(v^2,s)$ be the maximum lifetime discounted utility of Agent 1 given that $v$ is the promised lifetime discounted utility of agent 2 and current state is $s$
+%
+\[V^1(v^2_t,\sigma_t)=\max_{c_t,v^2_{t+1}(\sigma_{t+1})} \left[u^1(c_t)+\delta \mathbb{T}_t^{\theta^1} V^1(v^2_{t+1},\sigma_{t+1})\right]\]
+s.t
+\[\left[u^2(e_t-c_t)+\delta \mathbb{T}_t^{\theta^2} v_{t+1}\right]\geq v^2_t\] 
+%
+ \subsection{Analysis of the Planner's problem}
+ 
+ The F.O.C characterizing the solution to the Planner's problem are as follows,
+\begin{equation}
+u^1_c(c_t)=\lambda_t u^2_c(y_t-c_t)
+\end{equation}
+%
+\begin{equation}
+\tilde{p}^1(\sigma_{t+1} |\sigma_t)\lambda_{t+1}=\frac{\delta^2}{\delta^1}\lambda_t \tilde{p^2}(\sigma_{t+1} |\sigma_{t})
+\end{equation}
+%
+\begin{subequations}
+\begin{align}
+\tilde{p}^1 & \propto p^1\exp\left\{\frac{-V^1(v^2_{t+1},\sigma_{t+1})}{\theta^1}\right\}\\
+\tilde{p}^2 & \propto p^2\exp\left\{\frac{-v^2_{t+1}}{\theta^2}\right\}\\
+\end{align}
+\end{subequations}
+Consider the Lagrangian for the Planner's problem
+\[\mathcal{L}(v^2_t,\sigma_t,\lambda_t) = \left(\left[u^1(c_t)+\delta \mathbb{T}^{\theta^1} V^1(v^2_{t+1},\sigma_{t+1})\right]\right)+\lambda_t\left(\left[u^2(y_t-c_t)+\delta \mathbb{T}^{\theta^2} v_{t+1}\right]-v\right)\]
+The multiplier $\lambda_t$ plays the role of the traditional relative ``Pareto weights''. 
+
+\noindent We have a mapping between $\lambda_t$ and $v_t$ given by the Envelope theorem
+\[\lambda_t=-V^1_v(v_t,\sigma_t)\]
+
+\noindent Equation (2) captures the Planner's key inter temporal trade offs. In a standard case with Expected Utility, we would have 
+\[\lambda_{EU,t+1}=\lambda_{EU,t}\frac{\delta^2}{\delta^1}\left(\frac{p^2(\sigma_{t+1}|\sigma_t)}{p^1(\sigma_{t+1}|\sigma_t)}\right)\]
+%
+%
+\section{Survival}
+\begin{lemma}
+$V^1_t(v^2_t,\sigma_t)$ is concave and decreasing in $v^2_t$
+\end{lemma}
+
+\begin{lemma}
+On the event $\lim_t \{V^1_t)(\sigma) = 0\}$ we have, $\{\limsup_t \lambda_{t}(\sigma)=\infty\}$. Further on the event $\{\lim_t \lambda_t(\sigma)=0\}$ we have $\{\lim_t V^1 =0\}$
+\end{lemma}
+
+
+Denote $V^i_{t,\text{\textbf{e}}}$ as the lifetime utility to Agent i when he consumes all the endowment
+
+Let $m^i_{t,t+1}=\frac{e^{-\frac{V^i_{t+1,\textbf{e}}}{\theta^i}}}{\mathbb{E}_{i,t}\left[ e^{-\frac{V^i_{t+1,\textbf{e}}}{\theta^1}}\right]   }$
+
+Further let $M^i_t=M^i_{t-1}m^i_{t-1,t}$
+
+\begin{lemma} $M^i_t$ is a martingale under Agent - i's approximating model. 
+\end{lemma}
+
+
+
+
+\begin{theorem}
+If $M^1$ is square integrable, $p^1$ being absolutely continuous with respect to $p$ is sufficeint for Agent-i's survival
+\end{theorem}
+\begin{proof}
+$M^1$ is the martingale distrtion of Agent -1 under maximal exposure to the aggregate endowmwnt. So for any allocation 
+\[\mathbb{V}_tm^{i,t} > \mathbb{V}_t \tilde{m}^{i}_{t,t+1}\]
+Since \[\mathbb{E}_tm^i_{t,t+1}=\mathbb{E}_t\tilde{m}^i_{t,t+1}=1\]
+We have $\tilde{M}^i_t$ being square integrable if $M^i_t$ is square integrable. 
+
+This means $\tilde{M}^i_t$ onverges in $\mathcal{L}^1$. Or the worst case measure is absolutely continuous with respect to the approximating measure. 
+
+\emph{We could also interpret this as vanishing concerns for ambiguity}. 
+
+From the Planner's problem we have
+\[\lambda_{t+1}=\frac{\tilde{p}^2_t}{\tilde{p}^1_t}\]
+The RHS is martigale under the $\tilde{p^1}$ measure and meets the conditions for applying the martingale convergence theorem. Since the worst case measure is absolutely conituous with respect to the reference measure we also have convergence under the reference measure. Lastly since our hypothesis has the absolute continuity of the reference measure with respect to the true measure, Agent 1 survives $p$ a.s
+
+ 
+\end{proof}
+
+Consider a case when $p,p^1,p^2$ i.e the true measure and both the reference measure are i.i.d. In particular there exists $\rho,\rho^1,\rho^2$ such that
+
+Also allow for $\delta^1\neq\delta^2$ for this special case.
+
+\[p_t(\sigma)\prod_{\tau=0}^{t}\rho(\sigma_t)\]
+\[p^i_t(\sigma)\prod_{\tau=0}^{t}\rho^i(\sigma_t)\]
+
+\[\frac{1}{T}\lambda_{T}=\frac{1}{T}\sum_{t=0}^{T}\log\tilde{m}^2_{t,t+1}-\frac{1}{T}\sum_{t=0}^{T}\log \tilde{m}^1_{t,t+1}+ \left(\log{\delta_2} + \frac{1}{T}\log{p^2_T}\right)
+\left(\log{\delta_1} + \frac{1}{T}\log{p^1_T}\right)\]
+
+if Agent 1 vanishes then we have for large T
+\[\tilde{m}^1_{T,T+1} \approx 1\]
+\[\tilde{m}^2_{T,T+1} \approx m^2_{t,t+1}\]
+
+Thus 
+\[\frac{1}{T}\sum_{t=0}^{T}\log\tilde{m}^1_{t,t+1} \to 0\]
+\[\frac{1}{T}\sum_{t=0}^{T}\log\tilde{m}^2_{t,t+1} \to \mathbb{E}_\rho m^2 (\kappa_0)\]
+
+Further we have that
+\[\frac{1}{T}\log {p^i_T} = \frac{1}{T}\sum^{t}_{\tau=0} \log \rho^i(\sigma_t) \underbrace{\to}_{LLN} \mathbb{E}_{\rho} \log \rho^i   =  \mathbb{E}_\rho\log(\rho) -I_{\rho}(\rho^i)\]
+or in other words
+
+\[\lambda_T\approx e^{(-\kappa_0+\kappa_2-\kappa_1)T}\]
+
+Lastly if $\lambda_T$ vanishes, we need to have
+\[-\kappa_0+\kappa_2-\kappa_1 >0 \]
+
+What is means that the relative entropy of Agent 1 has to be suffciently larger than that of agent 2. Whats going on here is that events when Agent 1 is vanishing coincide with Agent 2 being maximally exposed to the aggregate risk. Thus while Agent 1 faces no risk his beliefs are close to his reference and Agent is might be far away in terms of relative entropy. This leads to reverse wealth transfers to Agent 1 and makes it harder for him to vanish
+
+Now we look at the necessary conditions for survival with identical discount factors
+\begin{theorem}
+If Agent 2 has a reference model which is absolutely coninuous with respect to truth, If Agent 1 survives then $p^1$ is absolutely continuous with respect to $p$
+\end{theorem}
+\begin{proof}
+If the necessary condition fails, we have that
+\[\lim_T\lambda_T\frac{\tilde{M}^1_T}{\tilde{M}^2_T}=\infty\]
+and 
+\[\lim_T(\lambda_T)<\infty\]
+The previous condition means that the pareto weights stabilize and hence the Value functions must also converge. So the increments to the martingale $M^i_t$ should stabalize. However this contracdicts the fact that the LHS is divergent.
+\end{proof}
+%This means \[\limsup_t\tilde{m}^1_t =0\] and \[\limsup_t \tilde{M}^2_t=M^2_t\]
+	
+%\[\kappa^i = \mathbb{E}_\rho \log\left(\frac{e^{V^i_{\text\textbf{e}}}}{\mathbb{E}_{\rho^2}} \right) \]
+%
+%\begin{theorem}
+%If  Agent 1 vanishes p-a.s we have $\delta^1+\mathcal{I}_{\rho}(\rho^1) > \delta^2+\mathcal{I}_{\rho}(\rho^2)-\kappa^2$
+%\end{theorem}
+%
+%For $\delta^1=\delta^2$
+%\begin{theorem}
+%If , Agent 1 vanishes p-a.s
+%\end{theorem}
+%
+%
+%%\begin{enumerate}
+%%	\item \[\{c^1_t \to 0\} \implies \{V^1_t \to 0\}\]
+%%	
+%%	\item \[\{V^1_t \to 0\} \implies \{\limsup_t \frac{\lambda_{t+1}}{\lambda_t} > 1 \}\]
+%%	
+%%	\item \[ \{\limsup_t \frac{\lambda_{t+1}}{\lambda_t} > 1 \} \implies \{\limsup_t \frac{\hat{P}^2_t}{P^1_t} > 1 \}\]
+%%	\item \[ \{\limsup_t \frac{\hat{P}^2_t}{P^1_t} > 1 \} \implies I_{P}(P^1) > I_{P}(P^2) - \mathbb{E} \log \frac{\exp\{-\frac{y_t}{\theta}\}}{\mathbb{E^2}\exp\{-\frac{y_t}{\theta}\}}\]
+%%\end{enumerate}
+\section{Some Useful limit theorems}
+\begin{theorem}
+Markov's Law of Large Numbers - For a sequence of random variables $x_t$ such that $sup \mathbb{E}x_t$ and $sup \mathbb{V}x_t$ are finite	 and further we have
+
+\[\lim_{T}\frac{1}{T}\sum_{t=1}^{T}\mathbb{E}x_t \in \mathbb{R} \quad \quad \lim_{T}\frac{1}{T^2}\sum_{t=1}^{T}\mathbb{V}x_t =0\]
+we have
+
+\[\lim_{T}\sum_{t=1}^{T}x_t = \lim_T \frac{1}{T}\sum_{t=1}^{T} \mathbb{E}x_t\] in probability
+
+\end{theorem}
+\end{document}

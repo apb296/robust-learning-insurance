@@ -1,0 +1,113 @@
+% Created 2011-03-03 Thu 14:24
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{graphicx} 
+%\usepackage{subfigure} 
+\usepackage{longtable} 
+\usepackage{xcolor}
+\usepackage[colorlinks=true, urlcolor=cyan, linkcolor=olive]{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage{subfig}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{pdflscape}  
+
+
+\tolerance=1000
+\usepackage{color}
+\usepackage{listings}
+\lstset{
+language=R,
+keywordstyle=\color{blue!75!black},
+commentstyle=\color{red!75!black},
+stringstyle=\color{green!75!black},
+basicstyle=\ttfamily\footnotesize,
+columns=fullflexible,
+tabsize=4,
+backgroundcolor=\color{white!95!black},
+basewidth={0.5em,0.4em}
+}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom={\color[rgb]{0.5,0,0}}}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{theorem}{Theorem}
+
+\newtheorem{lemma}{Lemma}
+
+\providecommand{\alert}[1]{\textbf{#1}}
+\begin{document}
+
+
+
+\title{Review Note  - Survival with Ambiguity with KMM preferences}
+\author{Anmol Bhandari \thanks{Economics Department; New York University \texttt{apb296@nyu.edu}}}
+%\date{03 March 2011}
+\maketitle
+In this note I review the working paper  - Survival with Ambiguity (Guerdjikova and Sciubba [2010])
+\newpage
+\section{Overview}
+This paper analyses the issue of asymptotic survival under when agents are amibuiguity averse. With ambiguity there is a link between risk sharing and risk perceptions. This link affects the asymptotic behavior or relative liklihood ratios and effective discount factors which are the key determinants of survival.
+
+\section{Setup}
+\subsection{Uncertainty}
+\noindent Time is diecrete and we have infionite horizon. The underlying sample sapce consists of sequences and the corresponding borel sigma algebra. The uncertainty here is modeled as an outcome of a compund lottery. There is a pre-defined set of probability meausures $\Pi$ on infinite sequences. At every node Nature chooses a probablity measure from this set and then draws the next state using the selected measure. The authors interpret the draw of distribution as ``Ambiguity'' and the draw of the state given the distribution as ``risk''. For the purposes of this paper, they consider two cases - Firstly when Nature draws at time 0 and never again and secondly where nature draws from $\Pi$ in an IID fashion. The former is called vanishing ambiguity and the later is called persistent ambiguity
+
+\noindent \emph{What is strange is this setup is that ambiguity has a physical element and it is not just a matter of how agents perceive randomness}
+\subsection{Preferences}
+The agents have what is refered in the literature as smooth-ambiguity-preferences in the spirit of Klibnoff, Marinachhi and Mukerjee. We can see how atttitudes towards ambiguity are captured by contrasting it with expected utility. The agent starts with some priors over the set of distributions and uses Bayes law to get the time t posteriors. Consider a random consumption stream. The preference of an EU agent can be descrived using a Value recursion. Let $V_{\sigma_t}(c)$ be the discounted present expected value of a random consumption stream at node $\sigma^t$. So for an EU agent we can describe 
+\[V_t(c)=u(c_t)+\beta \mathbb{E}_{\mu_t}\mathbb{E}_{\pi_n}V_{t+1}\]
+Thus we have linear aggregation with respect to each model and subsequently we aggregate the means with respect to the Bayesian posteriors over the models. With KMM preferences we introduce a function $\phi$ which changes the second stage linear aggregaion. So the normal expectation operator is replaced by 
+\[\mathbb{T}V_{t+1} = \phi^{-1}\left[\mathbb{E}_{\mu}\left\{\left[\phi(V_{t+1})\right]\right\}\right]\]
+The curvature of $\phi$ paraetrizes attitudes towards ambiguity. We require that $\phi$ is either linear or stictly concave, twice differentiable and a positive slope at the origin. 
+\subsection{Technology}
+\noindent The authors study an exchange economy with uniform bounds on the aggregate endowment. 
+\section{Equilibrium}
+\noindent The authors characterize a time-0 Arrow-Debreu equilibrium with state contingent consumption plans for this economy. 
+\noindent \emph {They claim that the markets are incomplete hence they cannot solve a Planner's problem. I feel this is wrong. With arrow securties this economy has a complete markets. The so called ``ambiguity shocks'' are just way of describing a measure over $p(\sigma^{t+1}|\sigma^t}$. As long as the fact that the endowments depend only on the realization of the observable risk shocks, the arrow securities have sufficient span.}
+
+The FOC from the Agents optimization give us the following
+
+\[\frac{p_{t+1}}{p_t}=\underbrace{\beta^i\left(\frac{\sum \phi'[\mathbb{E}_{\pi_n}V^i_{t+1}]\mu_t[\pi_n]}{\phi'\{\phi^{-1}[\mathbb{E}_{\mu^i_t}(E_{\pi_n}V^i_{t+1})]\}}\right)}_{\tilde{\beta}^i_t}
+\underbrace{\left(\frac{u^i_c[t+1]}{u^i_c[t]} \right)}_{MRS}
+\underbrace{\left( \sum_{n=1}^{N}{W_n[t]\mu^i_t[\pi_n]\pi_n[s_{t+1}|\sigma_t]}\right)}_{\tilde{p^i}_t(s_{t+1}|\sigma_t)}\]
+\[W_n[t]=\phi'(E_{\pi_n}V^i_{t+1})\]
+
+\emph{We can interpret the FOC as a modification of what we would have under EU with an effective state contingent discount factor $\tilde{\beta}^i_t$ and effective beleifs $\tilde{p}^i_{t+1}$}
+
+As $\phi$ is concave $W_n$ reflects a pessimistic twist of the one-period ahead transitions. The metric used for pessimism is the contional expected value under each model. 	
+\section{Survival}
+In presence of an Expected utility agent with correct beliefs the issue of survival depends the asymptotic behavior of the relative time discount factors and effective beliefs.
+\suubsection{CASE I}
+This scenario has vanishing ambiguity. Since the agents are Bayeian updating, the model posteriors converge to the underlying true distribution for each agent. As in the limit there is no ``ambiguity'' the attitudes towards ambiguity are not relevant for surival. The only thing that matters is that agents should have the prior over models which is absolutely continuous with respect to the truth. Since the additional factors to the discount factor and one-step ahead probabilities drop out at $\mu_t[\pi_n]= 1$, we need to add a caveat that along the path of Bayesian learning the factors smoothly go to 1. Or in other words the rate at which the effective beliefs converge is not too different than a the rate at which a Bayesian learns. This puts some boundedness conditions on $\phi$.
+\subsection{CASE II}
+In case of persistent ambiguity, if there is no aggregate risk, the optimal risk sharing scheme can insure all the agents. This means that there is no varaition in continuation utilities and hence attitudes towards ambiguity are irrelevant. All agents survive as long as they have absolutely continuous priors
+\subsection{CASE III}
+In the case of persistent ambiguity with aggregate risk, there are two forces which disctate the survival of an ambiguity averse agent. Since posteriors do not converge his effective beliefs will be away from the correct ones. This makes him difficult to survive. But on the other hand if the effective time disocunt factor is greater, the ambiguity averse agent saves more and this creates a survival force for him. The analysis in Bloom and Easley tells us that in many scenarios discount factor differences dominate the effect of wrong beliefs. So the question of suvival boils down to answering what choices of $\phi$ lead to strictly higher discount factors. The authors discuss the following cases
+\begin{enumerate}
+	\item Constant Absolute Ambiguity Aversion : $\phi(y)=-e^{-\alpha y}$
+	\item Constant Relative Ambiguity Aversion : $\phi(y)=\log(y)$ or $y^{\gamma}$
+	\item Increasing Absolute Ambiguity Aversion : $\phi(y)=by-ay^{\gamma}$
+	
+\end{enumerate}
+Under CAAA the effective discount factor is unchanged. So the ambiguity averse agent vanishes in presence of an expected utility agent with correct beliefs. With CRRA the effective discount factor is lower and higher with IAAA. 
+
+\end{document}

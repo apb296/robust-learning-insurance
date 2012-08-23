@@ -1,0 +1,555 @@
+\message{ !name(ResearchNote_CompleteMarkets.tex)}% Created 2011-03-03 Thu 14:24
+\documentclass[12pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{graphicx} 
+%\usepackage{subfigure} 
+\usepackage{longtable} 
+\usepackage{xcolor}
+\usepackage[colorlinks=true, urlcolor=cyan, linkcolor=olive]{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage{subfig}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{pdflscape}  
+
+
+\tolerance=1000
+\usepackage{color}
+\usepackage{listings}
+\lstset{
+language=R,
+keywordstyle=\color{blue!75!black},
+commentstyle=\color{red!75!black},
+stringstyle=\color{green!75!black},
+basicstyle=\ttfamily\footnotesize,
+columns=fullflexible,
+tabsize=4,
+backgroundcolor=\color{white!95!black},
+basewidth={0.5em,0.4em}
+}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom={\color[rgb]{0.5,0,0}}}
+\newtheorem*{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem*{conjecture}{Conjecture}
+\providecommand{\alert}[1]{\textbf{#1}}
+\begin{document}
+
+\message{ !name(ResearchNote_CompleteMarkets.tex) !offset(-3) }
+
+
+
+
+\title{Research Note  - Optimal Risk Sharing under Ambiguity}
+\author{Anmol Bhandari \thanks{Economics Department; New York University \texttt{apb296@nyu.edu}}}
+%\date{03 March 2011}
+\maketitle
+I study a optimal risk sharing problem with complete markets in presence of Knightian uncertainty. In presence of aggregate risk, there is a feedback between risk sharing and risk perceptions which impacts the optimal risk sharing arrangement. I study two cases of this problem, with and without learning to isolate the qualitative effects of how learning compounds with ambiguity to affect the aforementioned risk-perception - risk sharing link. An interesting feature which emerges is non-trivial wealth dynamics and its effect on consumption, asset prices.
+\newpage
+
+\section{Introduction}
+\noindent General equilibrium with complete markets provide a coherent framework to explore risk sharing amongst competitive agents. Attitudes towards risk and class of securities available are the key objects for determining a risk sharing arrangement. The welfare theorems In turn justify the \emph{optimality} of such arrangements. The standard analysis with Von-Neumann preferences,complete information and appropriate selection of assets has very stark predictions for the optimal risk sharing scheme. All idiosyncratic risk is hedged and aggregate risk is borne by the agents depending on their initial wealth distribution. With homothetic preferences we further have consumption as a constant proportion of aggregate endowment. 
+
+\noindent In this paper I explore the qualitative differences in the optimal risk sharing schemes where the distinction between risk and uncertainty is explicit. Further I also explore consequences of learning in this setup. This  allows me to disentangle the effect of the following features on asset markets:
+\begin{enumerate}
+	\item Consumption smoothing
+	\item Risk - Sensitive preferences
+	\item Heterogeneous (fragile) beliefs 
+\end{enumerate} 
+\footnote{By `fragile' beliefs we refer to the situation when the agent departs from using Bayes Law for updating posteriors of hidden state (for eg. in presence of ambiguity).}
+
+\noindent This question tries to link three strands of literature -
+\begin{enumerate}
+	\item General equilibrium with agents with specification fears - Tallarini [2000], Anderson [2005]
+	\item Learning under ambiguity -  Epstein and Schneider [2007]
+	\item Asset Markets with heterogeneous beliefs - Harrison Kreps [1978] , Scheinkman-Xiong [2003] , Basak etc
+\end{enumerate}
+
+\noindent The basic mechanism I would like to study is the interplay between insurance and pessimism in a general equilibrium framework. Ex-ante identical guys may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that ambiguity averse agents who fear for the worst model will choose different decision rules including how they learn about hidden state variables.
+\newpage
+\section{Preferences towards Knightian uncertainty}
+\noindent Knightian uncertainty in this context refers to an environment where risk cannot be perfectly quantified by an an agent. A specific source of Knightian uncertainty is the statistical closeness of different models of risk. \footnote{By ``model of risk' - I refer to a probability measure over future contingencies}.A feature common to any model of Knightian uncertainty as against a Bayesian benchmark is the presence of multiple priors and a rule describing how the decision maker selects a relevant prior. With Hansen Sargent preferences, the decision maker confronts these different models of risk by following a \textbf{\emph{robust}} approach. In particular he makes use of an hypothetical `malevolent agent' to design decision rules that are robust to the potential misspecification he is worried about. 
+
+\noindent A recurring theme in the formulation of ``statistical closeness'' will be the notion of ``Relative Entropy''. \footnote{This is also referred to the \emph{Kullback-Leiblar divergence} . It arises as the exponent of the probability error in an hypothesis test between two distributions}
+\begin{definition}
+Consider two P and Q two absolutely continuous measures over a set X, the relative entropy between P, and Q is defined as 
+\[\mathcal{E}_{P,Q} = \int_{X}\log\frac{{dP}}{dQ}dP\]
+Let $m=\frac{{dP}}{dQ}$, we can write the above as $\mathbb{E}_Q [m \log m]$
+\end{definition}
+
+There are two related ways of formalizing the robust approach under the fear of model misspecification. 
+\begin{enumerate}
+	\item Multiplier Preferences : \[\max_{a}\min_{m\geq 0; \mathbb{E}m=1} \mathbb{E}m\{V(X,a) + \theta \log m \}\]
+	\item Constraint Preferences : \[\max_{a}\min_{m\geq 0; \mathbb{E}m=1} \mathbb{E}\{V(X,a) \}\]
+	s.t 
+	\[\mathbb{E}m\log m \leq \eta\]
+	
+\end{enumerate}
+The minimization in both the problem reflects the misspecification fears. In some sense the agent explores set a models in the vicinity of a reference model penalized by $\theta$ (or the controlled by $\eta$) to make sure he optimizes in the worst case scenario. In the next few section I will use the generalization of the multiplier preferences to incorporate dynamic ambiguity and learning as in Hansen Sargent (2007).
+	
+\section{Static Example - Risk Sharing and Risk Perceptions}
+A new mechanism present in models of Knightian uncertainty is the link between risk sharing and risk perceptions. A risk sharing scheme is a state contingent plan of outcomes for an agent. As mentioned earlier, the agent uses his utility outcomes to various models as an input for decision-making, in particular selecting a relevant model of risk which rationalizes his actions. Thus how risk is shared affects what prior gets selected, but this in turn affects how much an agent is prepared to pay for the insurance. We can see this link in a very simplified static example as below.
+\vspace{10 mm}
+
+\noindent Let $Y(z)$ be a risky endowment to be shared amongst $K$ agents who value consumption by $u(c)=\frac{c^{1-\gamma}}{1-\gamma}$
+
+\noindent  Denote a feasible risk sharing arrangement by $\alpha = [\alpha_1 \dots \alpha_K]$ such that $\sum \alpha_i=1$
+
+\noindent  Now suppose that the agents do not trust the distribution of $Y$ but have a common approximating model $p(y)$ and are using the multiplier version of the model
+
+\[V^R (\alpha)=\min_{m \geq0;\mathbb{E}m=1}\mathbb{E}m[u(\alpha_iY)+\theta\log(m)]\]
+
+\noindent  The choice for $m^*$ which solves this problem is
+
+\[m_i^*\propto \exp\left\{\frac {-\alpha^{1-\gamma}_iy^{1-\gamma}}{\theta(1-\gamma)}\right\}\]
+
+\noindent An ex-post Bayesian interpretation : Agents have (diverse) priors given by $p(y)m^*_i(y)$. Note that this depends on $\alpha$ as long as $\gamma>1$.
+
+\vspace{10 mm}
+
+\noindent Now in a general equilibrium setup- agents this interplay will affect the demand for insurance and optimal risk sharing.In particular ex-ante identical guys may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that ambiguity averse agents who fear for the worst model will choose different decision rules including how they learn about hidden state variables.
+
+\vspace{10 mm}
+\noindent  A further observation is that this mechanism has a space for \emph{endogenous} emergence of heterogeneous beliefs. This route of belief heterogeneity is very different from the ones usually resorted in theory, namely
+\begin{enumerate}
+	\item Exogenous 
+	\item Asymmetric Information : Different Information  
+	\item Rational Inattention  : Differences in processing of Information
+\end{enumerate}
+
+\noindent Here agents with symmetric information may `choose' to have different beliefs because their continuation values vary differently. 
+\section{Setup}
+	\begin{enumerate}
+		\item \textbf{Agents}  : $I$ is the  set of agents, where $I= \{1,2\}$
+		\item \textbf{Technology} : Exchange economy
+		\item \textbf{Endowments}  : Two Shocks - Size and Distribution of aggregate endowment - $z=(y,s)$. Let $P(y^{*},s^* | y,s)$ be the transition matrix
+
+$$\bordermatrix{\text{}&y_ls_l&y_ls_h&y_hs_l&y_hs_h\cr
+                y_ls_l&\alpha\beta&  \alpha(1-\beta)  & (1-\alpha)\beta& (1-\alpha)(1-\beta)\cr
+                y_ls_h&   \alpha(1-\beta) &  \alpha\beta &(1-\alpha)(1-\beta) & (1-\alpha)\beta\cr
+                y_hs_l&   (1-\alpha)(\beta) &  (1-\alpha)(1-\beta )&\alpha\beta & \alpha(1-\beta)\cr
+                y_hs_h&  (1-\alpha)(1-\beta) &  (1-\alpha)\beta &\alpha(1-\beta) & \alpha\beta }$$
+
+\noindent The endowments for a particular agent $i$ is some function $e^i(s,y)$ such that $\sum_{i \in I} e^{i}(s,y)=y$
+
+\item \textbf{Information Structure} : 4 state variables  - 2 observable $(s,y)$ and  2 unobservable $(\alpha,\beta)$. Let $M=\{m : m=(\alpha,\beta)\}$ be the set of models on the table. The prior over the hidden state variables is denoted by $\pi(m)_{m \in M}$
+ 	\end{enumerate}
+\textbf{Preferences} : Following Hansen and Sargent [2007] the preferences of the agent are described by 2 sets of objects, 
+\begin{itemize}
+	\item \textbf{Ambiguity}
+%	
+$\forall i \in I,$
+\begin{enumerate}
+	\item Approximating Models :   $\left\langle  P^i, \pi^i \right\rangle$
+	\item Entropy Penalty - $\theta_j^i$ where $j=1$ captures the doubts about the hidden state and $j=2$ about the transition matrix
+\end{enumerate}
+\item \textbf{Time and Risk} :
+\begin{enumerate}
+	\item Risk Aversion - $\gamma^i$
+	\item Subjective discount factor - $\delta^i$
+\end{enumerate}
+ \end{itemize}
+
+\noindent The agents can have potentially different preferences but I will mostly concentrate on the cases where the only differences in the agent is their endowment stream
+\section{Dynamic Ambiguity and Learning}
+In this section, I will briefly summarize how to extend the static multiplier version of these preferences to incorporate dynamics under different information structures. At first it might seem a separation argument should make these things independent-In particular how an agent filters payoff relevant hidden states and how he evaluates \emph{ risky consumption streams} should not be related. This is indeed true in a Bayesian framework, where learning/filtering is dictated by applying some form of Bayes rule. In simple words the agent has a prior, observes signals , updates his posterior and evaluates risk with those posteriors. However with multiple priors, future utility consequences may induce the agent to re-evaluate the past learning outcomes. In particular this introduces two sources of misspecification conceptually similar to compound lotteries. The agent may mistrust his prior over hidden states and/or the transition density governing the future signal/state evolution given the  hidden state. Hansen Sargent (2005),Hansen Sargent (2007) take two separate stands on how the agent treats past distortions. In Hansen Sargent (2005), the agent is committed to past mi specifications, which means that the reference prior in any period inherits the past distortions to priors. In Hansen Sargent (2007), they formulate the problem without commitment,which means the agent's reference prior in any period consists of the relevant Bayesian updated prior under his approximating model. Once we obtain the relevant prior either with or without commitment, the agent expresses is distrust by applying two operators - $\mathbb{T}_1$ and $\mathbb{T}_2$  described as follows.
+
+
+\noindent Let $X_t=[Y_t \quad Z_t]'$ where $X_t$ is the state variable with $Y_t$ as the observable part and $Z_t$ as the unobservable part. Denote $\mathcal{X}_t = \sigma(X^t)$, $\mathcal{S}_t=\sigma(Y^t)$ as the sigma algebras generated by $\{X_i\}^{t}{i=0}$ and $\{Y_i\}^{t}{i=0}$ respectively. 
+
+\begin{definition}
+Operator $\mathbb{T}^1_t : \mathcal{L}^2(\mathcal{X}_{t}) \to \mathcal{L}^2(\mathcal{X}_{t+1}) $ is given by
+\[\mathbb{T}^1_t[W_{t+1}|\theta_1] = \min_{m_{t+1}; \mathbb{E}m_{t+1}=1} \mathbb{E}\left[m_{t+1}\left( W_{t+1} +\theta_1 \log(m_{t+1})\right)| \mathcal{X}_t\right] \]
+\end{definition}
+\noindent Similarly, 
+\begin{definition}
+Operator $\mathbb{T}^2_t : \mathcal{L}^2(\mathcal{X}_{t}) \to \mathcal{L}^2(\mathcal{S}_t) $ is given by
+\[\mathbb{T}^2_t[\hat{W}_t|\theta_2] = \min_{h_{t}; \mathbb{E}h_t=1} \mathbb{E}\left[h_{t}\left( \hat{W}_t +\theta_2 \log(h_{t})\right)| \mathcal{S}_t\right] \]
+\end{definition}
+\footnote{$\mathbb{E}$ refers to expectations under the relevant approximating model}
+This notation allows us to write the preferences of the agent as follows
+\[V(\pi,z)=\mathbb{T}_2\left[u(c(z))+\delta\mathbb{T}_1 V^*(\pi^*,z^*)\right]\]
+where
+
+\[z^*|z \sim P(z^*|z,m)\]
+\[\pi^*(m) \propto \pi(m)P(z^*|z,m) \quad \text{``under no-commitment''}\]
+\[\pi^*(m) \propto \pi(m)\tilde {P}(z^*|z,m) \quad \text{``under commitment''}\]
+\[\tilde{P}\propto P\exp\{-\frac{V^*}{\theta_1}\}\]
+\section{Planner's Problem}
+In this section, I setup the recursive Planner's problem. Appendix A shows the equivalence between the Planner's problem and the decentralized competitive equilibria. The Planner distributes the risky aggregate endowment between the two agents in a way that he meets the promised ex-ante present discounted value of utility to agent 2 and maximizes the welfare of agent 1. With uncertainty, a given consumption plan alters the beliefs of the agents and thus expected value of the stream. Thus at the margin, while equating  probability weighted marginal utilities across agents and time, the Planner realizes that new force of endogenous beliefs. This manifests itself as time varying continuation values or Pareto weights.  \footnote{This is the ``without commitment'' version of the preferences}
+
+\noindent  Let z=(y,s) summarize the states
+
+\noindent $\mathcal{Q}(v,z,\pi)$ be the maximum lifetime discounted utility of agent 1 given that $v$ is the promised lifetime discounted utility of agent 2.
+
+\[\mathcal{Q}(v,z,\pi)=\max_{c,v^*(z^*)} \mathbb{T}_2\left[u^1(c)+\delta \mathbb{T}_1 \mathcal{Q}(v^*,z^*,\pi^*)\right]\]
+s.t
+\[\mathbb{T}_2\left[u^2(y-c)+\delta \mathbb{T}_1 v^*\right]\geq v\] 
+\[\pi^*(m)\propto \pi(m)P(z^*|z,m)\]
+
+ \subsection{Analysis of the Planner's problem}
+ The F.O.C characterizing the solution to the Planner's problem are as follows,
+\begin{equation}
+u^1_c(c)=\lambda u^2_c(y-c)
+\end{equation}
+
+\begin{equation}
+\left(\sum_{m \in M}\tilde{\pi}^1(m)\tilde{P^1}_z(z^* |z,m)\right)\lambda^*=\lambda\left(\sum_{m \in M}\tilde{\pi}^2(m)\tilde{P^2}_z(z^* |z,m)\right) 
+\end{equation}
+
+\begin{subequations}
+\begin{align}
+\tilde{P}^1 & \propto P\exp\left\{\frac{-\mathcal{Q}(v^*,z^*,\pi^*)}{\theta^1}\right\}\\
+\tilde{P}^2 & \propto P\exp\left\{\frac{-v^*}{\theta^1}\right\}\\
+\tilde{\pi}^1 & \propto \pi \exp\left\{-\frac{ u^1(c)+\delta \mathbb{T}^1_2 \mathcal{Q}(v^*,z^*,\pi^*) }{\theta^2}\right\} 
+\end{align}
+\end{subequations}
+Consider the Lagrangian for the Planner's problem
+\[\mathcal{L}(v,z,\pi,\lambda) = \left(\mathbb{T}_2\left[u^1(c)+\delta \mathbb{T}_1 \mathcal{Q}(v^*,z^*,\pi^*)\right]\right)+\lambda(\mathbb{T}_2\left[u^2(y-c)+\delta \mathbb{T}_1 v^*\right]-v)\]
+The multiplier $\lambda$ plays the role of the traditional relative ``Pareto weights''. 
+
+\noindent We have a mapping between $\lambda$ and $v$ given by the Envelope theorem
+\[\lambda=-\mathcal{Q}_v(v,z,\pi)\]
+\noindent Further we can define the shadow prices for one-period ahead arrow securities as follows.
+\[q(z^* |z )=\delta \left(\sum_{m \in M}\tilde{\pi}^1(m)\tilde{P^1}_z(z^* |z,m)\right)\frac{ u'(c^*)}{u'(c)}\]
+
+\noindent Equation (2) captures the Planner's key inter temporal trade offs. In a standard case with Expected Utility, we would have 
+\[\lambda_{EU}^*=\lambda_{EU}\]
+
+Consider a special case of  Equation (2) when $\pi(1)=1$
+
+\[\exp\left\{\frac{v^*-\mathcal{Q}(v^*,z^*)}{\theta_1}\right\}\lambda^* =\lambda 
+\left(\frac
+{\mathbb{E}\left[\exp\{\frac{-Q(v^*,z^*)}{\theta^1}\} | z\right]}
+{\mathbb{E}\left[\exp\{\frac{-v^*}{\theta^1}\} | z\right]}
+\right)
+\]
+
+\noindent Let $\chi_{H,L}(v,z) = \frac{\exp\left\{\frac{v^{H}-\mathcal{Q}(v^{H},z^{H})}{\theta_1}\right\}}{\exp\left\{\frac{v^{L}-\mathcal{Q}(v^{L},z^{L})}{\theta_1}\right\}}$
+
+\noindent so we have
+
+\[\chi_{H,L}(v,z) \frac{\lambda^{H}}{\lambda^{L}}=1\]
+At the EU solution, we have $\bar{v}(z)$ such that for all $v \leq \bar{v}(z)$, $\chi_{H,L}\leq 1$ and vice versa. So with ambiguity, we would have adjust $\frac{\lambda^{H}}{\lambda^{L}} > 1$ to satisfy the FOC. The Planner thus responds to the  spreads in the contiutation values across agents by increasing the relative weight of Agent 2 in the next period. I interpret this movement in the context of wealth trasfers by the wealthy agent to the poor agent due to ``over-insurance''.
+
+\noindent With exogenous heterogeneity in beliefs, we would have an expression like (2) but without any feedback from the risk-sharing arrangement. In this setup, the agent with a larger proportion of aggregate endowment will be more pessimistic about the risk. Hence optimality will require the Planner to ``over-insure'' the bad aggregate state for such an agent.
+
+ 
+
+\section{2 period version - No Learning}
+To isolate the effects coming out of learning, we begin with a case in which $\pi(1)=1$ for both the agents. Further to have exact solution we study a two period version. 
+\subsection{Numerical Example}
+
+With 2 Models and 2 periods, we have the terminal value function
+
+\[\mathcal{Q}(v^*,z^*,\pi^*) = u(y^*-u^{-1}(v^*))\]
+
+the following calibration for the next few sections
+
+\begin{enumerate}
+	\item $\alpha =[ .5;.95]$
+	\item $\beta=[.5;.9]$
+	\item $\delta=,95$
+	\item $\gamma=.5$
+	\item $y(z)=\bar{y}(1+g(z))$
+	\item $\theta_2=\frac{\theta_1}{10}$
+	\item $g(z)=-10\%$ if $z=1,2$ and $10\%$ otherwise
+\end{enumerate}
+
+\subsection{Analysis - Static}
+\subsubsection{Consumption}
+\noindent In the Benchmark case we have consumption of each agent as a constant proportion of aggregate endowment. With uncertainty, the consumption depends only on the aggregate output as in the Benchmark case, the consumption shares for each agent vary across realizations of aggregate output. Figure~\ref{fig:RelShares}  shows that for low promised values, Agent 2 has relatively higher share in the high aggregate endowment and vice versa. Further the mean-variance frontier for consumption is no longer linear. It is relative steeper for low promised irrespective of the aggregate state. This corresponds a higher $\frac{\sigma(c)}{\mu(c)}$ ratio for agent 2 when he has a low promised value. So the model predicts an inverse relationship between wealth levels and consumption volatility.
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/RelShares.png}
+
+	\caption{This figure plots the relative share of agent 2 in low aggregate endowment realizations high aggregate endowment realizations. $S(Y_i)=\frac{C(Y_i)}{Y_i}$. The left panel plots for initial low aggregate endowment and the right for initial high aggregate endowment}
+	\label{fig:RelShares}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/MVFCons.png}
+
+	\caption{This figure plots the conditional mean-variance frontier of one period ahead consumption in two panels. The dotted line is under the Benchmark }
+	\label{fig:MVFCons}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/SharpeRatioCons.png}
+
+	\caption{This figure plots the relative consumption volatility for both agents. The dotted line is under the Benchmark is at 10\% in this calibration}
+	\label{fig:SharpeRatioCons}
+\end{figure}
+
+
+\subsubsection{Pricing Kernel}
+\noindent The asset prices in this economy feature a multiplicative adjustment for distorted beliefs and state dependent consumption shares. Further this adjustment is a function of the initial promised value. This makes the asset prices more volatile than the benchmark on an average and the volatility is higher when initial promised value is closer to its extreme value
+\[q(z^* | z)=\delta \tilde{P^1}_z(z^* |z)\left(\frac{\alpha(z^*)Y(z^*)}{\alpha(z)Y(z)}\right)^{-\gamma}\]
+\[q(z^* | z)=q^{BM}(z^* | z)\zeta(z^*)\]
+Where 
+\[\zeta(z^*) = \frac{\exp\left\{\frac{-\mathcal{Q}(*)}{\theta^1}\right\}}{\mathbb{E}\exp\left\{\frac{-\mathcal{Q}(*)}{\theta^1}\right\}}\left(\frac{\alpha(z^*)}{\alpha(z^*)}\right)^{-\gamma} \]
+Following Hansen and Jagannathan (1991), define the conditional market price of risk as 
+\[MPR(v,z)=\frac{\sigma[q^*|z]}{\mu[q^*|z]}\]
+Figure~\ref{fig:MPR} plots the market price of risk as a function of the initial promised value in both state of the aggregate endowment. The U-shaped curve thus links initial asset distribution to asset prices. In particular it predicts a positive relationship between inequality and market price of risk.
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/MPR.png}
+
+	\caption{This figure plots the market price of risk as a function of the initial promised value}
+	\label{fig:MPR}
+\end{figure} 
+
+\subsubsection{Beliefs and entropy}
+The heterogeneity in agents due to the choice of initial promised value creates a differential wedge between the worst case beliefs of the agents and the underlying common approximating model. The magnitude of this wedge is captured by the entropy. Figure~\ref{fig:DistP} below show the heterogeneity of beliefs and how it varies with the promised continuation values.
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/DistP.png}
+
+	\caption{The figure plots the worst case probability of switching to a low aggregate endowment state for both the agents as a function of the initial promised value for Agent 2. the dotted line marks the value under the common approximating model }
+	\label{fig:DistP}
+\end{figure} 
+
+
+\subsubsection{Continuation Values}
+In the recursive Planner's problem, an important choice variable is future continuation values. These continuation values capture history dependence inherent in Planner's trade offs. As alluded earlier, current beliefs depend on future utility of the agent or actions of the Planner. A similar force is present in a context of a Ramsey problem with forward looking constraints (For eg. Kydland and Prescott [1982]). A common outcome of these setups is history dependence captured in this case with the state variable - promised continuation utility. In the Benchmark case, the dynamics of continuation values are trivial- they oscillate between two values corresponding the present expected value of consuming the equilibrium share of aggregate output. \footnote{The share is pinned down by the initial promised value and the expected present value is conditioned on the current state being either high or low aggregate endowment}. Also noting the relationship between the continuation value and the Lagrange multiplier, dynamics of continuation values correspond to time varying Planner's weights.
+
+
+
+\noindent In a decentralized economy, time varying continuation values manifests itself as dynamics of wealth distribution. Appendix A links the wealth distribution to promised continuation values. In the Benchmark case we have a stark prediction for the dynamics of wealth distribution - with complete markets, the wealth distribution is static. However with uncertainty and the ensuing heterogeneous beliefs, the wealth distribution changes over time. The agent who has the most wealth bears most of the aggregate risk, this increases the wedge between his worst case distribution and the underlying true measure. As seen before he over-insures the low aggregate endowment state. What this means is that he transfers more money to the poor agent in good times for transfers in the bad times. Consequently a series of good shocks drains his wealth and makes him poor. In terms of continuation utilities , they should adjust downward. Figure~\ref{fig:DyanamicsV} describes these dynamics of continuation values. I define \[v^*_{adj}(z^*)=v(z^*)\frac{v_{max}}{v^*_{max}}\]
+where 
+$v_{max}$ is the utility from a consumption plan $(y(z),y(z^*))$ and $v^*_{max} = u(y(z^*))$
+Since this is a non stationary two period problem, this adjustment makes the future continuation values and the initial continuation value comparable. \footnote{In the infinite horizon solution $v^*_{adj}(z^*)=v(z^*)$}
+Now I plot $\Delta v = v^*_{adj}(z^*)-v(z)$ against the initial promised value for agent 2-v in the two panels. The left panel is when $z=z^*$ or no change in the aggregate endowment and the right panel is $z^*\neq z$. At low values of initial promised values we see that $\Delta$ v is positive if the state is high. This corresponds to the wealth transfer mechanism discussed earlier. 
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/DynamicsV.png}
+
+	\caption{This figure plots the adjusted change in promised values $\Delta v$ against initial promised value to Agent 2$v$.  The left panel is when $z=z^*$ or no change in the aggregate endowment and the right panel is $z^*\neq z$.}
+	\label{fig:DynamicsV}
+\end{figure} 
+
+\subsection{Survival and Ambiguity}
+The market selection hypothesis articulated by Friedman (1953) states that agents who make \emph{systematic} errors in evaluation of future risk loose wealth on an average and will be driven out of market. The setup described above opens up a role of divergence between the true data generating model and worst case beliefs. However this divergence is endogenous and not systematic. In particular it depends on the wealth distribution. Since the agent having most of the wealth bears a larger proportion of aggregate risk, his worst case beliefs are further away from the true model. However the dynamics described earlier imply that there are wealth transfers to the other agent and this creates a novel survival force. I examine this with the following algorithm using the solution from the two period setup.
+
+\begin{enumerate}
+	\item Initialize the state at $(v,z)$
+	\item Use the two period solution to obtain the function $v(z^*)$
+	\item Transform $v^*$ by the adjustment described above
+	\[v^*_{adj}(z^*)=v(z^*)\frac{v_{max}}{v^*_{max}}\]
+	\item Draw $z^*$ from $P(z^*|z)$
+	\item Update the state to $(v^*_{adj}(z^*))$
+\end{enumerate}
+The object of interest is the ergodic distribution of the continuation values. In the Benchmark case, the continuation values oscillate within two values $v(y_{high})$ and $v(y_{low})$ and the ergodic distribution is trivial  - a discrete distribution with 2 points in the support. This corresponds to the static wealth distribution with complete markets and expected utility. 
+However with ambiguity, we obtain a continuous distribution. Since the dynamics of continuation values are stabilizing, there is some mean-reversion in continuation values, the system converges to a invariant distribution.  Figure~\ref{fig:DynamicsVSS} plots the kernel estimate of the SS distribution from a simulation of 5000 draws.
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/DynamicsVSS.png}
+
+	\caption{This figure plots the ergodic distribution of continuation values. The left axis measures $\Delta v$ and right axis records the estimate of a kernel density of the ergodic distribution. The x axis is the continuation value to Agent 2}
+	\label{fig:DynamicsVSS}
+\end{figure} 
+
+
+
+\section{2 period version - `Learning'}
+``Learning'' here introduces two new phenomenon in presence of ambiguity - presence of hidden state variables and rules for updating priors conditional on common signals.  Since both have separate implications, I will discuss them as - \emph{Compound Lotteries} mechanism and \emph{Distorted Filtering }mechanism .  The former can be studied in a variation of the previous problem with non-degenerate priors over models. Thus there are two models, each identified by a pair of $(\alpha, \beta)$ which dictate the transition rule for $z$.  The first model is an ``IID'' model with $\alpha=\beta=\frac{1}{2}$ and the other model has persistence with $\alpha=\beta=.9$. I begin with a prior of .9 for illustrative purposes. 
+\subsection{Prior Heterogeneity}
+\noindent The risk perception - risk sharing mechanism identified earlier applies in this case too and we have a wedge between priors of both the agent. This wedge depends on the initial promised value and the agent with low initial promised value is more closer to the common approximating prior. Figure \ref{fig:DistPi} depicts this heterogeneity  in priors as a function of initial promised value to agent 2. Both the agents tilt their prior towards the model which has a higher probability of a low aggregate endowment. If the initial state has low endowment, the prior moves towards the persistent model and vice versa. Also note that the wedge is higher in low aggregate states (top panels) than high (bottom panels).
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/DistPi.png}
+
+	\caption{This figure plots the distorted priors for both the agents as a function of the initial promised value to Agent 2. The top panels are $y(z_0)=y_{l}$ and $y(z_0)=y_{h}$ }
+	\label{fig:DistPi}
+\end{figure} 
+\subsection{Compound Lotteries  - Conditional consumption volatility}
+
+\noindent In the Benchmark world with expected utility, linearity of time and state aggregation implies that agents are indifferent to compound lotteries if they have the same reduced form.  In this case  the agent would use a transition matrix $\bar{P} = \pi P_1+(1-\pi) P_2$ . In a world with identical priors, this amounts to a separate choice of $P$. As all the results about risk sharing are independent of $P$, presence of hidden states with common priors adds nothing to the analysis. With Knightian uncertainty, however this is not true. Taking a stand on ambiguity preferences also implies a stand on attitudes towards compounding.  In particular the only kind of preferences that display both indifference to compounding temporal lotteries and ambiguity aversion are Gilboa and Schmeidler's (1989) maxmin expected utility (MEU) preferences \footnote{Strzalecki(2011) discusses the connection between these in detail}
+
+
+\noindent Note that the state vector $z$ contains two components - the aggregate output shock (y)and the distributional shock (s). In the analysis of the problem without hidden states,I noted an implication that consumption is smooth conditional on aggregate state (as in the Benchmark). Hence for the Planner's problem only the marginal of $y$ matters.  This is no longer true without hidden states. The optimal risk sharing scheme introduces conditional volatility of consumption.\footnote{This claim is true even if the agents trust the prior $\theta_2=\infty$. Refer Appendix XX for sufficient conditions}
+
+\noindent At first glance, it seems strange - why would the Planner introduce state contingent consumption variation in particular making it dependent  on a shock that is both independent and inconsequential to the aggregate endowment.  Whats going on here is that the Planner is satisfying the speculative needs of the agent arising from belief heterogeneity. Let me give an example through the following anecdote - 
+
+\noindent \emph{There are two friends Anne (A) and Bob (B) who go to Vegas for a weekend. They both are willing to bet on a toss of a possibly biased coin. First consider a case in which both agree that the coin is biased or unbiased. \textbf{This refers to the first case without hidden states}.  If the utility consequences of the result of the toss are different across A and B, they will end up with ex post heterogeneous beliefs on the probability of heads.}
+
+\noindent \emph{Now consider a modification where both know (and agree )that the coin is either biased or unbiased with an even chance. This refers to the case where $\alpha$ varies across models. As before we expect heterogeneous priors and transitions depending on the utility consequences of the toss outcomes. }
+
+\noindent \emph{ As a final twist  suppose for some reason they get into an argument about whether a gentleman across the table is Jewish or not. A puts a higher probability to the fact the man in Jewish. This event has no consequence on the coin toss. However if they could bet, they would bet on this outcome too.}
+
+\noindent \emph{\textbf{The distributional shock plays a similar role. In presence of heterogeneous priors, the agents disagree on the outcome of $z_1$ and $z_2$ in spite  $y(z_1)=y(z_2)$ since the prior weighted marginals will differ. With complete markets they can trade arrow securities conditioned on this shock too and in a decentralized world would indeed do that. The Planner by introducing consumption volatility contingent on aggregate state is merely implementing the speculative trade. }
+}
+
+
+\noindent This can be seen in Figure~\ref{fig:RelSharesL}. The plot shows ratio of one period ahead consumption across realizations of $s$ given $y$ for agent 2. The solid  line refers to $\frac{c(y_ls_l)}{c(y_ls_h)}$ and the dotted line refers to $\frac{c(y_hs_l)}{c(y_hs_h)}$. The top panel refers to cases when the initial state $z_0$ has low aggregate endowment and the bottom panel is one with high aggregate endowment. Note that at lower values of initial promised value - $v$, Agent 2's the ratio of consumption is away from 1.  This coincides with the observation in Figure~\ref{} that the differences in prior are extreme towards the end points on the x-axis.  Further consider the top left panel,  we see that the relative consumption spread is much higher for the solid line as against that of the dotted line. This is because, given the the fact that at $z_0=(y_{l}s_{l})$ and Agent 2  is tilting his prior towards the Persistent model, he  demands relatively more consumption in states $y_{l}s_{l}$ as compared to $y_{l}s_{h}$ as against $y_{h}s_{l}$ as compared to $y_{h}s_{h}$. This is reflected in the fact that the solid line is below the dotted line for this case. Thus the model predicts non-zero and persistent conditional volatility for poor agents (low v). 
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/RelSharesL.png}
+
+	\caption{This figure plots relative one-period ahead consumption shares conditioned on the aggregate endowment. The top panel refers to cases when the initial state $z_0$ has low aggregate endowment and the bottom panel is one with high aggregate endowment.}
+	\label{fig:RelSharesL}
+\end{figure} 
+
+\subsubsection{Asset Prices}
+\noindent Without hidden states we had a U-shaped curve for market price of risk. With the true model being IID, the initial state had not much bearing on the slope or the curvature of the market price of risk. However heterogeneity of priors and the speculative trading described in the previous section make the market price of risk vary significantly on both dimension - initial aggregate endowment and wealth distribution. The conditional volatility of consumption reflects in volatility of asset prices. In particular the model predicts a countercyclical market price of risk. Figure~\ref{fig:MPRL} plots the market price of risk as a function of initial promised value to Agent 2 in four panels. The top panels are states with low aggregate endowment and the bottom panels are with high aggregate endowment. Figure~\ref{fig:QVarL} displays the conditional variation in asset prices. Each panel plots two objects as a function of the initial promised value to agent 2 -  $ \left.\frac{q(z^*|z)}{q(z^{**}|z)}\right|_{y(z^*)=y(z^{**})}$ Observe that the state contingent volatility explains most of the counter-cyclical market price of risk.
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/MPRL.png}
+
+	\caption{ The figure plots conditional market price of risk as a function of continuation values to agent 2. The top panel refers to cases when the initial state $z_0$ has low aggregate endowment and the bottom panel is one with high aggregate endowment.}
+	\label{fig:MPRL}
+\end{figure} 
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/QVarL.png}
+
+	\caption{This figure plots the conditional spread in asset prices as a function of initial promised value to Agent 2-  $ \left.\frac{q(z^*|z)}{q(z^{**}|z)}\right|_{y(z^*)=y(z^{**})}$. The top panel refers to cases when the initial state $z_0$ has low aggregate endowment and the bottom panel is one with high aggregate endowment.}
+	\label{fig:QVarL}
+\end{figure} 
+\subsection{Filtering}
+In this section I extend the static to a multi period setting using an algorithm similar to the without learning case with the following modification
+\[v^*_{adj,m}(z^*)=v(z^*)\frac{v_{max,m}}{v^*_{max}}\]
+where 
+$v_{max,m}$ is the utility from a consumption plan $(y(z),y(z^*))$ under model $m$ and $v^*_{max} = u(y(z^*))$
+and for the law of motion of the prior $\pi$, I explore two choices
+\begin{enumerate}
+\item Without Commitment - $\pi^*(m)\propto \pi(m)P(z^*|z,m)$
+\item With Commitment - $\pi^*(m)\propto \pi(m)\tilde{P}(z^*|z,m)$ \footnote{This differs across agent as against the former}
+\end{enumerate}
+\noindent The true data generating model is the IID model. In the first case the agent applies Bayes rule and then distorts the outcome by applying the $\mathbb{T}_2$ operator and in the second case the agent applies a distorted version of Bayes rule. 
+\subsubsection{Learning Dynamics}
+\begin{enumerate}
+	\item Convergence : The learning process will converge irrespective of the stand we take on filtering. In the case without commitment, we update using the Bayes rule as in the Benchmark. Note that $\pi_{t}$ is a bounded martingale and will converge a.s
+	\[\pi_{t+1}\propto \pi_{t}P(z_{t+1}|z_{t})\]
+	and 
+	\[E_t\pi_{t+1}\propto E_t\pi_{t}P(z_{t+1}|z_{t})\]
+	or 
+	\[E_t\pi_{t+1}\propto \pi_{t}E_tP(z_{t+1}|z_{t}) = \pi_t\]
+\noindent As this conclusion does not depend on the choice of $P(z_{t+1}|z_{t})$, we have a.s convergence with or without commitment. Note that the rates of convergence however will not be the same. The likelihood ratio across models is a key factor in law of motion for $\pi$
+
+\[\pi_{t+1}=\frac{1}{1+\frac{1-\pi_t}{\pi_t}m_{t+1}}\]
+\[m_{t+1}=\frac{P^{1}_t(z_{t+1})}{P^{2}_t(z_{t+1})}	\]
+This ratio differs with and without commitment by a factor of $\frac{\mathbb{E}^2_t[exp\{-\frac{V}{\theta}\}]}{\mathbb{E}^1_t[exp\{-\frac{V}{\theta}\}]}$
+\item Learning Dynamics - To explore the difference between the learning dynamics with and without commitment, I plot (Figure~\ref{fig:LearningDynamics})the expected change in the posterior as a function of initial prior for a particular initial promised value to Agent 2. With the standard calibration of $\theta_1=1$, we see that the with and without commitment curves are very similar. However for lower values ($\theta_1=.1$), these curve differ. In particular in the region close to 1, the posterior with commitment has a negative average drift. This would mean that the learning dynamics will take longer to converge under this case.
+% 
+\begin{figure}[htbp]
+  \centering
+    \subfloat[$\theta_1=1$]{\label{fig:LearningDynamics1}\includegraphics[width=0.3\textwidth]{Matlab/3PeriodSetup/Plot/No_Learning/LearningDynamics1.png}}                
+    \subfloat[$\theta_1=\frac{1}{10}$]{\label{fig:LearningDynamics2}\includegraphics[width=0.3\textwidth]{Matlab/3PeriodSetup/Plot/No_Learning/LearningDynamics2.png}}     
+\caption{This plots $\mathbb{E}\Delta \pi_{t+1}$ as a function of $pi_t$. The left panel has $\theta_1=1$ and the right panel $\theta_1=.1$}
+  \label{fig:LearningDynamics}
+\end{figure}
+
+\end{enumerate}
+\subsection{Market Price of Risk}
+Even in the Benchmark Model filtering by itself adds some time-variation in market price of risk since posterior variances converge to the steady state values. Is this time-variation also state dependent ? Note that the symmetry in the way the transition matrices are constructed under each model makes the conditional variance of the posterior independent of the state. As described in the previous section the conditional variance of $m_{t+1}=\frac{P^{1}_t(z_{t+1})}{P^{2}_t(z_{t+1})}$(across model likelihood) under the true model(IID) is state independent.\footnote{In an Linear Gaussian setup this is naturally true since the posterior variances are independent of signal realizations} However, with ambiguity the agents additionally tilts the outcome of learning towards the Persistent model in low endowment states and vice versa. This leads to countercyclical market price of risk. To isolate this effect, I \emph{engineer} a sequence of shocks (T=50) such that the learning process does not converge for an Bayesian Agent. So the agent after seeing T periods of data cannot make out if the model has persistence or not.Figure~\ref{fig:FilteringL} depicts the path for the beliefs. Next I plot the market price of risk under the Benchmark and ambiguity in Figure~\ref{fig:MPRCompL}. The figure shows two facts clearly, the market price risk is higher and countercyclical with ambiguity.
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/FilteringL.png}
+
+	\caption{This figure plots the path for Bayesian beliefs and distorted beliefs for a particular sequence of shocks. The shaded bars are periods of low aggregate endowment}
+	\label{fig:FilteringL}
+\end{figure} 
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.5]{Matlab/3PeriodSetup/Plot/No_Learning/MPRCompL.png}
+
+	\caption{This figure plots the market price of risk for the particular sequence of shocks. The shaded bars are periods of low aggregate endowment}
+	\label{fig:MPRCompL}
+\end{figure} 
+
+\section{Conclusion}
+\appendix
+\section{Sequential problem}
+\section{Decentralized Competitive equilibrium}
+\subsection{Agent-i's problem}
+Given his endowment process $e^i(z)$ and initial assets $a^i(z)$, Agent $i$ takes the consumption-portfolio decision by solving the following problem
+\[V^i(a^i(z),z,\pi)=\max_{a^i(z^*),c^i}\mathbb{T}^i_2\left[ u(c^i)+\delta\mathbb{T}_1\left[V^i(a^i(z^*),z^*,\pi^*)\right]\right]\]
+
+s.t.
+
+\[c^i+\sum_{z^*} q(z^* | z)a^i(z^*)=a^i(z)+e^i(z)\]
+
+\subsection{Recursive Competitive Equilibrium}
+\noindent Given the $\{e^i,a^i(z0)\}_{i\in\mathcal{I}}$ a Recursive Competitive Equilibrium(RCE) is $\{c^i,a^i(z^*)\}_{i \in \mathcal{I}}, q(z^*|z)$ such that both the agents solve their respective problems and asset markets clear i.e
+\[\sum_{i \in \mathcal{I}}a^i(z^*)=0\]
+
+\noindent The FOCs of the agent's problem imply the following expression for asset prices 
+\[q(z^*|z)=\delta \left(\sum_{m \in M}\tilde{\pi}^i(m)\tilde{P^i}_z(z^* |z,m)\right)\frac{V^i_a[a^i(z^*),z^*,\pi^*]}{u'(c^i)}\]
+Where
+\[\tilde{P}^i  \propto P\exp\left\{\frac{-V^i[a^i(z^*),z^*,\pi^*]}{\theta^1}\right\}\]
+
+\[\tilde{\pi}^i  \propto \pi \exp\left\{-\frac{ u^(c^i)+\delta \mathbb{T}^2 V^i[a^i(z^*),z^*,\pi^*] }{\theta^2}\right\} \]
+
+Dividing the FOCs across agents we have,
+\[\frac{u'(c)}{u'(y(z)-c)}=\frac{\left(\sum_{m \in M}\tilde{\pi}^i(m)\tilde{P^i}_z(z^* |z,m)\right)}{\left(\sum_{m \in M}\tilde{\pi}^j(m)\tilde{P^j}_z(z^* |z,m)\right)}\left(\frac{V^i_a[a^i(z^*),z^*,\pi^*]}{V^j_a[a^j(z^*),z^*,\pi^*]}\right)\]
+Comparing this to the Planner's FOC's
+\begin{enumerate}
+\item At the equilibrium,
+\[\left(\frac{V^i_a[a^i(z^*),z^*,\pi^*]}{V^j_a[a^j(z^*),z^*,\pi^*]}\right)\approx \left.\frac{\frac{\partial V^1}{\partial a^1}(z^*)}{\frac{\partial V^2}{\partial a^2}(z^*)}\right |_{a^1(z^*)+a^2(z^*)=0}\]
+or
+
+\[\left.\frac{\partial V^1}{\partial V^2}(z^*)\frac{\partial a^2}{\partial a^1}(z^*)\right |_{a^1(z^*)+a^2(z^*)=0}=-\frac{\partial V^1}{\partial V^2}(z^*)=\textbf{$\mathcal{Q}_v(z^*)$}\]
+\item $\frac{u'(c)}{u'(y-c)}=\lambda $
+
+\end{enumerate}
+\emph{Thus the Planner's problem solves the RCE with the following choice for asset prices}
+
+\[q(z^* |z )=\delta \left(\sum_{m \in M}\tilde{\pi}^1(m)\tilde{P^1}_z(z^* |z,m)\right)\frac{ u'(c^*)}{u'(c)}\]
+
+\section{Compound Lotteries}
+Consider a case when agents do not distrust the learning process - $\theta_2=\infty$ and  $Y(z_1)=Y(z_2)$.
+
+We can have $\lambda^*(z_1)=\lambda^*(z_2)$ iff
+\scriptsize{
+\[\frac{\pi[\tilde{P}^1(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_1 | z_0,2)]}{\pi[\tilde{P}^2(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_1 | z_0,2)]} = \frac{\pi[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_2 | z_0,2)]}{\pi[\tilde{P}^2(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_2 | z_0,2)]}\]
+	}
+	or
+\scriptsize{
+\[\frac{\pi[\tilde{P}^1(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_1 | z_0,2)]}{\pi[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_2 | z_0,2)]} = \frac{\pi[\tilde{P}^2(z_1 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_1 | z_0,2)]}{\pi[\tilde{P}^2(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^2(z_2 | z_0,2)]}\]
+	}	 
+
+In the Benchmark case we have $\tilde{P}^1=\tilde{P}^2=P$, hence LHS=RHS
+  
+Consider as with No-Learning case agents do not distort idiosyncratic risk or ,agree on the relative likelihood of $z_1,z_2$ wrt each model
+\[\frac{[\tilde{P}^1(z_1|z_0,m)]}{[\tilde{P}^1(z_2|z_0,m)]}= \frac{[\tilde{P}^2(z_1|z_0,m)]}{[\tilde{P}^2(z_2|z_0,m)]}=\frac{[P^1(z_1|z_0,m)]}{[P(z_2|z_0,m)]}=\kappa(m)\]
+
+So we have LHS as
+
+\scriptsize{
+\[\frac{\pi\kappa(1)[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)\kappa(2)[\tilde{P}^2(z_1 | z_0,2)]}{\pi[\tilde{P}^1(z_2 |z_0,1)]+(1-\pi)[\tilde{P}^1(z_2 | z_0,2)]}\]
+}
+
+This is equal across agents only if 
+\begin{itemize}
+	\item $\kappa(1)=\kappa(2)$ - $\beta(1)=\beta(2)$ or $\alpha(1)=\alpha(2)$ check this claim
+	\item $\tilde{P}(z_2 | z_0,1)=\tilde{P}(z_2 | z_0,2)$
+\end{itemize}
+
+\emph{So, even if the agents do not distrust learning we may have heterogeneous beliefs due to attitudes towards compounding of lotteries.}
+
+\end{document}
+\message{ !name(ResearchNote_CompleteMarkets.tex) !offset(-555) }
