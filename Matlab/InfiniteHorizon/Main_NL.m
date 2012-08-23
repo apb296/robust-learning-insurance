@@ -19,7 +19,9 @@ close all
 %% Set the Parallel Config
 err=[];
 try
+
     matlabpool size
+
 catch err
 end
 if isempty(err)
