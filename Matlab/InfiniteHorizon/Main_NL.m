@@ -39,16 +39,19 @@ Para.m=model;
 % points as the order of approximation. This can be increased but will make
 % the program slower
 VGridSize=OrderOfApproximationV*3;
-
+Para.VGridSize=VGridSize;
 % Grid for State-Space. The value function has one contiuous state variable
 % v or the initial promised value and one dicrete variable z capturing the
 % exogenous shocks. The program BuildGrid sets up the grid and defines the
 % functional space for the value function iteration.
 
-BuildGrid;
+[Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para);
+Para.GridSize=GridSize;
 % To initialize the coeffecient we use the EU solution as the starting
 % point
-InitializeC;
+[x_state,PolicyRules,cEU0]=InitializeC(Para,VGrid,VGridSize,Q);
+zSlice=x_state(:,1);
+vSlice=x_state(:,2);
 load('Data/coeffEU.mat');
 c0=cEU0;
 % -- Solve the Value function by Iterating on the Bellman equation --------

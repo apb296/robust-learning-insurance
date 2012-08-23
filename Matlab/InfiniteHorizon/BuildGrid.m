@@ -1,3 +1,5 @@
+
+function [Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para)
 % To build the grid for v. I use the following procedure - Pick a two values for alpha  - alphamin
 % and alphamax . Compute the robust utility of the  agent
 % who consumes alpha share of the aggregate endowment given z_0=z. The grid
@@ -5,7 +7,8 @@
 % The program CalcV does this task. CalcVEU is does is to EU case and we
 % can use this as initial conditions for CalcV.
 
-
+ZSize=Para.ZSize;
+VGridSize=Para.VGridSize;
 % Set up the minimum and maximum share of the aggregate endowment
 alphamin=.05;
 alphamax=(1-alphamin*1.5);
@@ -26,13 +29,13 @@ VMax=fsolve(@(V) CalcV(V,alphamax,Para),VEUmax0,options);
 VSuperMax=fsolve(@(V) CalcV(V,1,Para),VEUSupermax0,options);
 
 % Set up the value functions for agent 1 for each state
-for z=1:Para.ZSize
-Q(z) = fundefn(ApproxMethod,OrderOfApproximationV,VMin(z),VMax(z));
+for z=1:ZSize
+Q(z) = fundefn(Para.ApproxMethod,Para.OrderOfApproximationV,VMin(z),VMax(z));
 VGrid(z,:)=linspace(VMin(z),VMax(z),VGridSize);
 end
-Para.VGrid=VGrid;
-Para.VGridSize=VGridSize;
-Para.VSuperMax=VSuperMax;
-GridSize=Para.VGridSize*ZSize;
-Para.GridSize=GridSize;
+VGrid=VGrid;
+VGridSize=VGridSize;
+VSuperMax=VSuperMax;
+GridSize=VGridSize*ZSize;
+end
 
