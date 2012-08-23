@@ -110,9 +110,9 @@ ExitFlag(3*GridSize/4+1:GridSize)=ExitFlag(GridSize/2+1:3*GridSize/4);
 end
 coeff=c([1 3],:);
 % ----- STORING THE RESULTS-------------------------------------------------
-CoeffFileName=['CoeffRU_NL_' int2str(m) '.mat'];                       % Coeffecients
-FSpaceFileName=['QNL_' int2str(m) '.mat'];                             % Value functions
-ParaFileName=['Para_NL_' int2str(m) '.mat'];                           % Para
+CoeffFileName=['CoeffRU_NL_' int2str(model) '.mat'];                       % Coeffecients
+FSpaceFileName=['QNL_' int2str(model) '.mat'];                             % Value functions
+ParaFileName=['Para_NL_' int2str(model) '.mat'];                           % Para
 
 
 save(['Data/' FSpaceFileName],'Q');
