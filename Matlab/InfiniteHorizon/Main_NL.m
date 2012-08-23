@@ -118,7 +118,7 @@ ParaFileName=['Para_NL_' int2str(model) '.mat'];                           % Par
 save(['Data/' FSpaceFileName],'Q');
 save(['Data/' CoeffFileName],'coeff');
 save(['Data/' ParaFileName],'Para');
-system('git add Data"')
+system('git add Data')
 system('git commit -m "commiting data files from matlab"')
 system('git push origin')
 end

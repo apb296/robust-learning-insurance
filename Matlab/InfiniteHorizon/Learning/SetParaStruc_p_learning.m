@@ -138,16 +138,16 @@ OrderOfApproximationV=2;
 
 % Parameters for the approximation
 ApproxMethod='spli';
-OrderOfApproximation=5;
-OrderOfApproximationPi=10;
-OrderOfApproximationV=10;
+OrderOfApproximation=3;
+OrderOfApproximationPi=20;
+OrderOfApproximationV=20;
 OrderOfSpline=3;
 
 
 
 
 
-NIter=25;
+NIter=50;
 % store the para struc
 Para.CompEconPath=CompEconPath;
 Para.PlotPath=PlotPath;
