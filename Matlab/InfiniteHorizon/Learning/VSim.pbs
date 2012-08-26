@@ -1,0 +1,21 @@
+### PBS script to run a parallel matlab job 
+### on the cluster
+
+#PBS -l nodes=1:ppn=4,walltime=10:00:00
+#PBS -N RobustLearning
+#PBS -M apb296@nyu.edu
+#PBS -m abe
+#PBS -e localhost:/home/apb296/RobustLearning/Errors.err
+#PBS -o localhost:/home/apb296/RobustLearning/Output.out 
+
+cd /home/apb296/RobustLearning/Mfiles/InfiniteHorizon/Learning
+/share/apps/matlab/R2011a/bin/matlab -nosplash < GetResults.m -logfile /home/apb296/RobustLearning/logMakePol.log
+
+### You can add more stuff for the script to do after the job is completed
+
+### E.g. zip up the ResultsDir for easy transfer
+zip -r Results.zip ResultsDir/*.*
+
+exit 0;
+
+

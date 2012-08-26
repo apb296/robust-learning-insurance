@@ -139,8 +139,8 @@ OrderOfApproximationV=2;
 % Parameters for the approximation
 ApproxMethod='spli';
 OrderOfApproximation=3;
-OrderOfApproximationPi=5;
-OrderOfApproximationV=5;
+OrderOfApproximationPi=10;
+OrderOfApproximationV=20;
 OrderOfSpline=3;
 
 
