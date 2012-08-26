@@ -40,7 +40,7 @@ mkdir(DataPath)
 addpath(genpath(CompEconPath));
 ybar=1;
 g=.3;
-theta11=.5000000;
+theta11=.50000000;
 theta12=.50000000;
 delta=.8;
 theta11*delta/theta12-1;
@@ -139,7 +139,7 @@ OrderOfApproximationV=2;
 % Parameters for the approximation
 ApproxMethod='spli';
 OrderOfApproximation=3;
-OrderOfApproximationPi=20;
+OrderOfApproximationPi=10;
 OrderOfApproximationV=20;
 OrderOfSpline=3;
 
