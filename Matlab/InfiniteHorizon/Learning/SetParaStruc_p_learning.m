@@ -20,7 +20,7 @@ SL='/';
         BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
 SL='/';
     otherwise
-BaseDirectory ='/home/apb296/ProjectRobustLearning/InfiniteHorizon/';
+BaseDirectory ='/home/apb296/robust-learning-insurance/Matlab/InfiniteHorizon/';
 
 SL='/';
 end
@@ -139,8 +139,8 @@ OrderOfApproximationV=2;
 % Parameters for the approximation
 ApproxMethod='spli';
 OrderOfApproximation=3;
-OrderOfApproximationPi=10;
-OrderOfApproximationV=20;
+OrderOfApproximationPi=5;
+OrderOfApproximationV=5;
 OrderOfSpline=3;
 
 
