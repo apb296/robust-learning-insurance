@@ -92,6 +92,7 @@ resQNew.MRS=MRS;
 resQNew.Entropy_Marg_Agent1=Emlogm_distmarg_agent1;
 resQNew.Entropy_Marg_Agent2=Emlogm_distmarg_agent2;
 resQNew.MPR=MPR;
+resQNew.RelMPR=MPR./MPREU;
 resQNew.ConsStar=ConsStar1;
 resQNew.ConsStarRatio=(resQNew.ConsStar./Y)./(cons/(Y(z)));
 resQNew.QNew=QNew;

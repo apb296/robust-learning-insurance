@@ -36,7 +36,7 @@ LearningPath=[BaseDirectory 'Learning' SL];
 
 addpath(genpath(CompEconPath));
 
-Para.m=1;
+Para.m=2;
 CoeffFileName=['CoeffRU_NL_' int2str(Para.m) '.mat'];
 ParaFileName=['Para_NL_' int2str(Para.m) '.mat'];
 FSpaceFileName=['QNL_' int2str(Para.m) '.mat'];
@@ -61,6 +61,7 @@ for z=1:Para.ZSize
         Lambda(z,v)=resQNew.Lambda;
         MRS(z,v,:)=resQNew.MRS;
         MPR(z,v)=resQNew.MPR;
+           RelMPR(z,v)=resQNew.RelMPR;
         EntropyMargAgent1(z,v)=resQNew.Entropy_Marg_Agent1;
 EntropyMargAgent2(z,v)=resQNew.Entropy_Marg_Agent2;
          Cons(z,v)=resQNew.Cons;
@@ -130,6 +131,26 @@ hold on
 z=3
 plot(VFineGrid(z,logical(ExitFlag(z,:)==1)),squeeze(MPR(z,logical(ExitFlag(z,:)==1))),':k','LineWidth',2)
 
+
+%% MARKET PRICE OF RISK
+figure()
+z=1
+plot(VFineGrid(z,logical(ExitFlag(z,:)==1)),squeeze(MPR(z,logical(ExitFlag(z,:)==1))),'k','LineWidth',2)
+hold on
+z=3
+plot(VFineGrid(z,logical(ExitFlag(z,:)==1)),squeeze(MPR(z,logical(ExitFlag(z,:)==1))),':k','LineWidth',2)
+
+
+%% MARKET PRICE OF RISK with Lambda
+figure()
+z=1
+plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(RelMPR(z,logical(ExitFlag(z,:)==1))),'k','LineWidth',2)
+hold on
+z=3
+plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(RelMPR(z,logical(ExitFlag(z,:)==1))),':k','LineWidth',2)
+
+
+
 %% LAMBDASTAR/LAMBDA
 % ALPHA[zstar | z,pi,v] / ALPHA[z,pi,v]
 % Fig 1 : z=1
@@ -150,6 +171,31 @@ zstar=3:4;
 plot(VFineGrid(z,logical(ExitFlag(z,:)==1)),squeeze(LambdaStarL(z,logical(ExitFlag(z,:)==1),zstar)),':k','LineWidth',2)
 xlabel('Agent 2 promised value - v')
 ylabel('$\frac{\lambda^*}{\lambda}$','Interpreter','Latex')
+
+
+
+%% LAMBDASTAR/LAMBDA
+% ALPHA[zstar | z,pi,v] / ALPHA[z,pi,v]
+% Fig 1 : z=1
+% CAPTION : This figure plots the gross change in consumption shares as a function 
+%of the initial promized value to Agent 2 given $y(z)=y_l$. The solid (dotted) line refers to
+% $y(z^*)=y_l (y_h)$. The left (right) panel is the IID Model with $\pi=1$
+% ($\pi=0)$
+figure()
+% PANEL LEFT - IID MODEL
+zstar=1:2;
+z=1;
+plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(LambdaStarL(z,logical(ExitFlag(z,:)==1),zstar)),'k','LineWidth',2)
+xlabel('v')
+ylabel('$\frac{\lambda^*}{\lambda}$','Interpreter','Latex')
+hold on
+z=1;
+zstar=3:4;
+plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(LambdaStarL(z,logical(ExitFlag(z,:)==1),zstar)),':k','LineWidth',2)
+xlabel('Agent 2 promised value - v')
+ylabel('$\frac{\lambda^*}{\lambda}$','Interpreter','Latex')
+
+
 %% SIMULATIONS
 
 
