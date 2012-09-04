@@ -9,9 +9,9 @@ SetParaStruc_p_learning
 OldDataPath=[Para.DataPath 'theta_1_infty' SL 'Transitory' SL];
 citer=load( [OldDataPath 'InitialC.mat']);
 Para=citer.Para;
-Para.DataPath=OldDataPath
+Para.DataPath=OldDataPath;
 Para.BenchMark=flagBenchMark;
-Para.NIter=49;
+Para.NIter=25;
 cold=citer.c;
 for i=2:Para.NIter
 citer=load( [Para.DataPath 'C_' num2str(i) '.mat']);
@@ -327,8 +327,11 @@ V0=VGrid(z_draw0,2);
 pi_bayes0=0;
 SimulateV(m_draw0,z_draw0,V0,pi_bayes0,Para,c,Q,x_state,PolicyRules,BurnSample)%
 %% Test sapce
+
+load([DataPath 'theta_1_infty/Transitory/C_49.mat'])
 z=1;
-pi=0;
-v=VGrid(z,end);
-xInit=GetInitalPolicyApprox([z pi v],x_state,PolicyRules);
+pi=.2105;
+v=2.1448
+xInit=GetInitalPolicyApprox([z pi*.8 v*1.1],x_state,PolicyRules);
+
 resQNew=getQNew(z,pi,v,c,Q,Para,xInit)

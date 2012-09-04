@@ -27,6 +27,7 @@ warning('off', 'NAG:warning')
 [x, fval,exitflag]=c05nb('resQNAG',xInit);
 if exitflag==4
     exitflag=-2;
+    x=xInit;
 else
     exitflag=1;
 end

@@ -1,3 +1,5 @@
+function [VMax,VMin,VGrid,PiGrid,PiMin,PiMax,PiGridSize,VGridSize,VSuperMax,Q]=BuildGrid(Para,alphamin,alphamax)
+
 % This program builds the grid for the spline approximation. To do this I
 % check whether the stored grid points are ok by comparing the para struc
 % for the stored points. If not I compute them as follows
@@ -13,10 +15,10 @@
 % ---------CHECK THE STORED GRID POINTS------------------------------------
 flagComputeGridPoints=1;
     GridPointsPath=[Para.DataPath 'GridPoints.mat'];
-if exist(GridPointsPath)==2
+if exist(GridPointsPath,'file')==2
 GridPoints=load([Para.DataPath 'GridPoints.mat']);
 flag = CheckPara(Para,GridPoints.Para);
-if (flag==1 || flagOverrideInitialCheck==1) 
+if (flag==1) 
     disp('Using existing initial guess')
     flagComputeGridPoints=0;
     VMin=GridPoints.VMin;
@@ -30,7 +32,7 @@ end
 % PI GRID
 PiMin=0;
 PiMax=1;
-PiGridSize=Para.OrderOfApproximationPi*2;
+PiGridSize=Para.OrderOfApproximationPi*Para.PiGridDensityFactor;
 PiGrid=linspace(PiMin,PiMax,PiGridSize);
 %---------------------------------------------------------------------------
 
@@ -39,9 +41,7 @@ PiGrid=linspace(PiMin,PiMax,PiGridSize);
 %--------- VGRID-----------------------------------------------------------
 % SET THE MIN and MAX SHARE
 % this is the minimum and max share to compute the grid
-alphamin=.05;
-alphamax=1-alphamin*1.5;
-VGridSize=Para.OrderOfApproximationV*2;
+VGridSize=Para.OrderOfApproximationV*Para.VGridDensityFactor;
 %---------------------------------------------------------------------------
 
 % %% EU SOLUTION
@@ -64,7 +64,6 @@ end
 
 % ----- STORE THE GRIDPOINTS-----------------------------------------------
 % This avoids computing them incase the key parameters are unchanged
-save( [Para.DataPath 'GridPoints.mat'], 'VMin','VMax','Para', 'VSuperMax')
 end
 
 
@@ -74,21 +73,11 @@ end
 % We have Q(z,p,v)
 
 for z=1:Para.ZSize
-Q(z) = fundefn(ApproxMethod,[OrderOfApproximationPi OrderOfApproximationV] ,[PiMin  VMin(z)],[PiMax VMax(z)]);
+Q(z) = fundefn(Para.ApproxMethod,[Para.OrderOfApproximationPi Para.OrderOfApproximationV] ,[PiMin  VMin(z)],[PiMax VMax(z)]);
 VGrid(z,:)=linspace(VMin(z),VMax(z),VGridSize);
 end
 disp('Using the following grid for V')
 disp(VGrid)
+save( [Para.DataPath 'GridPoints.mat'], 'VMin','VMax','Para', 'VSuperMax')
 
-%% STORE THE GRID IN THE PARA TRUC
-Para.VMax=VMax;
-Para.VMin=VMin;
-Para.VGrid=VGrid;
-Para.PiGrid=PiGrid;
-Para.PiMin=PiMin;
-Para.PiMax=PiMax;
-Para.PiGridSize=PiGridSize;
-Para.VGridSize=VGridSize;
-Para.VSuperMax=VSuperMax;
-GridSize=ZSize*VGridSize*PiGridSize;
-Para.GridSize=GridSize;
+

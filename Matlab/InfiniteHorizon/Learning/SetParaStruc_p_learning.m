@@ -134,16 +134,17 @@ ApproxMethod='cheb';
 OrderOfApproximation=2;
 OrderOfApproximationPi=2;
 OrderOfApproximationV=2;
-
+VGridDensityFactor=2;
+PiGridDensityFactor=2;
 
 % Parameters for the approximation
 ApproxMethod='spli';
 OrderOfApproximation=3;
-OrderOfApproximationPi=10;
-OrderOfApproximationV=20;
+OrderOfApproximationPi=5;
+OrderOfApproximationV=10;
 OrderOfSpline=3;
-
-
+VGridDensityFactor=2;
+PiGridDensityFactor=2;
 
 
 
@@ -171,6 +172,8 @@ Para.grelax=grelax;
 Para.ApproxMethod=ApproxMethod;
 Para.OrderOfApproximationPi=OrderOfApproximationPi;
 Para.OrderOfApproximationV=OrderOfApproximationV;
+Para.VGridDensityFactor=VGridDensityFactor;
+Para.PiGridDensityFactor=PiGridDensityFactor;
 Para.NIter=NIter;
 Para.StateName={'$(y_{l},s_{l})$','$(y_{l},s_{h})$','$(y_{h},s_{l})$','$(y_{h},s_{h})$'};
 Para.N=10000;

@@ -12,11 +12,11 @@ switch CompStr
 
 case 'PCWIN'
 
-BaseDirectory='C:\Users\anmol\Dropbox\Project Robust Learning\Matlab\InfiniteHorizon\';
+BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
 SL='\';
 
     case 'MACI64'
-        BaseDirectory ='/Users/meetanmol/Dropbox/Project Robust Learning/Matlab/InfiniteHorizon/';
+        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
 SL='/';
     otherwise
 BaseDirectory ='/home/apb296/ProjectRobustLearning/InfiniteHorizon/';
