@@ -18,6 +18,7 @@ end
 Para=ValueFunctionData.Para;
 PolicyRules=ValueFunctionData.PolicyRules;
 x_state=ValueFunctionData.x_state;
+x_stateold=x_state;
 Q=ValueFunctionData.Q;
 c=ValueFunctionData.c;
 
@@ -95,7 +96,7 @@ parfor GridInd=1:GridSize
     z=zSlice(GridInd);
     v=vSlice(GridInd);
     pi=PiSlice(GridInd);
-    xInit=GetInitalPolicyApprox([z pi v],x_state,PolicyRules);
+    xInit=GetInitalPolicyApprox([z pi v],x_stateold,PolicyRules);
     
     %since the value function depends only on y
     if (z==1 || z==3)

@@ -26,7 +26,7 @@ end
 InitData.OrderOfApproximationV=10;
 InitData.OrderOfApproximationPi=10;
 InitData.VGridDensityFactor=2;
-InitData.PiGridDensityFactor=1;
+InitData.PiGridDensityFactor=2;
 
 %CASE I - theta_1,theta_2 <infty,PM=I
 DataPath=['Persistent/Data/theta_1_finite/Transitory/'];
