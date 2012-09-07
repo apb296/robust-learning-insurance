@@ -1,20 +1,16 @@
-function PriceDividendRatio(ValueFunctionData,InitData)
+function PriceDividendRatio(DataPath,ValueFunctionData,InitData)
 % This function computes the price dividend ratio for the lucas tree yielding
 % the aggregate endowmwnt. It does not approximate the MRS[zstar|z,pi,v]
 % function but computes MRS[zstar|z,pi,v] using the already solved planner's BM equation
 
 switch  nargin
-    case 0
-    DataPath=['Persistent/Data/theta_1_finite/Transitory/'];
-   disp('solving the trasitory case with theta_1_finite')
-    case 1
+    case 2
       flagComputeGridWithInitData='no';
       disp('Using the same grid as the value function')
-    case 2
+    case 3
         flagComputeGridWithInitData='yes';
         disp('Recomputing the grid using init data');
-        disp(InitData);
-       
+        disp(InitData);   
 end
         
 % -- load the coeff for the value function -------------------------------
