@@ -138,8 +138,8 @@ for i=2:Para.NIter;
   
     
    
- PDValues=GetPDValueVectorizedCode(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY);
- %PDValues=GetPDValueParFor(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY,GridSize,zSlice)
+ PDValues=GetPDValueVectorizedCode(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY,Para.delta);
+ %PDValues=GetPDValueParFor(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY,GridSize,zSlice,Para.delta)
     
     for z=1:Para.ZSize
         ExitFlag_z=ExitFlag((z-1)*GridSize/ZSize+1:z*GridSize/ZSize);
@@ -154,9 +154,9 @@ for i=2:Para.NIter;
    toc
 end
 
-save([DataPath 'PDData.mat'],'VStar','pistar','MRS','GrowthRateY','ExitFlag','Para','PD','coeffPD');
+save([DataPath 'PDData.mat'],'VStar','pistar','MRS','GrowthRateY','ExitFlag','Para','PD','coeffPD','cdiffcoeffPD');
 end
-function PDValues=GetPDValueVectorizedCode(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY)
+function PDValues=GetPDValueVectorizedCode(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY,delta)
    % Compute the value of the PDratio tomorrow for each zstar,vstar,pistar
     PDStar1=funeval(coeffPD(1,:)',PD(1),[pistar(:,1) VStar(:,1)]);
     PDStar2=funeval(coeffPD(2,:)',PD(2),[pistar(:,2) VStar(:,2)]);
@@ -165,7 +165,7 @@ function PDValues=GetPDValueVectorizedCode(PD,coeffPD,pistar,VStar,EffProb,MRS,G
     PDValues=delta*sum(EffProb.*MRS.*[PDStar1 PDStar2 PDStar3 PDStar4] .*GrowthRateY+GrowthRateY,2);
 end
 
-function PDValues=GetPDValueParFor(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY,GridSize,zSlice)
+function PDValues=GetPDValueParFor(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY,GridSize,zSlice,delta)
     parfor GridInd=1:GridSize
     z=zSlice(GridInd);
     if (z==1 || z==3)
