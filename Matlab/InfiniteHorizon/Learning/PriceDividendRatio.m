@@ -173,7 +173,7 @@ function PDValues=GetPDValueParFor(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRat
     PDStar2=funeval(coeffPD(2,:)',PD(2),[pistar(GridInd,2) VStar(GridInd,2)]);
     PDStar3=funeval(coeffPD(3,:)',PD(3),[pistar(GridInd,3) VStar(GridInd,3)]);
     PDStar4=funeval(coeffPD(4,:)',PD(4),[pistar(GridInd,4) VStar(GridInd,4)]);
-    PDValues(GridInd,:)=sum(EffProb(GridInd,:).*MRS(GridInd,:).*[PDStar1 PDStar2 PDStar3 PDStar4] .*GrowthRateY(GridInd,:)+GrowthRateY(GridInd,:));
+    PDValues(GridInd,:)=delta*sum(EffProb(GridInd,:).*MRS(GridInd,:).*[PDStar1 PDStar2 PDStar3 PDStar4] .*GrowthRateY(GridInd,:)+GrowthRateY(GridInd,:));
     end
     end
     PDValues(GridSize/4+1:2*GridSize/4,:)=PDValues(1:GridSize/4,:);
