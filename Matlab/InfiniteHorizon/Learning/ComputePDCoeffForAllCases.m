@@ -23,10 +23,10 @@ end
 % -------------------------------------------------------------------------
 
 
-InitData.OrderOfApproximationV=10;
-InitData.OrderOfApproximationPi=10;
+InitData.OrderOfApproximationV=5;
+InitData.OrderOfApproximationPi=5;
 InitData.VGridDensityFactor=2;
-InitData.PiGridDensityFactor=2;
+InitData.PiGridDensityFactor=1;
 
 %CASE I - theta_1,theta_2 <infty,PM=I
 DataPath=['Persistent/Data/theta_1_finite/Transitory/'];
@@ -46,23 +46,23 @@ ValueFunctionData=load([DataPath 'FinalC.mat']);
 PriceDividendRatio(DataPath,ValueFunctionData,InitData)
 
 
-%  DataPath=['Persistent/Data/theta_1_finite/Persistent/'];
-%   load([DataPath,'PDData.mat'])
-%  
-%  piPlot=0;
-%  PlotGridSize=15;
-%  PiPlotGrid=piPlot*ones(PlotGridSize,1);
-%  z=1;
-%  VPlotGrid=linspace(min(Para.VGrid(z,:)),max(Para.VGrid(z,:)),PlotGridSize)';
-%  PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
-%  figure()
-%  subplot(1,2,1)
-%  plot(VPlotGrid,PDPlotData,'k')
-%  z=3;
-%  VPlotGrid=linspace(min(Para.VGrid(z,:)),max(Para.VGrid(z,:)),PlotGridSize)';
-%  PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
-%  subplot(1,2,2)
-%  plot(VPlotGrid,PDPlotData,'k')
-%  
-% 
-% 
+ DataPath=['Persistent/Data/theta_1_infty/Persistent/'];
+  load([DataPath,'PDData.mat'])
+ 
+ piPlot=.2;
+ PlotGridSize=15;
+ PiPlotGrid=piPlot*ones(PlotGridSize,1);
+ z=1;
+ VPlotGrid=linspace(min(Para.VGrid(z,:)),max(Para.VGrid(z,:)),PlotGridSize)';
+ PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
+ figure()
+ subplot(1,2,1)
+ plot(VPlotGrid,PDPlotData,'k')
+ z=3;
+ VPlotGrid=linspace(min(Para.VGrid(z,:)),max(Para.VGrid(z,:)),PlotGridSize)';
+ PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
+ subplot(1,2,2)
+ plot(VPlotGrid,PDPlotData,'k')
+ 
+
+
