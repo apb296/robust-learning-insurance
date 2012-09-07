@@ -24,7 +24,7 @@ end
 
 
 InitData.OrderOfApproximationV=10;
-InitData.OrderOfApproximationPi=5;
+InitData.OrderOfApproximationPi=10;
 InitData.VGridDensityFactor=2;
 InitData.PiGridDensityFactor=1;
 
