@@ -44,3 +44,25 @@ PriceDividendRatio(DataPath,ValueFunctionData,InitData)
 DataPath=['Persistent/Data/theta_1_infty/Persistent/'];
 ValueFunctionData=load([DataPath 'FinalC.mat']);
 PriceDividendRatio(DataPath,ValueFunctionData,InitData)
+
+
+% DataPath=['Persistent/Data/theta_1_infty/Transitory/'];
+%  load([DataPath,'PDData.mat'])
+% % 
+%  piPlot=1;
+%  PlotGridSize=15;
+%  PiPlotGrid=piPlot*ones(PlotGridSize,1);
+%  z=1;
+%  VPlotGrid=linspace(min(Para.VGrid(z,:)),max(Para.VGrid(z,:)),PlotGridSize)';
+%  PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
+%  figure()
+%  subplot(1,2,1)
+%  plot(VPlotGrid,PDPlotData,'k')
+%  z=3;
+%  VPlotGrid=linspace(min(Para.VGrid(z,:)),max(Para.VGrid(z,:)),PlotGridSize)';
+%  PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
+%  subplot(1,2,2)
+%  plot(VPlotGrid,PDPlotData,'k')
+%  
+% 
+% 

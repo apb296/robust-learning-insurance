@@ -180,22 +180,3 @@ function PDValues=GetPDValueParFor(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRat
     PDValues(3*GridSize/4+1:GridSize,:)=PDValues(GridSize/2+1:3*GridSize/4,:);
 end
 
-
-% load([DataPath,'PDData.mat'])
-% 
-% piPlot=1;
-% PlotGridSize=15;
-% PiPlotGrid=piPlot*ones(PlotGridSize,1);
-% VPlotGrid=linspace(min(Para.VGrid(z,:)),max(Para.VGrid(z,:)),PlotGridSize)';
-% z=1;
-% PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
-% figure()
-% subplot(1,2,1)
-% plot(VPlotGrid,PDPlotData,'k')
-% z=3;
-% PDPlotData=funeval(coeffPD(z,:)',PD(z),[PiPlotGrid VPlotGrid]);
-% subplot(1,2,2)
-% plot(VPlotGrid,PDPlotData,'k')
-% 
-% 
-% 
