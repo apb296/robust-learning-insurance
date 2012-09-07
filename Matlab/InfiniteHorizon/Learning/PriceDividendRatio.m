@@ -162,7 +162,7 @@ function PDValues=GetPDValueVectorizedCode(PD,coeffPD,pistar,VStar,EffProb,MRS,G
     PDStar2=funeval(coeffPD(2,:)',PD(2),[pistar(:,2) VStar(:,2)]);
     PDStar3=funeval(coeffPD(3,:)',PD(3),[pistar(:,3) VStar(:,3)]);
     PDStar4=funeval(coeffPD(4,:)',PD(4),[pistar(:,4) VStar(:,4)]);
-    PDValues=sum(EffProb.*MRS.*[PDStar1 PDStar2 PDStar3 PDStar4] .*GrowthRateY+GrowthRateY,2);
+    PDValues=delta*sum(EffProb.*MRS.*[PDStar1 PDStar2 PDStar3 PDStar4] .*GrowthRateY+GrowthRateY,2);
 end
 
 function PDValues=GetPDValueParFor(PD,coeffPD,pistar,VStar,EffProb,MRS,GrowthRateY,GridSize,zSlice)
