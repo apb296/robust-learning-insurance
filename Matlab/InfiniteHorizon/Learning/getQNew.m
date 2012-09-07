@@ -186,7 +186,7 @@ end
 %Entropy of marginals
 Emlogm_distmarg_agent1=sum((dist_marg_agent1./EffProb).*log((dist_marg_agent1./EffProb)).*EffProb);
 Emlogm_distmarg_agent2=sum((dist_marg_agent2./EffProb).*log((dist_marg_agent2./EffProb)).*EffProb);
-
+GrowthRateY=Y./Y(z);
 PK=delta*dist_marg_agent1.*(ConsStar/cons)'.^(-ra)./EffProb;
 Zeta=(dist_marg_agent1.*(ConsStar/cons)'.^(-ra).*(Y(z)./Y)'.^(-ra));
 MuPK= EffProb*PK';
@@ -222,12 +222,14 @@ resQNew.Entropy_Z_Model1=Entropy_Z_Model1;
 resQNew.Entropy_Z_Model2=Entropy_Z_Model2;
 resQNew.Entropy_M=Entropy_M;
 resQNew.Zeta=Zeta;
+resQNew.MRS=Zeta.*(GrowthRateY)'.^(-ra);
 resQNew.PricingKernel=PK;
 resQNew.MPR=MPR;
 resQNew.MuPK=MuPK;
 resQNew.SigmaPK=SigmaPK;
 resQNew.Entropy_Marg_Agent1=Emlogm_distmarg_agent1;
 resQNew.Entropy_Marg_Agent2=Emlogm_distmarg_agent2;
+
 
 
 

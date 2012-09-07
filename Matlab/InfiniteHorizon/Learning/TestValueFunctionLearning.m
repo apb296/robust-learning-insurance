@@ -11,15 +11,16 @@ citer=load( [OldDataPath 'InitialC.mat']);
 Para=citer.Para;
 Para.DataPath=OldDataPath;
 Para.BenchMark=flagBenchMark;
-Para.NIter=25;
+Para.NIter=49;
 cold=citer.c;
 for i=2:Para.NIter
 citer=load( [Para.DataPath 'C_' num2str(i) '.mat']);
 c=citer.c;
-cdiff(i,:)=sum(abs(c-cold));
+cdiff=citer.cdiff;
 cold=c;
 end
-
+Para.PlotPath='tempPlots/';
+mkdir(Para.PlotPath);
 figure()
 plot(cdiff)
 xlabel('Number of Iteration')
@@ -31,13 +32,11 @@ Para=citer.Para;
 Para.BenchMark=flagBenchMark;
 
 Q=citer.Q;
-x0=citer.x0;
 c=citer.c;
 PolicyRules=citer.PolicyRules;
 x_state=citer.x_state;
 
 
-SetPath;
 
 PiGridSize=Para.PiGridSize;
 VGridSize=Para.VGridSize;
@@ -65,19 +64,13 @@ disp(i)
 end
 
 
-CoeffRU_NL_1=load([Para.NoLearningPath 'CoeffRU_NL_1.mat']);
- CoeffRU_NL_2=load([Para.NoLearningPath 'CoeffRU_NL_2.mat']);
- QNL_1=load([ Para.NoLearningPath 'QNL_1.mat']);
- QNL_2=load([ Para.NoLearningPath 'QNL_2.mat']);
 
-
-%[QNew Cons LambdaStar LambdaStarL VStar DelVStar DistPi_agent1 DistPi_agent2 ExitFlag MuCons SigmaCons EntropyMargAgent1 EntropyMargAgent2 PK MPR ConsStar ConsStarRatio MuDelVStar DistMargAgent1 DistMargAgent2]=GetDiagnostics(c,Q,PolicyRules,Para);
-load([ 'Persistent/Data/C_25.mat'])
+[QNew Cons LambdaStar LambdaStarL VStar DelVStar DistPi_agent1 DistPi_agent2 ExitFlag MuCons SigmaCons EntropyMargAgent1 EntropyMargAgent2 PK MPR ConsStar ConsStarRatio MuDelVStar DistMargAgent1 DistMargAgent2]=GetDiagnostics(c,Q,PolicyRules,Para);
 Y=Para.Y
 VGrid=Para.VGrid;
 z=3
 zstar=3
-pi=1;
+pi=.5;
 VFineGridSize=50;
 VFineGrid=linspace(min(VGrid(z,:)),max(VGrid(z,:)),VFineGridSize)
 ConsStarRatio=zeros(VFineGridSize,1);

@@ -2,34 +2,39 @@
 clear all
 close all
 clc
-Exer{1}=['theta_1_finite\Transitory\'];
-Exer{2}=['theta_1_finite\persistent\'];
-Exer{3}=['theta_1_infty\Transitory\'];
-Exer{4}=['theta_1_infty\persistent\'];
+Exer{1}=['theta_1_finite/Transitory/'];
+Exer{2}=['theta_1_finite/Persistent/'];
+Exer{3}=['theta_1_infty/Transitory/'];
+Exer{4}=['theta_1_infty/Persistent/'];
 for ex=1:4
 ThetaPM=Exer{ex}
-
 CompStr=computer;
 switch CompStr
 
 case 'PCWIN'
 
-BaseDirectory='C:\Users\anmol\Dropbox\Project Robust Learning\Matlab\InfiniteHorizon\';
+BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
 SL='\';
+case 'GLNX86'
+
+BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
+SL='/';
 
     case 'MACI64'
-        BaseDirectory ='/Users/meetanmol/Dropbox/Project Robust Learning/Matlab/InfiniteHorizon/';
+        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
 SL='/';
     otherwise
-BaseDirectory ='/home/apb296/ProjectRobustLearning/InfiniteHorizon/';
+BaseDirectory ='/home/apb296/robust-learning-insurance/Matlab/InfiniteHorizon/';
 
 SL='/';
 end
+
 CompEconPath=[BaseDirectory 'compecon2011' SL 'CEtools' SL];
-PlotPath=[BaseDirectory 'Learning' SL 'Plots' SL ThetaPM];
+PlotPath=[BaseDirectory 'Learning/Persistent' SL 'Plots' SL ThetaPM];
+PlotPath='tempPlots/'
 mkdir(PlotPath)
-TexPath=[BaseDirectory 'Learning'  SL 'Tex' SL ThetaPM];
-DataPath=[BaseDirectory 'Learning' SL 'Data' SL ThetaPM];
+TexPath=[BaseDirectory 'Learning/Persistent'  SL 'Tex' SL ThetaPM];
+DataPath=[BaseDirectory 'Learning/Persistent' SL 'Data' SL ThetaPM];
 NoLearningPath=[BaseDirectory];
 LearningPath=[BaseDirectory 'Learning' SL];
 load([ DataPath 'FinalC.mat'])
@@ -312,7 +317,7 @@ title('$y(z)=y_h$','Interpreter','Latex')
 print(gcf, '-dpng', [ Para.PlotPath 'LambdaStarLLearning.png'] );
 %%
 
-Para.N=20000;
+Para.N=200;
 BurnSample=.2;
 z_draw0=1;
 V0=VGrid(z_draw0,3);
