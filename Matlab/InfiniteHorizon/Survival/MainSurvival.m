@@ -52,7 +52,7 @@ c=c0;
 for i=1:Para.NIter
     tic
     ExitFlag=zeros(Para.GridSize,1);
-    parfor GridInd=1:Para.GridSize
+    for GridInd=1:Para.GridSize
         y=ySlice(GridInd);
         v=vSlice(GridInd);
         xInit=PolicyRules(GridInd,:);

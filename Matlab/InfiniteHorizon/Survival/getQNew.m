@@ -98,7 +98,6 @@ cons=x(1);
 VStar(1)=x(2);
 VStar(2)=x(3);
 
-if (and(cons<Y(y),cons>0))  % Non Negativity Check
         
 lambda=(der_u(cons,ra)/der_u(Y(y)-cons,ra)); % FOC with restect to cons of Agent 1
 
@@ -119,33 +118,6 @@ Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivati
 
 
 
-% -------- FOC residual with respect to Vstar ---------------------
-
-resQVstar=lambdastar.*Distfactor1-lambda*Distfactor2;
-
-% -------- Promise Keeping  Agent 2 ---------------------------------------
-
-resV=u(Y(y)-cons,ra)-theta2*delta*log(EVStar)-v;
-
-% ------ Error in FOC ----------------------------------------------
-
-resQ=[resQVstar resV ];
-
-% ------ Error in FOC ----------------------------------------------
-    
-else
-    
-    resQ=[10 10 10].*abs(cons-Y(y))+abs(cons); % For negative consumptions
-
-end
-
-if isreal(resQ)==0
-    
-    disp('Complex values at ')
-    disp(x)
-    disp(resQ)
-    resQ=[10 10 10].*abs(resQ);
-end
 
 QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Value for Agent 1
 

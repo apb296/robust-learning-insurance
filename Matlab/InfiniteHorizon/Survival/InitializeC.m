@@ -14,20 +14,20 @@ PolicyRules=ones(GridSize,3);
 for y=1:YSize
 for vind=1:VGridSize
      x_state(ctr,:)=[y,VGrid(y,vind)];
-    if VGrid(y,vind)==0
-      res.V1=max(VGrid(y,:))*ones(YSize,1);
-res.V2=0*ones(YSize,1);
-res.alpha1=1;
-    elseif VGrid(y,vind)==max(VGrid(y,:))
-              res.V1=0*ones(YSize,1);
-res.V2=max(VGrid(y,:))*ones(YSize,1);
-res.alpha1=0;
-
-        
-    else
+%     if VGrid(y,vind)==0
+%       res.V1=max(VGrid(y,:))*ones(YSize,1);
+% res.V2=0*ones(YSize,1);
+% res.alpha1=1;
+%     elseif VGrid(y,vind)==max(VGrid(y,:))
+%               res.V1=0*ones(YSize,1);
+% res.V2=max(VGrid(y,:))*ones(YSize,1);
+% res.alpha1=0;
+% 
+%         
+%     else
         res=EUSol(y,VGrid(y,vind),Para); % Sove the EU case for state variables z,V
 
-    end
+    %end
 EU(y,vind)=res.V1(y);
 
          ConsEU0=res.alpha1*Y(y);  
