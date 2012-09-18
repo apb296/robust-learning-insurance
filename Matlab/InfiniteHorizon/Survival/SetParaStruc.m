@@ -50,3 +50,28 @@ Para.grelax=grelax;
 Para.N=100;
 mkdir('Data')
 mkdir('Graphs')
+
+CompStr=computer;
+switch CompStr
+
+case 'PCWIN'
+
+BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
+SL='\';
+case 'GLNX86'
+
+BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
+SL='/';
+
+    case 'MACI64'
+        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
+SL='/';
+    otherwise
+BaseDirectory ='/home/apb296/robust-learning-insurance/Matlab/InfiniteHorizon/';
+
+SL='/';
+end
+
+CompEconPath=[BaseDirectory 'compecon2011' SL 'CEtools' SL];
+
+addpath(genpath(CompEconPath));
