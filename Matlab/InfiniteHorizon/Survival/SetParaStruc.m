@@ -22,11 +22,11 @@ P2=[.6 .4;
 ApproxMethod='spli';
 OrderOfApproximation=3;
 OrderOfApproximationPi=5;
-OrderOfApproximationV=20;
+OrderOfApproximationV=15;
 OrderOfSpline=3;
 VGridDensityFactor=2;
 PiGridDensityFactor=2;
-NIter=100;
+NIter=150;
 grelax=.95;
 
 

@@ -39,7 +39,8 @@ EU(y,vind)=res.V1(y);
 end
 
 
-
+IndxInterpolateEnd=max( find(EU(y,:)'==max(EU(y,:)')))+1;
+%EU(y,1:IndxInterpolateEnd)=linspace(EU(y,1),EU(y,IndxInterpolateEnd),length(EU(y,1:IndxInterpolateEnd)));
 % Compute the initial coeffecient for EU case
 cEU0(y,:)=funfitxy(Q(y),VGrid(y,:)',EU(y,:)');
 end

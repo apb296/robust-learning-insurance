@@ -43,7 +43,7 @@ EVStar=sum(exp(-VStar/theta2).*Para.P2(y,:));            % E exp {-Vstar/theta }
 Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivative for Agent 2= exp(-Vstar/theta1)  / E exp {- Vstar/theta2} ;
 
     
- resQNew.QNew=max(VGrid(y,:));
+ resQNew.QNew=Para.QMax(y);
  resQNew.Cons=Y(y);
  resQNew.VStar=VStar;
  resQNew.ConsShare=1;
@@ -84,6 +84,7 @@ else
  warning('off', 'NAG:warning')
 [x, fval,exitflag]=c05nb('resQNAG',x0);
 if exitflag==4
+    x=x0;
     exitflag=-2;
 else
     exitflag=1;

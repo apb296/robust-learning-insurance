@@ -1,5 +1,6 @@
 % This solves the infinite horizon no learning case using either splines or
 % cheb polynomials for a setting with two agents with heterogenous models
+
 function MainSurvival(Para)
 clc
 close all
@@ -33,7 +34,8 @@ Para.VGridSize=VGridSize;
 % exogenous shocks. The program BuildGrid sets up the grid and defines the
 % functional space for the value function iteration.
 
-[Q,VGrid]=BuildGrid(Para);
+[Q,VGrid,QMax]=BuildGrid(Para);
+Para.QMax=QMax';
 Para.VGrid=VGrid;
 Para.VGridSize=length(VGrid);
 Para.GridSize=Para.VGridSize*length(Para.Y);
