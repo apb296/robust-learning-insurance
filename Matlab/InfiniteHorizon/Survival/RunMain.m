@@ -1,6 +1,7 @@
 % RunMain
 SetParaStruc;
 MainSurvival(Para);
+load(['Data/C_' num2str(Para.NIter) '.mat'])
 DGP{1}='RefModelAgent1';
 DGP{2}='RefModelAgent2';
 DGP{3}='DistModelAgent1';
@@ -26,7 +27,7 @@ if isempty(err)
 end
 
 y0=1;
-V0=mean(VGrid(y0,:))*.5;
+V0=mean(Para.VGrid(y0,:))*.5;
 parfor dgp_ind=1:4
 [ydraw(:,dgp_ind) V(:,dgp_ind)]=SimulateV(y0,V0,Para,c,Q,x_state,PolicyRules,DGP{dgp_ind});
 end
