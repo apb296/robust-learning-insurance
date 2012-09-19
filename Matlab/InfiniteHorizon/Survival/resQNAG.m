@@ -42,7 +42,7 @@ Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivati
 
 % -------- FOC residual with respect to Vstar ---------------------
 
-resQVstar=lambdastar.*Distfactor1-lambda*Distfactor2;
+resQVstar=Para.P1(y,:).*lambdastar.*Distfactor1-lambda*Para.P2(y,:).*Distfactor2;
 
 % -------- Promise Keeping  Agent 2 ---------------------------------------
 

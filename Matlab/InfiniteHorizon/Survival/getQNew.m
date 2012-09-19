@@ -29,7 +29,7 @@ end
 
 % -- v=0 or v=max(VGrid(y,:)) --------------------------------------------
 if v==0
-QStar=max(VGrid,[],2)'; 
+QStar=Para.QMax;
 VStar=[0 0];
 for ystar=1:YSize
 Distfactor1(ystar)=exp(-QStar(ystar)/theta1);   % exp(-Qstar/theta1)  - Agent 1
@@ -43,14 +43,17 @@ EVStar=sum(exp(-VStar/theta2).*Para.P2(y,:));            % E exp {-Vstar/theta }
 Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivative for Agent 2= exp(-Vstar/theta1)  / E exp {- Vstar/theta2} ;
 
     
- resQNew.QNew=Para.QMax(y);
+ 
+resQNew.QNew=Para.QMax(y);
  resQNew.Cons=Y(y);
+ resQNew.ConsStar=Y;
+ resQNew.ConsStarRatio=[ 1 1];
  resQNew.VStar=VStar;
  resQNew.ConsShare=1;
- resQNew.LambdaStar=0;
+ resQNew.LambdaStar=[0 0];
  resQNew.ExitFlag=1;
  resQNew.Lambda=0;
- resQNew.LambdaStarL=NaN;
+ resQNew.LambdaStarL=[NaN NaN];
  resQNew.Distfactor1=Distfactor1;
  resQNew.Distfactor2=Distfactor2;
  
@@ -67,14 +70,16 @@ Distfactor1=Distfactor1./EQStar;                       % Radon Dikodyn derivativ
 EVStar=sum(exp(-VStar/theta2).*Para.P2(y,:));            % E exp {-Vstar/theta } - Agent 2
 Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivative for Agent 2= exp(-Vstar/theta1)  / E exp {- Vstar/theta2} ;
 
-     resQNew.QNew=0;
+ resQNew.QNew=0;
+ resQNew.ConsStar=0;
+ resQNew.ConsStarRatio=0;
  resQNew.Cons=0;
  resQNew.VStar=VStar;
  resQNew.ConsShare=0;
- resQNew.LambdaStar=Inf;
+ resQNew.LambdaStar=[Inf Inf];
  resQNew.ExitFlag=1;
  resQNew.Lambda=Inf;
- resQNew.LambdaStarL=NaN;
+ resQNew.LambdaStarL=[NaN NaN];
   resQNew.Distfactor1=Distfactor1;
  resQNew.Distfactor2=Distfactor2;
 else
@@ -125,9 +130,9 @@ QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Va
 
 % -------Asset Pricing details---------------------------------------------
 % EffProb=Para.P(ystar,:,Para.m);                                                % Reference Probability 
-% ConsStar1=Y-Y.*((1+lambdastar.^(-1/ra))'.^-1);                              % Consumption plan for Agent 1 in the next period
+ ConsStar1=Y-Y.*((1+lambdastar.^(-1/ra))'.^-1);                              % Consumption plan for Agent 1 in the next period
 % MRS=(der_u(ConsStar1,ra)./der_u(cons,ra)).*Distfactor1';                    % MRS (RU) = usual MRS x Radon Nikodyn for Agent 1 
-% ConsStar2=Y-ConsStar1;                                                      % Consumption plan for Agent 2 in the next period
+ ConsStar2=Y-ConsStar1;                                                      % Consumption plan for Agent 2 in the next period
 % MRSEU=(Y./Y(y)).^(-ra);                                                    % MRS for Expected Utility
 % MuMRSEU= EffProb*MRSEU;                                                    % Mean(MRS) for Expected Utility under the Reference Model
 % SigmaMRSEU=(EffProb*(MRSEU-MuMRSEU).^2)^.5;                                % Std (MRS) for Expected Utility under the Reference Model
@@ -145,8 +150,8 @@ QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Va
 % resQNew.Entropy_Marg_Agent2=Emlogm_distmarg_agent2;
 % resQNew.MPR=MPR;
 % resQNew.RelMPR=MPR./MPREU;
-% resQNew.ConsStar=ConsStar1;
-% resQNew.ConsStarRatio=(resQNew.ConsStar./Y)./(cons/(Y(y)));
+ resQNew.ConsStar=ConsStar1;
+ resQNew.ConsStarRatio=(resQNew.ConsStar./Y)./(cons/(Y(y)));
  resQNew.QNew=QNew;
  resQNew.Cons=cons;
  resQNew.VStar=VStar;

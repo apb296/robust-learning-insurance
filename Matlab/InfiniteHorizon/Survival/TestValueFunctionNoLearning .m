@@ -35,7 +35,7 @@ LearningPath=[BaseDirectory 'Learning' SL];
 
 
 addpath(genpath(CompEconPath));
-load(['Data/C_150.mat'])
+load(['Data/C_29.mat'])
 
 VGrid=Para.VGrid;
 

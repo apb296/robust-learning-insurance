@@ -29,7 +29,7 @@ end
 y0=1;
 V0=mean(Para.VGrid(y0,:))*.5;
 parfor dgp_ind=1:4
-[ydraw(:,dgp_ind) V(:,dgp_ind)]=SimulateV(y0,V0,Para,c,Q,x_state,PolicyRules,DGP{dgp_ind});
+[y_draw(:,dgp_ind) V(:,dgp_ind)]=SimulateV(y0,V0,Para,c,Q,x_state,PolicyRules,DGP{dgp_ind});
 end
 
 save(['Data/SimData.mat'] ,'y_draw'  ,'V', 'Para')
