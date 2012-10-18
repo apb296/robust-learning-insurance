@@ -1,5 +1,5 @@
 
-function [resQ,iflag]=resQNAG(n,x,iflag)
+function [resQ,user,iflag]=resQNAG(n,x,user,iflag)
 % This function computes the residual for the FOC in the No Learning cae at
 % the guess c,V(high), V(low)
 

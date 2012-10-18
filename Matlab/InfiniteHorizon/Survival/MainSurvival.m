@@ -1,7 +1,7 @@
 % This solves the infinite horizon no learning case using either splines or
 % cheb polynomials for a setting with two agents with heterogenous models
 
-function MainSurvival(Para)
+function MainSurvival(Para,InitData)
 clc
 close all
 
@@ -42,11 +42,16 @@ Para.GridSize=Para.VGridSize*length(Para.Y);
 
 % To initialize the coeffecient we use the EU solution as the starting
 % point
-[x_state,PolicyRules,cEU0]=InitializeC(Para,Q);
+if nargin==1
+[x_state,PolicyRules,c0]=InitializeC(Para,Q);
+else 
+[x_state,PolicyRules,c0]=InitializeCUsingInterpolation(Para,Q,InitData);
+end
+
 ySlice=x_state(:,1);
 vSlice=x_state(:,2);
-load('Data/coeffEU.mat');
-c0=cEU0;
+
+
 % -- Solve the Value function by Iterating on the Bellman equation --------
 c=c0;
 
@@ -54,8 +59,10 @@ c=c0;
 for i=1:Para.NIter
     tic
     ExitFlag=zeros(Para.GridSize,1);
+%    parfor GridInd=1:Para.GridSize
     parfor GridInd=1:Para.GridSize
-        y=ySlice(GridInd);
+
+y=ySlice(GridInd);
         v=vSlice(GridInd);
         xInit=PolicyRules(GridInd,:);
         
@@ -78,9 +85,13 @@ for i=1:Para.NIter
     cdiff(i,:)=sum(abs(cOld-c));
     disp('iter=')
     disp(i)
+    if mod(i,10)==0
     save( ['Data/C_' num2str(i) '.mat'], 'c','Para','Q','VGrid','cdiff','PolicyRules','x_state');
+    end
     toc
 end
+save('Data/FinalC.mat', 'c','Para','Q','VGrid','cdiff','PolicyRules','x_state');
+    
 % ----- STORING THE RESULTS-------------------------------------------------
 end
 

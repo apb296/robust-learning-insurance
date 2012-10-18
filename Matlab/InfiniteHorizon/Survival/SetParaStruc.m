@@ -12,8 +12,8 @@ delta=.9; % common time discount factor
 gamma=.5; % common utility curvature
 
 % Reference models
-P1=[.5 .5;
-    .5 .5];  % Agent 1
+P1=[.4 .6;
+    .4 .6];  % Agent 1
 P2=[.6 .4;
     .6 .4]; % Agent 2
 
@@ -54,24 +54,24 @@ mkdir('Graphs')
 CompStr=computer;
 switch CompStr
 
-case 'PCWIN'
+case 'PCWIN64'
 
-BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
+BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\';
 SL='\';
 case 'GLNX86'
 
-BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
+BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/';
 SL='/';
 
     case 'MACI64'
-        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
+        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/';
 SL='/';
     otherwise
-BaseDirectory ='/home/apb296/robust-learning-insurance/Matlab/InfiniteHorizon/';
+BaseDirectory ='/home/apb296/robust-learning-insurance/Matlab/';
 
 SL='/';
 end
 
-CompEconPath=[BaseDirectory 'compecon2011' SL 'CEtools' SL];
+CompEconPath=[BaseDirectory 'InfiniteHorizon' SL 'compecon2011' SL 'CEtools' SL];
 
 addpath(genpath(CompEconPath));

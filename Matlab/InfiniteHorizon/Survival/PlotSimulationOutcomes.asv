@@ -1,0 +1,11 @@
+% This script plots the Simulation outcomes
+
+SimDataAmb=load('Data/SimDataAmb.mat');
+SimDataNoAmb=load('Data/SimDataNoAmb.mat');
+
+%  - ConsumptionShares -
+
+PlotParams.T;
+YLabel=PlotParams.YLabel;
+Title=PlotParams.Title;
+PlotPath=PlotParams.PlotPath;

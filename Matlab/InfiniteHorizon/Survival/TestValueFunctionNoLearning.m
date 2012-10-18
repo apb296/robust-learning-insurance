@@ -7,17 +7,17 @@ clear all
 CompStr=computer;
 switch CompStr
 
-case 'PCWIN'
+case 'PCWIN64'
 
-BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHoriyon\';
+BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
 SL='\';
 case 'GLNX86'
 
-BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHoriyon/';
+BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
 SL='/';
 
     case 'MACI64'
-        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHoriyon/';
+        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
 SL='/';
     otherwise
 BaseDirectory ='/home/apb296/ProjectRobustLearning/InfiniteHoriyon/';

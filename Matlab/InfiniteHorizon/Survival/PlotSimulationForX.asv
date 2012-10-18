@@ -1,0 +1,206 @@
+function PlotSimulationForX(PlotParams,XAmb,XNoAmb)
+% This function plots the following sets of graphs
+
+% 1. Simulations for the first T periods (shaded yshocks) with and without
+% ambiguity 
+% 2. Simulations for the last T periods (shaded yshocks) with and without ambiguity
+% 3. Long Sample simulations with and with ambiguity
+% 4. Ergodic Distribution with and without ambiguity
+
+
+T=PlotParams.T;
+YLabel=PlotParams.YLabel;
+Title=PlotParams.Title;
+PlotPath=PlotParams.PlotPath;
+
+if nargin==2
+    flagPlotNoAmbiguityDetails='no';
+else
+    flagPlotNoAmbiguityDetails='yes';
+end
+
+if strcmpi(flagPlotNoAmbiguityDetails,'yes')==1
+
+    % Caption : This plots simulation outcomes for the first 100 periods
+    % under the reference models of Agent 1 (solid) and Agent 2 (dotted)
+    % The left (right) panel is with $\theta_1 < infty (=\infty)$    
+    
+
+
+    
+    
+    figure()
+    
+    subplot(1,2,1)
+plot(XAmb.Data(1:T,1),'k','LineWidth',2)
+hold on
+plot(XAmb.Data(1:T,2),':k','LineWidth',2)
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$','Interpreter','Latex')
+legend('P1','P2')
+bbT{1}=0:1;
+Inx=find(XAmb.yHist(1:T)<2);
+ for i=2:length(Inx)-1
+     bbT{i}=Inx(i)-1:Inx(i);
+ end
+ShadePlotForEmpahsis( bbT,'r',.05);  
+
+subplot(1,2,2)
+plot(XNoAmb.Data(1:T,1),'k','LineWidth',2)
+hold on
+plot(XNoAmb.Data(1:T,2),':k','LineWidth',2)
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 = \infty$','Interpreter','Latex')
+legend('P1','P2')
+bbT{1}=0:1;
+Inx=find(XNoAmb.yHist(1:T)<2);
+ for i=2:length(Inx)-1
+     bbT{i}=Inx(i)-1:Inx(i);
+ end
+ShadePlotForEmpahsis( bbT,'r',.05);  
+
+print(gcf,'-dpng',[PlotPath 'First100.png']) 
+% Caption : This plots simulation outcomes for the last 100 periods
+    % under the reference models of Agent 1 (solid) and Agent 2 (dotted)
+    % The left (right) panel is with $\theta_1 < infty (=\infty)$    
+    figure()
+    subplot(1,2,1)
+plot(XAmb.Data(end-T:end,1),'k','LineWidth',2)
+hold on
+plot(XAmb.Data(end-T:end,2),':k','LineWidth',2)
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$','Interpreter','Latex')
+legend('P1','P2')
+Inx=find(XAmb.yHist(1:T)<2);
+ for i=2:length(Inx)-1
+     bbT{i}=Inx(i)-1:Inx(i);
+ end
+ShadePlotForEmpahsis( bbT,'r',.05);  
+
+subplot(1,2,2)
+plot(XNoAmb.Data(end-T:end,1),'k','LineWidth',2)
+hold on
+plot(XNoAmb.Data(end-T:end,2),':k','LineWidth',2)
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 = \infty$','Interpreter','Latex')
+legend('P1','P2')
+Inx=find(XNoAmb.yHist(1:T)<2);
+ for i=2:length(Inx)-1
+     bbT{i}=Inx(i)-1:Inx(i);
+ end
+ShadePlotForEmpahsis( bbT,'r',.05);  
+
+print(gcf,'-dpng',[PlotPath 'Last100.png'])
+
+    % Caption : This plots simulation outcomes for the entire sample
+    % under the reference models of Agent 1 (solid) and Agent 2 (dotted)
+    % The left (right) panel is with $\theta_1 < infty (=\infty)$    
+    figure()
+    subplot(2,1,1)
+plot(XAmb.Data(1:end,1),'k','LineWidth',1.5)
+hold on
+plot(XAmb.Data(1:end,2),':k','LineWidth',1.5)
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$','Interpreter','Latex')
+legend('P1','P2')
+
+subplot(2,1,2)
+plot(XNoAmb.Data(1:end,1),'k','LineWidth',1.5)
+hold on
+plot(XNoAmb.Data(1:end,2),':k','LineWidth',1.5)
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 = \infty$','Interpreter','Latex')
+
+print(gcf,'-dpng',[PlotPath 'LongSample.png'])
+
+
+    % Caption : This plots ergodic distribution using  2nd half of the
+    % sample. The top (bottom) panel plots outcomes for $\theta_1< infty (=
+    % infty) $ and the left(right) panel plots outcomes generated under
+    % Agent 1 (Agent 2) reference model
+    figure()
+    subplot(2,2,1)
+hist(XAmb.Data(end*.5:end,1),50)
+title('$\theta_1 < \infty$,Reference Model Agent 1','Interpreter','Latex')
+subplot(2,2,2)
+hist(XAmb.Data(end*.5:end,2),50)
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$,Reference Model Agent 2','Interpreter','Latex')
+  subplot(2,2,3)
+hist(XNoAmb.Data(end*.5:end,1),50)
+title('$\theta_1 = \infty$,Reference Model Agent 1','Interpreter','Latex')
+subplot(2,2,4)
+hist(XNoAmb.Data(end*.5:end,2),50)
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 = \infty$,Reference Model Agent 2','Interpreter','Latex')
+
+print(gcf,'-dpng',[PlotPath 'ErgodicDist.png'])
+
+
+
+
+
+ % Caption : This plots simulation outcomes for the first 100 periods
+    % under the Distorted models of Agent 1 (solid) and Agent 2 (dotted)
+    figure()
+   plot(XAmb.Data(1:T,3),'k','LineWidth',2)
+hold on
+plot(XAmb.Data(1:T,4),':k','LineWidth',2)
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$','Interpreter','Latex')
+legend('Dist-P1','Dist-P2')
+
+print(gcf,'-dpng',[PlotPath 'First100Dist.png']) 
+% Caption : This plots simulation outcomes for the last 100 periods
+    % under the Dist models of Agent 1 (solid) and Agent 2 (dotted)
+    
+    figure()
+plot(XAmb.Data(end-T:end,3),'k')
+hold on
+plot(XAmb.Data(end-T:end,4),':k')
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$','Interpreter','Latex')
+legend('Dist-P1','Dist-P2')
+
+    % Caption : This plots simulation outcomes for the entire sample
+    % under the distorted models of Agent 1 (solid) and Agent 2 (dotted)   
+    figure()
+plot(XAmb.Data(1:end,3),'k')
+hold on
+plot(XAmb.Data(1:end,4),':k')
+xlabel('Time')
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$','Interpreter','Latex')
+legend('Dist-P1','Dist-P2')
+
+print(gcf,'-dpng',[PlotPath 'LongSampleDist.png'])
+
+
+    % Caption : This plots ergodic distribution using  2nd half of the
+    % sample.  The left(right) panel plots outcomes generated under
+    % Agent 1 (Agent 2) dist model
+    figure()
+    subplot(1,2,1)
+hist(XAmb.Data(end*.5:end,3),100)
+title('$\theta_1 < \infty$,Dist Model Agent 1','Interpreter','Latex')
+subplot(1,2,2)
+hist(XAmb.Data(end*.5:end,2),100)
+ylabel(YLabel,'Interpreter','Latex')
+title('$\theta_1 < \infty$,Dist Model Agent 2','Interpreter','Latex')
+
+print(gcf,'-dpng',[PlotPath 'DistortedErgodicDist.png'])
+
+
+
+end
+
+    
+

@@ -46,7 +46,7 @@ Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivati
  
 resQNew.QNew=Para.QMax(y);
  resQNew.Cons=Y(y);
- resQNew.ConsStar=Y;
+ resQNew.ConsStar=Y';
  resQNew.ConsStarRatio=[ 1 1];
  resQNew.VStar=VStar;
  resQNew.ConsShare=1;
@@ -71,8 +71,8 @@ EVStar=sum(exp(-VStar/theta2).*Para.P2(y,:));            % E exp {-Vstar/theta }
 Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivative for Agent 2= exp(-Vstar/theta1)  / E exp {- Vstar/theta2} ;
 
  resQNew.QNew=0;
- resQNew.ConsStar=0;
- resQNew.ConsStarRatio=0;
+ resQNew.ConsStar=0*ones(1,YSize);
+ resQNew.ConsStarRatio=0*ones(1,YSize);
  resQNew.Cons=0;
  resQNew.VStar=VStar;
  resQNew.ConsShare=0;
@@ -87,10 +87,10 @@ else
 % ------- Solve the FOC with NAG toolbox ----------------------------------
 
  warning('off', 'NAG:warning')
-[x, fval,exitflag]=c05nb('resQNAG',x0);
+[x, fval,~,exitflag]=c05qb('resQNAG',x0);
 if exitflag==4
-    x=x0;
-    exitflag=-2;
+  %  options=optimset('Display','off','GradObj','on');
+   % [x,fval,exitflag]=fminunc(@(x) ValueFunction(x) ,x,options);
 else
     exitflag=1;
 end
@@ -150,8 +150,8 @@ QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Va
 % resQNew.Entropy_Marg_Agent2=Emlogm_distmarg_agent2;
 % resQNew.MPR=MPR;
 % resQNew.RelMPR=MPR./MPREU;
- resQNew.ConsStar=ConsStar1;
- resQNew.ConsStarRatio=(resQNew.ConsStar./Y)./(cons/(Y(y)));
+ resQNew.ConsStar=ConsStar1';
+ resQNew.ConsStarRatio=(resQNew.ConsStar./Y')./(cons/(Y(y)));
  resQNew.QNew=QNew;
  resQNew.Cons=cons;
  resQNew.VStar=VStar;

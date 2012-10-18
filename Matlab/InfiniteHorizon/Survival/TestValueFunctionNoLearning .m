@@ -7,7 +7,7 @@ clear all
 CompStr=computer;
 switch CompStr
 
-case 'PCWIN'
+case 'PCWIN64'
 
 BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHoriyon\';
 SL='\';
@@ -35,7 +35,7 @@ LearningPath=[BaseDirectory 'Learning' SL];
 
 
 addpath(genpath(CompEconPath));
-load(['Data/C_29.mat'])
+load(['Data/FinalCAmb.mat'])
 
 VGrid=Para.VGrid;
 
@@ -61,9 +61,4 @@ for y=1:Para.YSize
  
 end
 VFineGrid=VGrid;
-% Fig 1 : y=1
-% CAPTION : This figure plots the gross change in consumption shares as a function 
-%of the initial promized value to Agent 2 given $y(y)=y_l$. The solid (dotted) line refers to
-% $y(y^*)=y_l (y_h)$. 
-
 
