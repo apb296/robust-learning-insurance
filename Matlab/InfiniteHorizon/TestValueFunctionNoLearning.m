@@ -7,7 +7,7 @@ clear all
 CompStr=computer;
 switch CompStr
 
-case 'PCWIN'
+case 'PCWIN64'
 
 BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
 SL='\';
@@ -50,6 +50,7 @@ c(1,:)=coeff(1,:);
 c(2,:)=coeff(1,:);
 c(3,:)=coeff(2,:);
 c(4,:)=coeff(2,:);
+load Data\C_43.mat
 for z=1:Para.ZSize
     tic
     x0=[];

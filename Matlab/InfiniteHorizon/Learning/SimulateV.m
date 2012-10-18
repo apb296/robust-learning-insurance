@@ -32,7 +32,7 @@ resQNew=getQNew(z_draw(1),pi_bayes(1),V(1),c,Q,Para,xInit);
 pi_dist1(1)=resQNew.DistPi_agent1;
 pi_dist2(1)=resQNew.DistPi_agent1;
 
-
+ConsShareAgent1(1)=resQNew.Cons./Y(z_draw(1));
 MPR_draw(1)=resQNew.MPR;
 Lambda_draw(1)=resQNew.Lambda;
 tic
@@ -72,7 +72,7 @@ resQNew=getQNew(z_draw(i-1),pi_bayes(i-1),V(i-1),c,Q,Para,xInit);
 V(i)=resQNew.VStar(z_draw(i));
 pi_dist1(i)=resQNew.DistPi_agent1;
 pi_dist2(i)=resQNew.DistPi_agent2;
-
+ConsShareAgent1(i)=resQNew.ConsStar(z_draw(i))./Y(z_draw(i));
 if V(i) > VMax(z_draw(i))
     V(i)=VMax(z_draw(i));
 end
@@ -81,7 +81,7 @@ if V(i) < VMin(z_draw(i))
 end
 
 
-if mod(i,Para.N/10)==0
+if mod(i,Para.N/10)==0  
     disp('Executing iteration..');
     disp(i);
     toc
@@ -96,5 +96,5 @@ end
 
 
 
-save([Para.DataPath 'SimData.mat'] ,'z_draw' ,'m_draw' , 'pi_bayes','V', 'pi_dist1', 'MPR_draw','pi_dist2','Lambda_draw','Para')
+save([Para.DataPath 'SimData.mat'] ,'z_draw' ,'m_draw' , 'pi_bayes','V', 'pi_dist1', 'MPR_draw','pi_dist2','Lambda_draw','ConsShareAgent1','Para')
   

@@ -700,28 +700,49 @@ Where
 
 
 This factor $\zeta$ has two components - one coming from the relative liklihood of the worst case model with respect to the approximating model and the other reflecting how consumption shares evolve. Barillas-Hansen-Sargent (20XX) point out the importance of the first component in explaning the volatility of asset prices and equity premium related puzzles. In fact as $v\to \bar{v}(z,\pi)$ , proposition \ref{propo-2} shows that $\alpha(z^*)\to \frac{1}{2}$ and we only have the first component operative. However when $v\neq \bar{v}$ we have the feedback from wealth inequality to asset prices. 
-Following Hansen and Jagannathan (1991), define the conditional market price of risk as 
-\[MPR(v,z)=\frac{\sigma[MRS|z]}{\mu[MRS|z]}\] \footnote{Here the mean and the variance is with respect to the approximating model. I take a stand that these quatities are measured by an `outside econometrician'. We could very well compute the market price of risk from Agent i's perspective}
+
+Let us define the conditional market price of risk as $\sigma[\log(MRS)|z]$ \footnote{Here the volatility is with respect to the approximating model. I take a stand that these quatities are measured by an `outside econometrician'. We could very well compute the market price of risk from Agent i's perspective. For a log-normal variable $\sigma[log(x)]=\frac{\sigma(x)}{E(x)}$. Hansen and Jagganathan (1991) show that this is the bound on the maximum sharpe ratio}
+
 Where MRS is defined as follows
 \[MRS=\frac{u_c(c^i(z^*))}{u_c(c^i(z))}\left(\frac{\sum_{m \in M}\tilde{\pi}^{i}(m)\tilde{P^i}_z(z^* |z,m)}{\sum_{m \in M}{\pi(m)P_{z}(z^*|z,m)}} \right)\] 
 or
 \begin{equation}
 MRS=\zeta(z^*|v,z,\pi)\left(\frac{y(z^*)}{y(z)}\right)^{-\gamma}
 \end{equation}
+
+%% - OLD MPR STUFF -----------------------------------------------------------------------------------------
+%Let us define the conditional market price of risk as 
+%\[MPR(v,z)=\frac{\sigma[\MRS|z]}{\mu[MRS|z]}\] \footnote{Here the mean and the variance is with respect to the approximating model. I take a stand that these quatities are measured by an `outside econometrician'. We could very well compute the market price of risk from Agent i's perspective. }
+%Where MRS is defined as follows
+%\[MRS=\frac{u_c(c^i(z^*))}{u_c(c^i(z))}\left(\frac{\sum_{m \in M}\tilde{\pi}^{i}(m)\tilde{P^i}_z(z^* |z,m)}{\sum_{m \in M}{\pi(m)P_{z}(z^*|z,m)}} \right)\] 
+%or
+%\begin{equation}
+%MRS=\zeta(z^*|v,z,\pi)\left(\frac{y(z^*)}{y(z)}\right)^{-\gamma}
+%\end{equation}
 %
-%\begin{proposition}
-%\label{propo-6}
-%With $\gamma < 1$ we have 
-%\[\lim_{v\to 0} \zeta(z^*|z,v,\pi) = \frac{\sum_{m}\tilde{\pi}^{max}(m)\tilde{P}^{max}(z^*|z,m)}{{\pi}^{max}(m){P}(z^*|z,m)}\]
-%\end{proposition}
+%% - OLD MPR STUFF -----------------------------------------------------------------------------------------
+
+
+
+
+\begin{proposition}
+\label{propo-6}
+With $\gamma < 1$ we have 
+\[\lim_{v\to 0} \zeta(z^*|z,v,\pi) = \frac{\sum_{m}\tilde{\pi}^{max}(m)\tilde{P}^{max}(z^*|z,m)}{\sum_{m}{\pi}^{max}(m){P}(z^*|z,m)}\]
+\end{proposition}
+
+
+
 Equation \ref{eq:FOC_vstar} makes it clear that variable MRS is independent of $i$. Also it implies that the market price of risk will be symmetric with respect to the initial promised value $v$ as both  $v \to 0$ and $v \to v^{max}$ are situations with extreme wealth inequality. The spread 
 between $\zeta(z^*|z,v,\pi)$ (across $z^*$) is highest at the extremes, we can expect that market price of risk inherits this shape. In particular for $\gamma <1$ the model implies a negative relationship between wealth inequality and market price of risk.ow the market price of risk varies with the curent aggregate state depends on persistence properties of the transition matrix. 
 
-%\ref{propo-6} captures the fact that as the wealth share of Agent 1 grows, his consumption mirrors the aggregate endowment and his share $\alpha \to 1$. The ratio $\left(\frac{\sum_{m \in M}\tilde{\pi}^{1}(m)\tilde{P^1}_z(z^* |z,m)}{\sum_{m \in M}{\pi(m)P_{z}(z^*|z,m)}} \right)$ is greater than 1 (less than 1) when $y(z^*)=y_l (y_h)$. Since $\zeta$ is symmetric with respect to the agents we expect a U (inverse -U) shape when depicted as a function of the initial promised value-$v$.
+Proposition \ref{propo-6} captures the fact that as the wealth share of Agent 1 grows, his consumption mirrors the aggregate endowment and his share $\alpha \to 1$. The ratio $\left(\frac{\sum_{m \in M}\tilde{\pi}^{1}(m)\tilde{P^1}_z(z^* |z,m)}{\sum_{m \in M}{\pi(m)P_{z}(z^*|z,m)}} \right)$ is greater than 1 (less than 1) when $y(z^*)=y_l (y_h)$. Since $\zeta$ is symmetric with respect to the agents we expect a U (inverse -U) shape when depicted as a function of the initial promised value-$v$.
+
+
 
 \begin{proposition}
 \label{propo-7}
-For $\theta_1,\theta_2=\infty$, the conditional market price of risk is countercylical if and only in $\alpha_m < \frac{1}{2}$. With type (I) Ambiguity, the conditional market price of risk is higher than the benchmark if $\zeta[z^*]$ satisfies the following restrictions
+For $\theta_1,\theta_2=\infty$, the conditional market price of risk is acyclic. With Type (I) Ambiguity, the conditional market price of risk is higher than the benchmark if $\zeta[z^*]$ satisfies the following restrictions
 
 \begin{subequations}
 \label{eq:mprgreaterthanbenchmarkcondition}
@@ -736,57 +757,141 @@ For $\theta_1,\theta_2=\infty$, the conditional market price of risk is counterc
 For countercylical market price of risk, a sufficient restriction of $\zeta$ is
 \begin{equation}
 \label{eq:countercylicalmprcondition}
-\left(\frac{\zeta[y(z^*)=y_h|y(z)=y_l]}{\zeta[y(z^*)=y_l|y(z)=y_l]}\right)\left(\frac{1+g}{1-g}\right)^{-\gamma}+ \left(\frac{\zeta[y(z^*)=y_l|y(z)=y_h]}{\zeta[y(z^*)=y_h|y(z)=y_h]}\right)\left(\frac{1-g}{1+g}\right)^{-\gamma} <2
+	\frac{\zeta[y(z^*)=y_h|y(z)=y_l]}{\zeta[y(z^*)=y_l|y(z)=y_l]}\geq	\frac{\zeta[y(z^*)=y_h|y(z)=y_h]}{\zeta[y(z^*)=y_l|y(z)=y_h]}
 \end{equation}
 \end{proposition}
- \begin{proof}
-With $\theta_1,\theta_2=\infty$, the marginal rate of substitution, $MRS(y(z^*)|y(z)) = \left(\frac{y(z^*)}{y(z)}\right)^{-\gamma}$. First compute the ingredients for computing the conditional market price of risk.
+
+
+\begin{proof}
+With $\theta_1,\theta_2=\infty$, the marginal rate of substitution, $MRS(y(z^*)|y(z)) = \left(\frac{y(z^*)}{y(z)}\right)^{-\gamma}$. First compute the ingredients for computing the conditional market price of risk. Let $y_h/y_l=\frac{1+g}{1-g}$
 \noindent 1. $y(z)=y_l$
 \begin{align}
-MRS(y(z^*)| y_l)=1 \quad y(z^*)=y_l \\
-MRS(y(z^*)| y_l)=\left(\frac{1+g}{1-g}\right)^{-\gamma} \quad y(z^*)=y_h 
+\log[MRS(y(z^*)| y_l)]=0 \quad y(z^*)=y_l \\
+\log[MRS(y(z^*)| y_l)]=-2\gamma g \quad y(z^*)=y_h 
 \end{align}
-Define $f_l=\left[1-\left ( \frac{1+g}{1-g}\right)^{-\gamma}\right]$
 
-We can show that 
-\begin{itemize}
-	\item $\mu[MRS|y(z)=y_l]= 1-P_Y(y_h|y_l)f_l$
-	\item $\sigma[MRS|y(z)=y_l] =f_l \sqrt{P_Y(y_l|y_l).P_Y(y_h|y_l)}$
-\end{itemize}
-Similiarly for $y(z)=y_h$ we can define $f_h=\left[-1+\left ( \frac{1-g}{1+g}\right)^{-\gamma}\right]$. 
-This yields the following expressions for the first two moments of MRS given $y(z)=y_h$
-\begin{itemize}
-	\item $\mu[MRS|y(z)=y_h]= 1+P_Y(y_l|y_h)f_h$
-	\item $\sigma[MRS|y(z)=y_l] =f_h \sqrt{P_Y(y_l|y_h).P_Y(y_h|y_h)}$
-\end{itemize}
-With these we can compute the ratio of conditional market price of risk across realizations of aggregate endowment
+\noindent 1. $y(z)=y_h$
+\begin{align}
+\log[MRS(y(z^*)| y_l)]= 2\gamma g\quad y(z^*)=y_l \\
+\log[MRS(y(z^*)| y_l)]=0 \quad y(z^*)=y_h 
+\end{align}
+
+Where $1-\bar{\alpha}$ is the model averagegd  probability of switching the state. 
+
 \begin{equation}
-\frac{MPR[y_l]}{MPR[y_h]}=\frac{f_l}{f_h} \left(\frac{f_h(1-\bar{\alpha})+1}{1-(1-\bar{\alpha})f_l}\right)
+\label{eq-mpr-eu}
+\sigma[\log(MRS)| v,z]= \sqrt{\bar{\alpha} (1-\bar{\alpha})} (2g\gamma)
 \end{equation}
-Where $\bar{\alpha}$ is the model averagegd switching probability. We can simplify the expression to obtain
+
+
+\[\sigma[\log(MRS)| y_l]= \sigma[\log(MRS)| y_h]=\sqrt{\bar{\alpha} (1-\bar{\alpha})}2\gamma g \]
+
+Let $\Delta \log \zeta(v,z)= \log \zeta[y(z^*)=y_h|v,z]- \log \zeta[y(z^*)=y_l|v,z]$. Under type - I ambiguity, we expression for market price of risk has a similiar expression
+
 \begin{equation}
-\frac{MPR[y_l]}{MPR[y_h]}=\left(\frac{\bar{\alpha}f_l+(1-\bar{\alpha})f_h}{\bar{\alpha}f_h+(1-\bar{\alpha})f_l}\right)
+\label{eq-mpr-type-1-amb}
+\sigma[\log(MRS)| v,z]= \sqrt{\bar{\alpha} (1-\bar{\alpha})} (2g\gamma -\Delta \log \zeta(v,z) )
 \end{equation}
-Now I show that $f_l\leq f_h$. Note that $f_h-f_l=f_h f_l= \left ( \frac{1+g}{1-g}\right)^{\gamma} + \left ( \frac{1-g}{1+g}\right)^{\gamma}-2$
-This expression is equal to 1 at $g=0$ and has a positive derivative as long as $\gamma>0$. This shows that
-\[\frac{MPR[y_l]}{MPR[y_h]} \geq  (\leq) 1 \quad \text{if} \alpha \leq (\geq)\frac{1}{2}\]
 
-Under type - I ambiguity, we expression for market price of risk is similiar except the $f_l,f_h$ terms are replaced by 
-\[\hat{f} _l(\zeta) = 1-\left(\frac{\zeta[y_h|y_l]}{\zeta[y_l|y_l]}\right) \left ( \frac{1+g}{1-g}\right)^{-\gamma}\]
-\[\hat{f} _h(\zeta) = -1+\left(\frac{\zeta[y_l|y_h]}{\zeta[y_h|y_h]}\right) \left ( \frac{1-g}{1+g}\right)^{-\gamma}\]
+Comparing expressions \ref{eq-mpr-eu} and  \ref{eq-mpr-type-1-amb} we have the suffcient conditions for the market price of risk being higher than the benchmark and countercylical.
 
-Note that the derivative of $MPR[y_l]$ is increasing in $f_l$ as long as $f_l \in[0,1]$ and that of $MPR[y_h]$ if $f_h>0$. If \begin{enumerate}
-	\item $\frac{\zeta[y(z^*)=y_h|y(z)=y_l]}{\zeta[y(z^*)=y_l|y(z)=y_l]} \leq 1$
-	\item $\frac{\zeta[y(z^*)=y_l|y(z)=y_h]}{\zeta[y(z^*)=y_h|y(z)=y_h]} \geq 1$
-\end{enumerate}
-we have $\hat{f}_l > f_l$ and $\hat{f}_l <1$ and $\hat{f}_h > f_h$ and $\hat{f}_h > 0$.
-
-When $\hat{f}_l > \hat{f}_h$, we have $MPR[y_l]>MPR[y_h]$ 
 \end{proof}
 
-Proposition \ref{propo-7} captures a strange feature of asset prices in the benchmark economy. Any amount of persistence makes the conditional market price of risk pro-cyclic in this simple setup. Furthermore this pro-cyclicity is incresing in the spread between $y_h-y_l$. With model uncertainty the conditional market price of risk is higher than the benchmark if $\zeta[z^*]$ is low (high) in states with high(low) aggregate endowment . The distorted liklihood term is generally countercylical as low endowment states are more likely under the worst case measures.  The cylical properties of market price of risk under both types of ambiguity naturally depend on $\zeta$ and do not have a clean characterization for type (II) ambiguity. In the next section I will examine this numericaly. With type (II) ambiguity ,the ratio varies with the distributional shock too. Hence the model has a potential to generate volatility of market price of risk conditional on the realization of aggregate endowment.
-\subsection{PRICING THE AGGREGATE ENDOWMENT UNDER VARIOUS MEASURES}
-[TO DO]
+
+\begin{proposition}
+\label{propo-mpr}
+Let $MPR^{\theta_1,\theta_2}[z,v,\pi]$ be the market price of risk. We have 
+\[\lim_{v\to0} MPR^{\theta_1,\theta_2}[z,v,\pi] >MPR^{\infty}[z,v,\pi] \]
+\[\lim_{v\to0} MPR^{\theta_1,\theta_2}[y(z)=y_l,v,\pi] > \lim_{v\to0} MPR^{\theta_1,\theta_2}[y(z)=y_h,v,\pi] \]
+\end{proposition}
+
+
+
+
+Proposition \ref{propo-mpr} exploits the fact that in the limit $\zeta[z^*|z,v,\pi]$ is just the distorted liklihood ratio of the agent who bears the entire aggregate endowment and verifies the conditions in \ref{propo-7} to conclude that with Type(I) Ambiguity we have higher and countercylical market price of risk.   
+
+
+
+
+% -OLD MPR STUFF --
+%\begin{proposition}
+%\label{propo-7}
+%For $\theta_1,\theta_2=\infty$, the conditional market price of risk is acyclic. With Type (I) Ambiguity, the conditional market price of risk is higher than the benchmark if $\zeta[z^*]$ satisfies the following restrictions
+%
+%\begin{subequations}
+%\label{eq:mprgreaterthanbenchmarkcondition}
+%\begin{equation}
+%	\frac{\zeta[y(z^*)=y_h|y(z)=y_l]}{\zeta[y(z^*)=y_l|y(z)=y_l]} \leq 1
+%\end{equation}
+%\begin{equation}
+%	\frac{\zeta[y(z^*)=y_l|y(z)=y_h]}{\zeta[y(z^*)=y_h|y(z)=y_h]} \geq 1
+%\end{equation}
+%\end{subequations}
+%
+%For countercylical market price of risk, a sufficient restriction of $\zeta$ is
+%\begin{equation}
+%\label{eq:countercylicalmprcondition}
+%\left(\frac{\zeta[y(z^*)=y_h|y(z)=y_l]}{\zeta[y(z^*)=y_l|y(z)=y_l]}\right)\left(\frac{1+g}{1-g}\right)^{-\gamma}+ \left(\frac{\zeta[y(z^*)=y_l|y(z)=y_h]}{\zeta[y(z^*)=y_h|y(z)=y_h]}\right)\left(\frac{1-g}{1+g}\right)^{-\gamma} <2
+%\end{equation}
+%\end{proposition}
+% \begin{proof}
+%With $\theta_1,\theta_2=\infty$, the marginal rate of substitution, $MRS(y(z^*)|y(z)) = \left(\frac{y(z^*)}{y(z)}\right)^{-\gamma}$. First compute the ingredients for computing the conditional market price of risk.
+%\noindent 1. $y(z)=y_l$
+%\begin{align}
+%MRS(y(z^*)| y_l)=1 \quad y(z^*)=y_l \\
+%MRS(y(z^*)| y_l)=\left(\frac{1+g}{1-g}\right)^{-\gamma} \quad y(z^*)=y_h 
+%\end{align}
+%Define $f_l=\left[1-\left ( \frac{1+g}{1-g}\right)^{-\gamma}\right]$
+%
+%We can show that 
+%\begin{itemize}
+%	\item $\mu[MRS|y(z)=y_l]= 1-P_Y(y_h|y_l)f_l$
+%	\item $\sigma[MRS|y(z)=y_l] =f_l \sqrt{P_Y(y_l|y_l).P_Y(y_h|y_l)}$
+%\end{itemize}
+%Similiarly for $y(z)=y_h$ we can define $f_h=\left[-1+\left ( \frac{1-g}{1+g}\right)^{-\gamma}\right]$. 
+%This yields the following expressions for the first two moments of MRS given $y(z)=y_h$
+%\begin{itemize}
+%	\item $\mu[MRS|y(z)=y_h]= 1+P_Y(y_l|y_h)f_h$
+%	\item $\sigma[MRS|y(z)=y_l] =f_h \sqrt{P_Y(y_l|y_h).P_Y(y_h|y_h)}$
+%\end{itemize}
+%With these we can compute the ratio of conditional market price of risk across realizations of aggregate endowment
+%\begin{equation}
+%\frac{MPR[y_l]}{MPR[y_h]}=\frac{f_l}{f_h} \left(\frac{f_h(1-\bar{\alpha})+1}{1-(1-\bar{\alpha})f_l}\right)
+%\end{equation}
+%Where $\bar{\alpha}$ is the model averagegd switching probability. We can simplify the expression to obtain
+%\begin{equation}
+%\frac{MPR[y_l]}{MPR[y_h]}=\left(\frac{\bar{\alpha}f_l+(1-\bar{\alpha})f_h}{\bar{\alpha}f_h+(1-\bar{\alpha})f_l}\right)
+%\end{equation}
+%Now I show that $f_l\leq f_h$. Note that $f_h-f_l=f_h f_l= \left ( \frac{1+g}{1-g}\right)^{\gamma} + \left ( \frac{1-g}{1+g}\right)^{\gamma}-2$
+%This expression is equal to 1 at $g=0$ and has a positive derivative as long as $\gamma>0$. This shows that
+%\[\frac{MPR[y_l]}{MPR[y_h]} \geq  (\leq) 1 \quad \text{if} \alpha \leq (\geq)\frac{1}{2}\]
+%
+%Under type - I ambiguity, we expression for market price of risk is similiar except the $f_l,f_h$ terms are replaced by 
+%\[\hat{f} _l(\zeta) = 1-\left(\frac{\zeta[y_h|y_l]}{\zeta[y_l|y_l]}\right) \left ( \frac{1+g}{1-g}\right)^{-\gamma}\]
+%\[\hat{f} _h(\zeta) = -1+\left(\frac{\zeta[y_l|y_h]}{\zeta[y_h|y_h]}\right) \left ( \frac{1-g}{1+g}\right)^{-\gamma}\]
+%
+%Note that the derivative of $MPR[y_l]$ is increasing in $f_l$ as long as $f_l \in[0,1]$ and that of $MPR[y_h]$ if $f_h>0$. If \begin{enumerate}
+%	\item $\frac{\zeta[y(z^*)=y_h|y(z)=y_l]}{\zeta[y(z^*)=y_l|y(z)=y_l]} \leq 1$
+%	\item $\frac{\zeta[y(z^*)=y_l|y(z)=y_h]}{\zeta[y(z^*)=y_h|y(z)=y_h]} \geq 1$
+%\end{enumerate}
+%we have $\hat{f}_l > f_l$ and $\hat{f}_l <1$ and $\hat{f}_h > f_h$ and $\hat{f}_h > 0$.
+%
+%When $\hat{f}_l > \hat{f}_h$, we have $MPR[y_l]>MPR[y_h]$ 
+%\end{proof}
+%
+%Proposition \ref{propo-7} captures a strange feature of asset prices in the benchmark economy. Any amount of persistence makes the conditional market price of risk pro-cyclic in this %simple setup. Furthermore this pro-cyclicity is incresing in the spread between $y_h-y_l$. With model uncertainty the conditional market price %of risk is higher than the benchmark if $%\zeta[z^*]$ is low (high) in states with high(low) aggregate endowment . The distorted liklihood term is generally countercylical as low endowment states are more likely under the worst %case measures.  The cylical properties of market price of risk under both types of ambiguity %naturally depend on $\zeta$ and do not have a clean characterization for type (II) ambiguity. In %the next section I will examine this numericaly. With type (II) ambiguity ,the ratio varies with the distributional shock too. Hence the model has a potential to generate volatility of market %price of risk conditional on the %realization of aggregate endowment.
+% --OLD MPR STUFF---
+
+\noindent With the pricing kernel characterized above we can compute the returns from holding the lucas tree yielding the aggregate endowment and the risk -free rate. Let $P(z,v,\pi)$ be the ex-dividend price of the lucas tree. We can express this recursively
+\begin{equation}
+P(z,v,\pi) =\mathbb{E}\{MRS(z^*,v^*,v)P(z^*,v^*,\pi^*) [(P(z^*,v^*,\pi^*)+y(z^*)]\}
+\label{eq:PriceOfLucasTree}
+\end{equation}
+\noindent The one period holding returns are now given by $\frac{P(z^*,v^*,\pi^*) +y(z^*)}{P(z,pi,v)}$
+
+Note that when learning is active and we are in the case where consumption is sensitive to the distributional shock, the expected returns will inherit this property and display volatility conditional on the realization of the aggregate state.
+
+
 %
 %We can see the mechanism with special cases when $\pi(m)$ is degenerate. 
 %\begin{itemize}

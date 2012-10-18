@@ -4,7 +4,7 @@
 % Continuation values for Agent 2 for all possible future states
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-function [resQ,iflag]=resQNAG(n,x,iflag)
+function [resQ,user,iflag]=resQNAG(n,x,user,iflag)
 global Q c Para z pi v
 % - Storing the guess ----------------------------------------------------
 cons=x(1);

@@ -10,7 +10,7 @@ ThetaPM=Exer{ex}
 CompStr=computer;
 switch CompStr
 
-case 'PCWIN'
+case 'PCWIN64'
 
 BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
 SL='\';

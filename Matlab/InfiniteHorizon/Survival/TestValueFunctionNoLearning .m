@@ -61,4 +61,4 @@ for y=1:Para.YSize
  
 end
 VFineGrid=VGrid;
-
+fplot(@(v) funeval(c(1,:)',Q(1),v),[Q(1).a Q(1).b])

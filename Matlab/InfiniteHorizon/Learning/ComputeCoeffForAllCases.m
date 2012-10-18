@@ -23,7 +23,7 @@ Theta=[theta11 theta12;theta21 theta22];
 Para.Theta=Theta;
 Para.DataPath=[Para.DataPath 'theta_1_finite' SL 'Transitory' SL];
 mkdir(Para.DataPath)
-%MainBellman_L(Para)
+MainBellman_L(Para)
 clear Para
 %CASE II - theta_1,theta_2 <infty,PM=P
 SetParaStruc_p_learning

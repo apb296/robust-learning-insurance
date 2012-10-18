@@ -23,8 +23,8 @@ end
 % -------------------------------------------------------------------------
 
 
-InitData.OrderOfApproximationV=5;
-InitData.OrderOfApproximationPi=5;
+InitData.OrderOfApproximationV=10;
+InitData.OrderOfApproximationPi=10;
 InitData.VGridDensityFactor=2;
 InitData.PiGridDensityFactor=1;
 
@@ -46,7 +46,7 @@ ValueFunctionData=load([DataPath 'FinalC.mat']);
 PriceDividendRatio(DataPath,ValueFunctionData,InitData)
 
 
- DataPath=['Persistent/Data/theta_1_infty/Persistent/'];
+ DataPath=['Persistent/Data/theta_1_finite/transitory/'];
   load([DataPath,'PDData.mat'])
  
  piPlot=.2;

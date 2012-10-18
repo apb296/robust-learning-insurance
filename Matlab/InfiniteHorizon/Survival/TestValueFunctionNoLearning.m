@@ -35,7 +35,7 @@ LearningPath=[BaseDirectory 'Learning' SL];
 
 
 addpath(genpath(CompEconPath));
-load(['Data/C_150.mat'])
+load(['Data/C_70.mat'])
 
 VGrid=Para.VGrid;
 
@@ -60,10 +60,5 @@ for y=1:Para.YSize
     end
  
 end
-VFineGrid=VGrid;
-% Fig 1 : y=1
-% CAPTION : This figure plots the gross change in consumption shares as a function 
-%of the initial promized value to Agent 2 given $y(y)=y_l$. The solid (dotted) line refers to
-% $y(y^*)=y_l (y_h)$. 
 
 

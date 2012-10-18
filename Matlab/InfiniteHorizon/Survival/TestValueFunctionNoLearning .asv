@@ -35,7 +35,7 @@ LearningPath=[BaseDirectory 'Learning' SL];
 
 
 addpath(genpath(CompEconPath));
-load(['Data/FinalCAmb.mat'])
+load(['Data/FinalCAm.mat'])
 
 VGrid=Para.VGrid;
 
@@ -61,6 +61,4 @@ for y=1:Para.YSize
  
 end
 VFineGrid=VGrid;
-
-plot(squeeze(ConsStar(1,end-1,:)))
-
+fplot(@(v) funeval(c(1,:)',Q(1),v),[Q(1).a Q(1).b])

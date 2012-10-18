@@ -54,12 +54,29 @@ VGridSize=Para.OrderOfApproximationV*Para.VGridDensityFactor;
 % computes the minimum and maximum lifetime utility from a fixed share of
 % aggregate aggregate endowment for the multiplier preferences
 if flagComputeGridPoints==1
-for z=1:Para.ZSize
+    
+    [Coeff_alphamin,Q_alphamin]=ComputeRU_alpha(alphamin,Para,linspace(0,1,20),Para.PiGridDensityFactor,25);
+    
+    [Coeff_alphamax,Q_alphamax]=ComputeRU_alpha(alphamax,Para,linspace(0,1,20),Para.PiGridDensityFactor,25);
+    
+    [Coeff_1,Q_1]=ComputeRU_alpha(1,Para,linspace(0,1,20),Para.PiGridDensityFactor,25);
+    
+    
+ for z=1:Para.ZSize
     disp('...Computing GridPoints for z=')
     disp(z)
-VMin(z)=max(ComputeRU_alpha(alphamin,z,PiMin,Para),ComputeRU_alpha(alphamin,z,PiMax,Para));
-VMax(z)=min(ComputeRU_alpha(alphamax,z,PiMin,Para),ComputeRU_alpha(alphamax,z,PiMax,Para));
-VSuperMax(z)=max(ComputeRU_alpha(1,z,PiMin,Para),ComputeRU_alpha(1,z,PiMax,Para));
+%VMin(z)=max(ComputeRU_alpha(alphamin,z,PiMin,Para),ComputeRU_alpha(alphamin,z,PiMax,Para));
+if alphamin==0
+    VMin(z)=0;
+else
+    
+[pitilde,MinusVMin] = fminbnd(@(pi) -funeval(Coeff_alphamin(z,:)',Q_alphamin(z),pi), 0,1)
+VMin(z)=  -MinusVMin;
+end
+%VMax(z)=min(ComputeRU_alpha(alphamax,z,PiMin,Para),ComputeRU_alpha(alphamax,z,PiMax,Para));
+[pitilde,VMax(z)] = fminbnd(@(pi) funeval(Coeff_alphamax(z,:)',Q_alphamax(z),pi), 0,1);
+[pitilde,VSuperMax(z)] = fminbnd(@(pi) funeval(Coeff_1(z,:)',Q_1(z),pi), 0,1);
+
 end
 
 % ----- STORE THE GRIDPOINTS-----------------------------------------------

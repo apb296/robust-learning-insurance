@@ -24,8 +24,7 @@ QNLModel2=NoLearningModel1Data.Q.Q;                                          % G
 for z=1:Para.ZSize
     tic
     
-    if (z==1 || z==3)
-        
+    if (z==1 || z==3)        
         zIndx= find(x_state(:,1)==z);
         QNewModel1=funeval(CoeffNLModel1(z,:)',QNLModel1(z),x_state(zIndx,end));    % Model 1 NoLearning Value
         QNewModel2=funeval(CoeffNLModel2(z,:)',QNLModel2(z),x_state(zIndx,end));    % Model 2 NoLearning Value

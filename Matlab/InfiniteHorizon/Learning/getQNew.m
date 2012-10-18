@@ -23,14 +23,16 @@ VSuperMax=Para.VSuperMax;
   
 % ------- Solve the FOC with NAG toolbox ----------------------------------
 
-warning('off', 'NAG:warning')
-[x, fval,exitflag]=c05nb('resQNAG',xInit);
-if exitflag==4
-    exitflag=-2;
-    x=xInit;
-else
-    exitflag=1;
-end
+[x, fval,~,ifail]=c05qb('resQNAG',xInit);
+
+       switch ifail
+             case {0}
+              exitflag=1;
+            case {2, 3, 4}
+            exitflag=-2;
+            x=xInit;
+        end
+
 % ------------------------------------------------------------------------
  
  

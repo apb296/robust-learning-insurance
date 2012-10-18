@@ -1,4 +1,3 @@
-% Edited on Aug 22 2012
 % This solves the infinite horizon no learning case using either splines or
 % cheb polynomials. The program takes two inputs  - The Para structure and
 % the indicator for the type of model. model=1 is IID model and model=2 is
@@ -46,8 +45,11 @@ Para.VGridSize=VGridSize;
 % v or the initial promised value and one dicrete variable z capturing the
 % exogenous shocks. The program BuildGrid sets up the grid and defines the
 % functional space for the value function iteration.
-
-[Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para);
+% Set up the minimum and maximum share of the aggregate endowment
+%alphamin=.05;
+alphamin=0.05
+alphamax=(1-alphamin*1.5);
+[Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para,alphamin,alphamax);
 Para.GridSize=GridSize;
 Para.VGrid=VGrid;
 Para.VSuperMax=VSuperMax;
@@ -67,8 +69,9 @@ c=c0;
 for i=1:NIter
     tic
      ExitFlag=zeros(GridSize,1);
-     parfor GridInd=1:GridSize
-      z=zSlice(GridInd);
+     %parfor GridInd=1:GridSize
+     for GridInd=1:GridSize 
+     z=zSlice(GridInd);
         v=vSlice(GridInd);
        xInit=PolicyRules(GridInd,:);
        
@@ -107,8 +110,9 @@ ExitFlag(3*GridSize/4+1:GridSize)=ExitFlag(GridSize/2+1:3*GridSize/4);
     disp(i)
     save( ['Data/C_' num2str(i) '.mat'], 'c','Para','Q','VGrid','cdiff');
     toc
+    c
 end
-coeff=c([1 3],:);
+coeff=c([1 3],:)
 % ----- STORING THE RESULTS-------------------------------------------------
 CoeffFileName=['CoeffRU_NL_' int2str(model) '.mat'];                       % Coeffecients
 FSpaceFileName=['QNL_' int2str(model) '.mat'];                             % Value functions

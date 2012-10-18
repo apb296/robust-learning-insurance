@@ -1,5 +1,5 @@
 
-function [Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para)
+function [Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para,alphamin,alphamax)
 % To build the grid for v. I use the following procedure - Pick a two values for alpha  - alphamin
 % and alphamax . Compute the robust utility of the  agent
 % who consumes alpha share of the aggregate endowment given z_0=z. The grid
@@ -9,10 +9,7 @@ function [Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para)
 
 ZSize=Para.ZSize;
 VGridSize=Para.VGridSize;
-% Set up the minimum and maximum share of the aggregate endowment
-alphamin=.05;
-alphamax=(1-alphamin*1.5);
-%alphamax=.8;
+
 
 
 % computes the EU solution for the initial guess 

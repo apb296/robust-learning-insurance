@@ -1,7 +1,7 @@
 % This program computes the Robust Utility for an agent who consumes a
 % fixed proportion of endowment - alpha
 
-function RU=ComputeRU_alpha(alpha,z0,pi0,Para)
+function [Coeff_alpha,Q_alpha]=ComputeRU_alpha(alpha,Para,PiGrid,PiGridDensity,NIter)
 % - GET THE PARAMETERS FROM THE STRUCTURE  --------------------------------
 ra=Para.RA;
 MSize=Para.MSize;
@@ -14,20 +14,16 @@ ZSize=Para.ZSize;
 theta1=Para.Theta(1,1);
 theta2=Para.Theta(1,2);
 
-
+PiMin=min(PiGrid);
+PiMax=max(PiGrid);
 % --Set up the grid for beliefs - this is taken to be uniform between 0 1--
-
-PiMin=0.001;
-PiMax=.999;
-PiGridSize=10;
-OrderOfApproximation=5;
-OrderOfSpline=5;
-PiGrid=linspace(PiMin,PiMax,PiGridSize);
-
+PiGridSize=length(PiGrid);
+OrderOfApproximation=PiGridSize/PiGridDensity;
+OrderOfSpline=3;
 % Define the function space structure Q_alpha[z,pi]
 
 for z=1:ZSize
-    Q_alpha(z) = fundefn('cheb',OrderOfApproximation,PiMin,PiMax,OrderOfSpline);
+    Q_alpha(z) = fundefn('spli',OrderOfApproximation,PiMin,PiMax,OrderOfSpline);
 end
 
 % Initialize coeff for Q_alpha [z,pi] using EU guess
@@ -46,7 +42,7 @@ Coeff_alpha=Coeff_alpha_0;
 
 
 %--- NOW ITERATE ON FOR THE ROBUST UTILITY -----------------------------------
-for i=1:15
+for i=1:NIter
     
     %tic
     for z=1:Para.ZSize
@@ -102,4 +98,4 @@ end
 
 
 % Return the value for alpha,pi0,z0
-RU=funeval(Coeff_alpha(z0,:)',Q_alpha(z0),pi0);
+%RU=funeval(Coeff_alpha(z0,:)',Q_alpha(z0),pi0);

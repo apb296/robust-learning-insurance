@@ -39,10 +39,18 @@ else
     exitflag=1;
 end
 
-
-% -------Compute the rest of the objects using the solution ---------------
-
-
+% % check corners
+%  if ( v==0 || min(x(2:3))<0 || abs(x(1)-Y(z))<1e-3)
+% % if ( v==0)
+%      Corner1
+%  elseif (x(1)<Y(z)*1e-0003 ||v==VGrid(z,end)|| x(2)> Para.VSuperMax(1) || x(3)>Para.VSuperMax(3))
+% % elseif (v==VGrid(z,end))
+% 
+% Corner2
+%  else
+% % -------Compute the rest of the objects using the solution ---------------
+% 
+% 
 
 % -------Control Variables ------------------------------------------------
 cons=x(1);
@@ -75,6 +83,7 @@ QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Va
 EffProb=Para.P(z,:,Para.m);                                                % Reference Probability 
 ConsStar1=Y-Y.*((1+lambdastar.^(-1/ra))'.^-1);                              % Consumption plan for Agent 1 in the next period
 MRS=(der_u(ConsStar1,ra)./der_u(cons,ra)).*Distfactor1';                    % MRS (RU) = usual MRS x Radon Nikodyn for Agent 1 
+logMRS=log(MRS);                                                            % log MRS
 ConsStar2=Y-ConsStar1;                                                      % Consumption plan for Agent 2 in the next period
 MRSEU=(Y./Y(z)).^(-ra);                                                    % MRS for Expected Utility
 MuMRSEU= EffProb*MRSEU;                                                    % Mean(MRS) for Expected Utility under the Reference Model
@@ -83,6 +92,11 @@ MPREU=SigmaMRSEU/MuMRSEU;                                                  % Mar
 MuMRS= EffProb*MRS;                                                        % Mean(MRS) for Robust Utility under the Reference Model
 SigmaMRS=(EffProb*(MRS-MuMRS).^2)^.5;                                      % Std (MRS) for Robust Utility under the Reference Model
 MPR=SigmaMRS/MuMRS;                                                        % Market Price of Risk  (MRS) for Robust Utility under the Reference Model
+
+ELogMRS=(EffProb*logMRS);
+SigmaLogMRS=(EffProb*(logMRS-ELogMRS).^2)^.5;
+MPR=SigmaLogMRS;                                                           % Market Price of Risk  (MRS) for Robust Utility under the Reference Model
+
 
 Emlogm_distmarg_agent1=sum((Distfactor1).*log((Distfactor1)).*EffProb);    % Relative Entropy for Agent 1
 Emlogm_distmarg_agent2=sum((Distfactor2).*log((Distfactor2)).*EffProb);    % Relative Entropy for Agent 2
@@ -105,6 +119,7 @@ resQNew.ExitFlag=exitflag;
 resQNew.Lambda=lambda;
 resQNew.LambdaStarL=lambdastar./lambda;
 resQNew.Q=QNew;
+%end
 end
 
 

@@ -5,7 +5,9 @@ delta=Para.delta;
 ZSize=Para.ZSize;
 P=Para.P;
 options = optimset('MaxFunEvals', 5000,'Display','off','TolFun',1e-5);
-[alpha2,~,exitflag]=fzero(@(alpha) resCalcVEU(alpha,z,v,pi,Para),[.001 .99],options);
+[alpha2,~,exitflag]=fzero(@(alpha) resCalcVEU(alpha,z,v,pi,Para),.5,options);
+% check if alpha2 <1
+alpha2=max(min(alpha2,.9999),1-.99999);
 alpha1=1-alpha2;
 PP=Para.P(:,:,1)*pi+Para.P(:,:,2)*(1-pi);
 for i=1:ZSize

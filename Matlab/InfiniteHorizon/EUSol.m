@@ -9,7 +9,7 @@ options = optimset('MaxFunEvals', 5000,'Display','off','TolFun',1e-7);
 
 alpha2=fsolve(@(alpha) resCalcVEU(alpha,z,v,Para),.5,options);
 % check if alpha2 <1
-alpha2=min(alpha2,.99);
+alpha2=max(min(alpha2,.9999),1-.99999);
 alpha1=1-alpha2;
 
 for i=1:ZSize

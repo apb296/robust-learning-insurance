@@ -11,7 +11,7 @@ ThetaPM=Exer{ex}
 CompStr=computer;
 switch CompStr
 
-case 'PCWIN'
+case 'PCWIN64'
 
 BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
 SL='\';
@@ -52,12 +52,12 @@ for z=1:4
 for vind=1:VFineGridSize
 xInit=GetInitalPolicyApprox([z pi VFineGrid(z,vind)],x_state,PolicyRules);
 resQNew=getQNew(z,pi,VFineGrid(z,vind),c,Q,Para,xInit);
-ExitFlag(z,pi_ind,vind)=resQNew.ExitFlag;
+ExitFlag(z,pi_ind,vind)=resQNew.ExitFlag*( max(resQNew.VStar-max(Para.VGrid,[],2)')<0);
 ConsStarRatio(z,pi_ind,vind,:)=(resQNew.ConsStar./(Y))./(resQNew.Cons/(Y(z)));
 LambdaStarL(z,pi_ind,vind,:)=resQNew.LambdaStarL;
 QNew(vind)=resQNew.Q;
 DelVStar(z,pi_ind,vind,:)=resQNew.VStar-VFineGrid(z,vind);
-VStar(z,pi_ind,vind,:)=resQNew.VStar-Para.VSuperMax;
+VStar(z,pi_ind,vind,:)=resQNew.VStar;
 EntropyMargAgent1(z,pi_ind,vind)=resQNew.Entropy_Marg_Agent1;
 EntropyMargAgent2(z,pi_ind,vind)=resQNew.Entropy_Marg_Agent2;
 MPR(z,pi_ind,vind)=resQNew.MPR;
@@ -183,6 +183,7 @@ print(gcf, '-dpng', [ Para.PlotPath 'EntropyMarginal.png'] );
 %% COMPUTING THE MPR IN THE BENCHMARK CASE
 g=.3;
 ra=Para.RA;
+
 %IID MODEL
 
 fl=(1-((1+g)/(1-g))^(-ra));
@@ -196,7 +197,7 @@ alpha=Para.P(1,1,m)+Para.P(1,2,m);
 m=2;
 alpha=Para.P(1,1,m)+Para.P(1,2,m);
     MPRNonIID(1)=(fl*sqrt(alpha*(1-alpha)))/(1-(1-alpha)*fl);
-  MPRNonIID(2)=(fh*sqrt(alpha*(1-alpha)))/(1+(1-alpha)*fh);  
+  MPRNonIID(2)=(fh*sqrt(alpha*(1-alpha)))/(1+(1-alpha)*fh)
 
 figure()
 subplot(1,2,1)

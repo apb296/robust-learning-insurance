@@ -1,11 +1,11 @@
 % RunMain
 SetParaStruc;
-Para.NIter=25;
+Para.NIter=50;
 MainSurvival(Para);
 InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
 
 OrderOfApproximationV=25;
-NIter=25;
+NIter=50;
 Para.OrderOfApproximationV=OrderOfApproximationV;
 Para.NIter=NIter;
 MainSurvival(Para,InitData);

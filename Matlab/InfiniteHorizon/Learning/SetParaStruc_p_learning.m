@@ -7,30 +7,32 @@ Para.BenchMark=0;
 CompStr=computer;
 switch CompStr
 
-case 'PCWIN'
-
-BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHorizon\';
+case 'PCWIN64'
+BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\';
 SL='\';
 case 'GLNX86'
 
-BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
+BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/';
 SL='/';
 
     case 'MACI64'
-        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHorizon/';
+        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/';
 SL='/';
     otherwise
-BaseDirectory ='/home/apb296/robust-learning-insurance/Matlab/InfiniteHorizon/';
+BaseDirectory ='/home/apb296/robust-learning-insurance/Matlab/';
 
 SL='/';
 end
 
-CompEconPath=[BaseDirectory 'compecon2011' SL 'CEtools' SL];
-PlotPath=[BaseDirectory 'Learning' SL 'Persistent' SL 'Plots' SL];
-TexPath=[BaseDirectory 'Learning' SL 'Persistent' SL 'Tex' SL];
-DataPath=[BaseDirectory 'Learning' SL 'Persistent' SL 'Data' SL];
-NoLearningPath=[BaseDirectory];
-LearningPath=[BaseDirectory 'Learning' SL];
+CompEconPath=[ BaseDirectory 'compecon2011' SL 'CEtools' SL];
+
+addpath(genpath(CompEconPath));
+
+PlotPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL 'Persistent' SL 'Plots' SL];
+TexPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL 'Persistent' SL 'Tex' SL];
+DataPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL 'Persistent' SL 'Data' SL];
+NoLearningPath=[BaseDirectory 'InfiniteHorizon' SL ];
+LearningPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL];
 
 
 
@@ -141,7 +143,7 @@ PiGridDensityFactor=2;
 ApproxMethod='spli';
 OrderOfApproximation=3;
 OrderOfApproximationPi=5;
-OrderOfApproximationV=10;
+OrderOfApproximationV=20;
 OrderOfSpline=3;
 VGridDensityFactor=2;
 PiGridDensityFactor=2;
