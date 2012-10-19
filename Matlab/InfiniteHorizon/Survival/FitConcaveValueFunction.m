@@ -8,11 +8,13 @@ LSRes=@(c) (sum((funeval(c,V,x)-VNew).^2))^.5;
 NumShapeTestPoints=size(ShapeTestPoints,1);
 for ctr=1:NumShapeTestPoints
 sc=funbasx(V,ShapeTestPoints(ctr,:),2);
+mc=funbasx(V,ShapeTestPoints(ctr,:),1);
 ShapeConstraints(ctr,:)=sc.vals{1};
+MonCons(ctr,:)=mc.vals{1};
 end
 
-A=[ShapeConstraints];
-b=zeros(NumShapeTestPoints,1);
+A=[ShapeConstraints;MonCons];
+b=zeros(NumShapeTestPoints*2,1);
 %A=[];
 %b=[];
 Aeq=[];

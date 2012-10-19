@@ -57,13 +57,22 @@ save(['Data/SimDataAmb.mat'] ,'yHist'  ,'VHist', 'ConsRatioAgent1Hist','Emlogm_d
 
 % RunMain
 SetParaStruc;
-Para.NIter=150;
+Para.NIter=50;
 Para.theta_1=theta_1*10000000;
 Para.theta_2=theta_2*10000000;
-%MainSurvival(Para);
-%cd Data
-%system('move FinalC.mat FinalCNoAmb.mat')
-%cd ..
+MainSurvival(Para);
+
+InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
+OrderOfApproximationV=25;
+NIter=50;
+Para.OrderOfApproximationV=OrderOfApproximationV;
+Para.NIter=NIter;
+MainSurvival(Para,InitData);
+
+
+cd Data
+system('move FinalC.mat FinalCNoAmb.mat')
+cd ..
 load('Data/FinalCNoAmb.mat')
 DGP{1}='RefModelAgent1';
 DGP{2}='RefModelAgent2';
