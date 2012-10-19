@@ -1,5 +1,6 @@
 % RunMain
 SetParaStruc;
+addpath(genpath(BaseDirectory))
 Para.NIter=50;
 MainSurvival(Para);
 InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
