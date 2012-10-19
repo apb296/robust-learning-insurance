@@ -85,7 +85,7 @@ y=ySlice(GridInd);
     cdiff(i,:)=sum(abs(cOld-c));
     disp('iter=')
     disp(i)
-    if mod(i,10)==0
+    if mod(i,1)==0
     save( ['Data/C_' num2str(i) '.mat'], 'c','Para','Q','VGrid','cdiff','PolicyRules','x_state');
     end
     toc

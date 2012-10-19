@@ -76,9 +76,9 @@ MRS=(der_u(ConsStar,Para.gamma)./der_u(Cons,Para.gamma)).*Distorted_P_agent1./y_
 else
 MRS=(der_u(Y',Para.gamma)./der_u(Y(y_draw(i-1)),Para.gamma)).*Distorted_P_agent1./y_dist;                    % MRS (RU) = usual MRS x Radon Nikodyn for Agent 1 
 end    
-MuMRS= sum(y_dist.*MRS);                                                        % Mean(MRS) for Robust Utility under the Reference Model
-SigmaMRS=sum((y_dist.*(MRS-(MuMRS)*ones(1,YSize)).^2).^.5);                                      % Std (MRS) for Robust Utility under the Reference Model
-MPR=SigmaMRS/MuMRS;                                                        % Market Price of Risk  (MRS) for Robust Utility under the dgp
+MulogMRS= sum(y_dist.*log(MRS));                                                        % Mean(logMRS) for Robust Utility under the Reference Model
+SigmalogMRS=sum((y_dist.*(log(MRS)-((MulogMRS))*ones(1,YSize)).^2).^.5);                                      % Std (logMRS) for Robust Utility under the Reference Model
+MPR=SigmalogMRS;                                                        % Market Price of Risk  (MRS) for Robust Utility under the dgp
  
 % Storing the history for simulations
 % 0. YShock
