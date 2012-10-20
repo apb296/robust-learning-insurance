@@ -1,18 +1,25 @@
 % RunMain
+
+% First run with a sparse grid to get good initial guess for the value function
 SetParaStruc;
+addpath(genpath([BaseDirectory SL 'compecon2011']))
 Para.NIter=50;
 MainSurvival(Para);
-InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
+InitData=load(['Data/FinalC.mat']);
 
-OrderOfApproximationV=25;
+
+
+% Now we re-interpolate the value function on a finer grid with more splines
+OrderOfApproximationV=15;
 NIter=50;
 Para.OrderOfApproximationV=OrderOfApproximationV;
 Para.NIter=NIter;
 MainSurvival(Para,InitData);
 
-InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
-OrderOfApproximationV=30;
-NIter=75;
+InitData=load(['Data/FinalC.mat']);
+% Now we re-interpolate the value function on a finer grid with more splines
+OrderOfApproximationV=25;
+NIter=100;
 Para.OrderOfApproximationV=OrderOfApproximationV;
 Para.NIter=NIter;
 MainSurvival(Para,InitData);
@@ -63,7 +70,8 @@ ConsRatioHigh=0.75;
 [val,indx]=min(abs((InitData.PolicyRules(:,1)./InitData.Para.Y(InitData.x_state(:,1)))-ConsRatioHigh));
 VLow=fzero(@(v) GetValueFromTargetConsumption(v,y_draw0,ConsRatioHigh,InitData),InitData.x_state(indx,2));
 
-InitialV=[VHigh VMed VLow];
+%InitialV=[VHigh VMed VLow];
+InitialV=[VHigh VLow];
 ex=1;
 DGP=[];
 DGP{1}='RefModelAgent1';
@@ -80,7 +88,7 @@ for vstart_indx=1:length(InitialV)
 end
 
 Para.WeightP2=.5;
-Para.N=50000;
+Para.N=25000;
 parfor ex=1:length(Experiment)
 [yHist(:,ex),VHist(:,ex),ConsRatioAgent1Hist(:,ex),Emlogm_distmarg_agent1Hist(:,ex),Emlogm_distmarg_agent2Hist(:,ex),MPRHist(:,ex)]=SimulateV(Experiment(ex).y_draw,Experiment(ex).V0,Para,c,Q,x_state,PolicyRules,Experiment(ex).DGP);
 end
@@ -92,10 +100,10 @@ save('Data/SimDataAmb.mat' ,'yHist'  ,'VHist', 'ConsRatioAgent1Hist','Emlogm_dis
 clear all;
 SetParaStruc;
 Para.NIter=50;
-Para.theta_1=theta_1*10000000;
-Para.theta_2=theta_2*10000000;
+Para.theta_1=theta_1*100000000;
+Para.theta_2=theta_2*100000000;
 MainSurvival(Para);
-InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
+InitData=load(['Data/FinalC.mat']);
 OrderOfApproximationV=25;
 NIter=100;
 Para.OrderOfApproximationV=OrderOfApproximationV;
@@ -142,7 +150,8 @@ ConsRatioHigh=0.75;
 [val,indx]=min(abs((InitData.PolicyRules(:,1)./InitData.Para.Y(InitData.x_state(:,1)))-ConsRatioHigh));
 VLow=fzero(@(v) GetValueFromTargetConsumption(v,y_draw0,ConsRatioHigh,InitData),InitData.x_state(indx,2));
 
-InitialV=[VHigh VMed VLow];
+%InitialV=[VHigh VMed VLow];
+InitialV=[VHigh VLow]
 ex=1;
 DGP=[];
 DGP{1}='RefModelAgent1';
@@ -158,7 +167,7 @@ for vstart_indx=1:length(InitialV)
     ex=ex+1;
     end
 end
-Para.N=50000;
+Para.N=25000;
 Para.WeightP2=.5;
 y_draw=yHist;
 parfor ex=1:length(Experiment)

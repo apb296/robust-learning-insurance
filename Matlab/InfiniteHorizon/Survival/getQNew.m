@@ -1,4 +1,3 @@
- 
 function resQNew=getQNew(yy,vv,cc,QQ,PPara,x0)
 global Q c Para y v
 
@@ -89,6 +88,9 @@ else
  warning('off', 'NAG:warning')
 [x, fval,~,exitflag]=c05qb('resQNAG',x0);
 if exitflag==4
+    x=x0;
+    disp('unsolved point')
+    disp([y v])
   %  options=optimset('Display','off','GradObj','on');
    % [x,fval,exitflag]=fminunc(@(x) ValueFunction(x) ,x,options);
 else
@@ -161,7 +163,7 @@ QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Va
  resQNew.ExitFlag=exitflag;
  resQNew.Lambda=lambda;
  resQNew.LambdaStarL=lambdastar./lambda;
-   resQNew.Distfactor1=Distfactor1;
+ resQNew.Distfactor1=Distfactor1;
  resQNew.Distfactor2=Distfactor2;
 
 % resQNew.Q=QNew;

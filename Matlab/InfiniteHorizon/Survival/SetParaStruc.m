@@ -12,11 +12,10 @@ delta=.9; % common time discount factor
 gamma=.5; % common utility curvature
 
 % Reference models
-P1=[.4 .6;
-    .4 .6];  % Agent 1
+P1=[.5 .5;
+    .5 .5];  % Agent 1
 P2=[.6 .4;
     .6 .4]; % Agent 2
-
 
 % Parameters for the approximation
 ApproxMethod='spli';

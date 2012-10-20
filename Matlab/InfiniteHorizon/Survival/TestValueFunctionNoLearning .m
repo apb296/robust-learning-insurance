@@ -4,41 +4,10 @@ close all
 clc
 clear all
 
-CompStr=computer;
-switch CompStr
-
-case 'PCWIN64'
-
-BaseDirectory='C:\Users\anmol\Dropbox\ProjectRobustLearning\Matlab\InfiniteHoriyon\';
-SL='\';
-case 'GLNX86'
-
-BaseDirectory='/home/anmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHoriyon/';
-SL='/';
-
-    case 'MACI64'
-        BaseDirectory ='/Users/meetanmol/Dropbox/ProjectRobustLearning/Matlab/InfiniteHoriyon/';
-SL='/';
-    otherwise
-BaseDirectory ='/home/apb296/ProjectRobustLearning/InfiniteHoriyon/';
-
-SL='/';
-end
-
-CompEconPath=[BaseDirectory 'compecon2011' SL 'CEtools' SL];
-PlotPath=[BaseDirectory 'Learning' SL 'Persistent' SL 'Plots' SL];
-TexPath=[BaseDirectory 'Learning' SL 'Persistent' SL 'Tex' SL];
-DataPath=[BaseDirectory 'Learning' SL 'Persistent' SL 'Data' SL];
-NoLearningPath=[BaseDirectory];
-LearningPath=[BaseDirectory 'Learning' SL];
-
-
-
-addpath(genpath(CompEconPath));
-load(['Data/FinalCAm.mat'])
-
+SetParaStruc
+addpath(genpath(BaseDirectory));
+load(['Data/FinalCSparseAmb.mat'])
 VGrid=Para.VGrid;
-
 for y=1:Para.YSize
     tic
     x0=[];
