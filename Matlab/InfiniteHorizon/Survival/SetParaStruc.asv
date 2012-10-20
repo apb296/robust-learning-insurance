@@ -14,9 +14,8 @@ gamma=.5; % common utility curvature
 % Reference models
 P1=[.5 .5;
     .5 .5];  % Agent 1
-P2=[.6 .4;
-    .6 .4]; % Agent 2
-
+P2=[.4 .4;
+    . .4]; % Agent 2
 
 % Parameters for the approximation
 ApproxMethod='spli';

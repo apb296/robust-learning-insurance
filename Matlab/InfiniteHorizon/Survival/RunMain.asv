@@ -1,67 +1,82 @@
 % RunMain
 SetParaStruc;
-Para.NIter=25;
+Para.NIter=50;
+%MainSurvival(Para);
+InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
+
+OrderOfApproximationV=25;
+NIter=50;
+Para.OrderOfApproximationV=OrderOfApproximationV;
+Para.NIter=NIter;
+%MainSurvival(Para,InitData);
+
+InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
+OrderOfApproximationV=50;
+NIter=75;
+Para.OrderOfApproximationV=OrderOfApproximationV;
+Para.NIter=NIter;
+%MainSurvival(Para,InitData);
+
+%cd Data
+%system('move FinalC.mat FinalCAmb.mat')
+%cd ..
+load('Data/FinalCAmb.mat')
+DGP{1}='RefModelAgent1';
+DGP{2}='RefModelAgent2';
+DGP{3}='DistModelAgent1';
+DGP{4}='DistModelAgent2';
+%Para.N=50000;
+%% Set the Parallel Config
+err=[];
+try
+    matlabpool size
+    
+catch err
+end
+if isempty(err)
+    
+    
+    if(matlabpool('size') > 0)
+        matlabpool close
+    end
+    
+    matlabpool open local;
+    
+end
+% 
+% y_draw0=1;
+% V0=mean(Para.VGrid(y_draw0,:))*1.3;
+% Para.WeightP2=.5;
+% parfor dgp_ind=1:4
+% [yHist(:,dgp_ind),VHist(:,dgp_ind),ConsRatioAgent1Hist(:,dgp_ind),Emlogm_distmarg_agent1Hist(:,dgp_ind),Emlogm_distmarg_agent2Hist(:,dgp_ind),MPRHist(:,dgp_ind)]=SimulateV(y_draw0,V0,Para,c,Q,x_state,PolicyRules,DGP{dgp_ind});
+% end
+% save(['Data/SimDataAmb.mat'] ,'yHist'  ,'VHist', 'ConsRatioAgent1Hist','Emlogm_distmarg_agent1Hist','Emlogm_distmarg_agent2Hist','MPRHist','Para')
+
+
+
+% RunMain
+SetParaStruc;
+Para.NIter=50;
+Para.theta_1=theta_1*10000000;
+Para.theta_2=theta_2*10000000;
 MainSurvival(Para);
 InitData=load(['Data/C_' num2str(Para.NIter) '.mat']);
-% Parameters for the approximation
 OrderOfApproximationV=25;
 NIter=100;
 Para.OrderOfApproximationV=OrderOfApproximationV;
 Para.NIter=NIter;
 MainSurvival(Para,InitData);
 
+
 cd Data
-system('move FinalC.mat FinalCAmb.mat')
+system('move FinalC.mat FinalCNoAmb.mat')
 cd ..
-load('Data/FinalCAmb.mat')
-DGP{1}='RefModelAgent1';
-DGP{2}='RefModelAgent2';
-DGP{3}='DistModelAgent1';
-DGP{4}='DistModelAgent2';
-Para.N=20000;
-%% Set the Parallel Config
-err=[];
-try
-    matlabpool size
-    
-catch err
-end
-if isempty(err)
-    
-    
-    if(matlabpool('size') > 0)
-        matlabpool close
-    end
-    
-    matlabpool open local;
-    
-end
-
-y_draw0=1;
-V0=mean(Para.VGrid(y_draw0,:))*1.3;
-Para.WeightP2=.5;
-parfor dgp_ind=1:4
-[yHist(:,dgp_ind),VHist(:,dgp_ind),ConsRatioAgent1Hist(:,dgp_ind),Emlogm_distmarg_agent1Hist(:,dgp_ind),Emlogm_distmarg_agent2Hist(:,dgp_ind),MPRHist(:,dgp_ind)]=SimulateV(y_draw0,V0,Para,c,Q,x_state,PolicyRules,DGP{dgp_ind});
-end
-save(['Data/SimDataAmb.mat'] ,'yHist'  ,'VHist', 'ConsRatioAgent1Hist','Emlogm_distmarg_agent1Hist','Emlogm_distmarg_agent2Hist','MPRHist','Para')
-
-
-
-% RunMain
-SetParaStruc;
-Para.NIter=150;
-Para.theta_1=theta_1*10000000;
-Para.theta_2=theta_2*10000000;
-%MainSurvival(Para);
-%cd Data
-%system('move FinalC.mat FinalCNoAmb.mat')
-%cd ..
 load('Data/FinalCNoAmb.mat')
 DGP{1}='RefModelAgent1';
 DGP{2}='RefModelAgent2';
 DGP{3}='DistModelAgent1';
 DGP{4}='DistModelAgent2';
-Para.N=2000; 
+Para.N=50000; 
 %% Set the Parallel Config
 err=[];
 try
@@ -79,14 +94,43 @@ if isempty(err)
     matlabpool open local;
     
 end
+
+
 y_draw0=1;
-V0=mean(Para.VGrid(y_draw0,:))*1.3
+InitData=load('Data/FinalCNoAmb.mat');
+ConsRatioLow=0.25;
+[val,indx]=min(abs((InitData.PolicyRules(:,1)./InitData.Para.Y(InitData.x_state(:,1)))-ConsRatioLow));
+VHigh=fzero(@(v) GetValueFromTargetConsumption(v,y_draw0,ConsRatioLow,InitData),InitData.x_state(indx,2));
+
+ConsRatioMed=0.5;
+[val,indx]=min(abs((InitData.PolicyRules(:,1)./InitData.Para.Y(InitData.x_state(:,1)))-ConsRatioMed));
+VMed=fzero(@(v) GetValueFromTargetConsumption(v,y_draw0,ConsRatioMed,InitData),InitData.x_state(indx,2));
+
+
+ConsRatioHigh=0.75;
+[val,indx]=min(abs((InitData.PolicyRules(:,1)./InitData.Para.Y(InitData.x_state(:,1)))-ConsRatioHigh));
+VLow=fzero(@(v) GetValueFromTargetConsumption(v,y_draw0,ConsRatioHigh,InitData),InitData.x_state(indx,2));
+
+InitialV=[VHigh VMed VLow];
+ex=1;
+for vstart_indx=1:length(InitialV)
+    for dgp_indx=1:2
+    Experiment(ex).V0=InitialV(vstart_indx);
+    Experiment(ex).DGP=DGP{dgp_indx};
+    ex=ex+1;
+    end
+end
+
 Para.WeightP2=.5;
+load('Data/SimDataAmb.mat')
 y_draw=yHist;
-parfor dgp_ind=1:4
+parfor dgp_ind=1:2
 [yHist(:,dgp_ind),VHist(:,dgp_ind),ConsRatioAgent1Hist(:,dgp_ind),Emlogm_distmarg_agent1Hist(:,dgp_ind),Emlogm_distmarg_agent2Hist(:,dgp_ind),MPRHist(:,dgp_ind)]=SimulateV(y_draw(:,dgp_ind),V0,Para,c,Q,x_state,PolicyRules,DGP{dgp_ind});
 end
-save('Data/SimDataNoAmb.mat' ,'yHist'  ,'VHist', 'ConsRatioAgent1Hist','Emlogm_distmarg_agent1Hist','Emlogm_distmarg_agent2Hist','MPRHist','Para')
+save('Data/SimDataNoAmbConsRatioLow.mat' ,'yHist'  ,'VHist', 'ConsRatioAgent1Hist','Emlogm_distmarg_agent1Hist','Emlogm_distmarg_agent2Hist','MPRHist','Para')
+
+
+
 
 
 

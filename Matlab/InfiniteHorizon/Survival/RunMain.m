@@ -2,7 +2,11 @@
 
 % First run with a sparse grid to get good initial guess for the value function
 SetParaStruc;
+<<<<<<< HEAD
 addpath(genpath([BaseDirectory SL 'compecon2011']))
+=======
+addpath(genpath(BaseDirectory))
+>>>>>>> 8a0adf4aa2be801df858989acdb3c7e02d528081
 Para.NIter=50;
 MainSurvival(Para);
 InitData=load(['Data/FinalC.mat']);
