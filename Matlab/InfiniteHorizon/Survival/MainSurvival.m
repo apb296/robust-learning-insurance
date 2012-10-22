@@ -34,8 +34,9 @@ Para.VGridSize=VGridSize;
 % exogenous shocks. The program BuildGrid sets up the grid and defines the
 % functional space for the value function iteration.
 
-[Q,VGrid,QMax]=BuildGrid(Para);
+[Q,VGrid,QMax,VMax]=BuildGrid(Para);
 Para.QMax=QMax';
+Para.VMax=VMax;
 Para.VGrid=VGrid;
 Para.VGridSize=length(VGrid);
 Para.GridSize=Para.VGridSize*length(Para.Y);
@@ -76,12 +77,12 @@ y=ySlice(GridInd);
         PolicyRules(GridInd,:)=[resQNew.Cons resQNew.VStar];
         ExitFlag(GridInd)=resQNew.ExitFlag;                               % Exit status of the innder optimization
     end
+ 
     
     
-    
-    
+    UnResolvedPoints;
     UpdateValueFunction
-    
+   
     cdiff(i,:)=sum(abs(cOld-c));
     disp('iter=')
     disp(i)

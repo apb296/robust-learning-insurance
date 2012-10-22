@@ -56,7 +56,7 @@ resQNew.QNew=Para.QMax(y);
  resQNew.Distfactor1=Distfactor1;
  resQNew.Distfactor2=Distfactor2;
  
-elseif v==max(VGrid(y,:))
+elseif v==Para.VMax(y);
     QStar=[0 0];
 VStar=max(VGrid,[],2)';
 for ystar=1:YSize
@@ -129,7 +129,7 @@ Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivati
 
 QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Value for Agent 1
 
-
+ 
 % -------Asset Pricing details---------------------------------------------
 % EffProb=Para.P(ystar,:,Para.m);                                                % Reference Probability 
  ConsStar1=Y-Y.*((1+lambdastar.^(-1/ra))'.^-1);                              % Consumption plan for Agent 1 in the next period
