@@ -9,21 +9,21 @@ Y=[yLow yHigh]';
 theta_1=.5; % Concerns for ambiguity Agent 1
 theta_2=theta_1; % Concerns for ambiguity Agent 1
 delta=.9; % common time discount factor
-gamma=.5; % common utility curvature
+gamma=.; % common utility curvature
 
 % Reference models
 P1=[.5 .5;
     .5 .5];  % Agent 1
-P2=[.4 .4;
-    . .4]; % Agent 2
+P2=[.7 .3;
+    .7 .3]; % Agent 2
 
 % Parameters for the approximation
 ApproxMethod='spli';
 OrderOfApproximation=3;
 OrderOfApproximationPi=5;
-OrderOfApproximationV=15;
+OrderOfApproximationV=12;
 OrderOfSpline=3;
-VGridDensityFactor=2;
+VGridDensityFactor=3;
 PiGridDensityFactor=2;
 NIter=150;
 grelax=.95;

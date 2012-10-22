@@ -1,4 +1,3 @@
- 
 function resQNew=getQNew(yy,vv,cc,QQ,PPara,x0)
 global Q c Para y v
 
@@ -89,16 +88,11 @@ else
  warning('off', 'NAG:warning')
 [x, fval,~,exitflag]=c05qb('resQNAG',x0);
 if exitflag==4
-    bl=[0;0;0];
-    bu=[Y(y);VGrid(1,end);VGrid(2,end) ]    ;
-    
-lh = int64(6);
-iw = [int64(0);0];
-w = zeros(34,1);
-[blOut, buOut, xOut, hesl, hesd, istate, f, g, iwOut, wOut, ifail] = ...
-    nag_opt_bounds_mod_deriv_comp(@funct, @monit, eta, ibound, bl, bu, x, lh, 
-    [x,fval,exitflag]=fminunc(@(x) ValueFunction(x) ,x0);
-    exitflag;
+    x=x0;
+    disp('unsolved point')
+    disp([y v])
+  %  options=optimset('Display','off','GradObj','on');
+   % [x,fval,exitflag]=fminunc(@(x) ValueFunction(x) ,x,options);
 else
     exitflag=1;
 end
@@ -135,7 +129,7 @@ Distfactor2=Distfactor2./EVStar;                        % Radon Dikodyn derivati
 
 QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Value for Agent 1
 
-
+ 
 % -------Asset Pricing details---------------------------------------------
 % EffProb=Para.P(ystar,:,Para.m);                                                % Reference Probability 
  ConsStar1=Y-Y.*((1+lambdastar.^(-1/ra))'.^-1);                              % Consumption plan for Agent 1 in the next period
@@ -169,7 +163,7 @@ QNew=u(cons,ra)-delta*theta1*log(EQStar);                                   % Va
  resQNew.ExitFlag=exitflag;
  resQNew.Lambda=lambda;
  resQNew.LambdaStarL=lambdastar./lambda;
-   resQNew.Distfactor1=Distfactor1;
+ resQNew.Distfactor1=Distfactor1;
  resQNew.Distfactor2=Distfactor2;
 
 % resQNew.Q=QNew;
