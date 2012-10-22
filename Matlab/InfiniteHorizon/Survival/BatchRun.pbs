@@ -16,7 +16,8 @@ cd /home/apb296/robust-learning-insurance/Matlab/InfiniteHorizon/Survival
 /share/apps/matlab/R2011a/bin/matlab -nosplash < RunMain.m -logfile /home/apb296/robust-learning-insurance/logMakePol.log
 
 git add Data/Sim*.mat
-git commit -m "Simulation Data"
+git add Data/Final*.mat
+git commit -m "Simulation Data from truncated long run"
 git push origin master
 
 exit 0;
