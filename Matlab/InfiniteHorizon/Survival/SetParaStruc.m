@@ -1,12 +1,12 @@
 % Technology : Aggregate endowment Y
 ybar=1;
-g=.1;
+g=.3;
 yHigh=ybar*(1+g);
 yLow=ybar*(1-g);
 Y=[yLow yHigh]';
 
 % Preferences
-theta_1=.1; % Concerns for ambiguity Agent 1
+theta_1=.5; % Concerns for ambiguity Agent 1
 theta_2=theta_1; % Concerns for ambiguity Agent 1
 delta=.9; % common time discount factor
 gamma=.5; % common utility curvature

@@ -5,18 +5,18 @@ SetParaStruc;
 addpath(genpath([BaseDirectory SL 'compecon2011']))
 Para.NIter=100;
 Para.MaxGridAdjustment=0.985;
-MainSurvival(Para);
+%MainSurvival(Para);
 load('Data/FinalC.mat')
 save('Data/FinalCAmbSparse.mat', 'c','Para','Q','VGrid','cdiff','PolicyRules','x_state');
 
 InitData=load(['Data/FinalC.mat']);
 % Now we re-interpolate the value function on a finer grid with more splines
 OrderOfApproximationV=25;
-NIter=150;
+NIter=100;
 Para.OrderOfApproximationV=OrderOfApproximationV;
 Para.NIter=NIter;
 Para.MaxGridAdjustment=0.985;
-MainSurvival(Para);
+%MainSurvival(Para);
 
 load('Data/FinalC.mat')
 save('Data/FinalCAmb.mat', 'c','Para','Q','VGrid','cdiff','PolicyRules','x_state');

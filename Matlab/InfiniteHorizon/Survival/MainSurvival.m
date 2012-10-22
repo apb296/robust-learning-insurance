@@ -81,6 +81,7 @@ y=ySlice(GridInd);
     
     
     UnResolvedPoints;
+    UnResolvedPoints;
     UpdateValueFunction
    
     cdiff(i,:)=sum(abs(cOld-c));
