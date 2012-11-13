@@ -38,7 +38,11 @@ for i=2:Para.N
     
 xtest=[y_draw(i-1) VHist(i-1)];
 xInit=GetInitalPolicyApprox(xtest,x_state,PolicyRules);
+if min(xInit)<.0001
+    xInit=xInit+.01;
+end
 resQNew=getQNew(y_draw(i-1),VHist(i-1),c,Q,Para,xInit);
+exitflag=resQNew.ExitFlag;
 switch dgp
         case 'RefModelAgent1'
            y_dist=P1(y_draw(i-1),:);
@@ -92,11 +96,13 @@ Emlogm_distmarg_agent2Hist(i-1)=Emlogm_distmarg_agent2;
 % 4. Market Price of Risk
 MPRHist(i-1)=MPR;
 
-
-if VHist(i) > VMax(y_draw(i))
+if VHist(i)> VMax(y_draw(i))
+    disp('truncating vstar')
     VHist(i)=VMax(y_draw(i));
 end
-if VHist(i) < VMin(y_draw(i))
+    
+    
+if ConsRatioAgent1Hist(i)> 0.999
     VHist(i)=VMin(y_draw(i));
 end
 

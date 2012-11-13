@@ -1,12 +1,10 @@
 % Diagnostics
 clear all
 close all
-load(['/ersistent/Data/C_25.mat'])
+load('Data/FinalCAmb.mat')
 Y=Para.Y
 VGrid=Para.VGrid;
-z=3
-zstar=3
-pi=1;
+z=1
 VFineGridSize=50;
 VFineGrid=linspace(min(VGrid(z,:)),max(VGrid(z,:)),VFineGridSize)
 ConsStarRatio=zeros(VFineGridSize,1);

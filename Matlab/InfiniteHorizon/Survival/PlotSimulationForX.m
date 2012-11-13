@@ -32,22 +32,20 @@ if strcmpi(flagPlotNoAmbiguityDetails,'yes')==1
     figure()
     
     subplot(1,2,1)
-plot(XAmb.Data(1:T,1),'k','LineWidth',2)
+plot(XAmb.Data(1:T,1:4:12),'k','LineWidth',2)
 hold on
-plot(XAmb.Data(1:T,2),':k','LineWidth',2)
+plot(XAmb.Data(1:T,2:4:12),':k','LineWidth',2)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$','Interpreter','Latex')
-legend('P1','P2')
 
 subplot(1,2,2)
-plot(XNoAmb.Data(1:T,1),'k','LineWidth',2)
+plot(XNoAmb.Data(1:T,1:4:12),'k','LineWidth',2)
 hold on
-plot(XNoAmb.Data(1:T,2),':k','LineWidth',2)
+plot(XNoAmb.Data(1:T,2:4:12),':k','LineWidth',2)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 = \infty$','Interpreter','Latex')
-legend('P1','P2')
 
 print(gcf,'-dpng',[PlotPath 'First100.png']) 
 % Caption : This plots simulation outcomes for the last 100 periods
@@ -55,22 +53,20 @@ print(gcf,'-dpng',[PlotPath 'First100.png'])
     % The left (right) panel is with $\theta_1 < infty (=\infty)$    
     figure()
     subplot(1,2,1)
-plot(XAmb.Data(end-T:end,1),'k','LineWidth',2)
+plot(XAmb.Data(end-T:end,1:4:12),'k','LineWidth',2)
 hold on
-plot(XAmb.Data(end-T:end,2),':k','LineWidth',2)
+plot(XAmb.Data(end-T:end,2:4:12),':k','LineWidth',2)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$','Interpreter','Latex')
-legend('P1','P2')
 
 subplot(1,2,2)
-plot(XNoAmb.Data(end-T:end,1),'k','LineWidth',2)
+plot(XNoAmb.Data(end-T:end,1:4:12),'k','LineWidth',2)
 hold on
-plot(XNoAmb.Data(end-T:end,2),':k','LineWidth',2)
+plot(XNoAmb.Data(end-T:end,2:4:12),':k','LineWidth',2)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 = \infty$','Interpreter','Latex')
-legend('P1','P2')
 
 print(gcf,'-dpng',[PlotPath 'Last100.png'])
 
@@ -79,18 +75,18 @@ print(gcf,'-dpng',[PlotPath 'Last100.png'])
     % The left (right) panel is with $\theta_1 < infty (=\infty)$    
     figure()
     subplot(2,1,1)
-plot(XAmb.Data(1:end,1),'k','LineWidth',1.5)
+plot(XAmb.Data(1:end,1:4:12),'k','LineWidth',1.5)
 hold on
-plot(XAmb.Data(1:end,2),':k','LineWidth',1.5)
+plot(XAmb.Data(1:end,2:4:12),':k','LineWidth',1.5)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$','Interpreter','Latex')
 legend('P1','P2')
 
 subplot(2,1,2)
-plot(XNoAmb.Data(1:end,1),'k','LineWidth',1.5)
+plot(XNoAmb.Data(1:end,1:4:12),'k','LineWidth',1.5)
 hold on
-plot(XNoAmb.Data(1:end,2),':k','LineWidth',1.5)
+plot(XNoAmb.Data(1:end,2:4:12),':k','LineWidth',1.5)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 = \infty$','Interpreter','Latex')
@@ -104,17 +100,17 @@ print(gcf,'-dpng',[PlotPath 'LongSample.png'])
     % Agent 1 (Agent 2) reference model
     figure()
     subplot(2,2,1)
-hist(XAmb.Data(end*.5:end,1),50)
+hist(XAmb.Data(end*.5:end,1:4:12),50)
 title('$\theta_1 < \infty$,Reference Model Agent 1','Interpreter','Latex')
 subplot(2,2,2)
-hist(XAmb.Data(end*.5:end,2),50)
+hist(XAmb.Data(end*.5:end,2:4:12),50)
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$,Reference Model Agent 2','Interpreter','Latex')
   subplot(2,2,3)
-hist(XNoAmb.Data(end*.5:end,1),5)
+hist(XNoAmb.Data(end*.5:end,1:4:12),5)
 title('$\theta_1 = \infty$,Reference Model Agent 1','Interpreter','Latex')
 subplot(2,2,4)
-hist(XNoAmb.Data(end*.5:end,2),5)
+hist(XNoAmb.Data(end*.5:end,2:4:12),5)
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 = \infty$,Reference Model Agent 2','Interpreter','Latex')
 
@@ -127,37 +123,34 @@ print(gcf,'-dpng',[PlotPath 'ErgodicDist.png'])
  % Caption : This plots simulation outcomes for the first 100 periods
     % under the Distorted models of Agent 1 (solid) and Agent 2 (dotted)
     figure()
-   plot(XAmb.Data(1:T,3),'k','LineWidth',2)
+   plot(XAmb.Data(1:T,3:4:12),'k','LineWidth',2)
 hold on
-plot(XAmb.Data(1:T,4),':k','LineWidth',2)
+plot(XAmb.Data(1:T,4:4:12),':k','LineWidth',2)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$','Interpreter','Latex')
-legend('Dist-P1','Dist-P2')
 
 print(gcf,'-dpng',[PlotPath 'First100Dist.png']) 
 % Caption : This plots simulation outcomes for the last 100 periods
     % under the Dist models of Agent 1 (solid) and Agent 2 (dotted)
     
     figure()
-plot(XAmb.Data(end-T:end,3),'k','LineWidth',2)
+plot(XAmb.Data(end-T:end,3:4:12),'k','LineWidth',2)
 hold on
-plot(XAmb.Data(end-T:end,4),':k','LineWidth',2)
+plot(XAmb.Data(end-T:end,4:4:12),':k','LineWidth',2)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$','Interpreter','Latex')
-legend('Dist-P1','Dist-P2')
 
     % Caption : This plots simulation outcomes for the entire sample
     % under the distorted models of Agent 1 (solid) and Agent 2 (dotted)   
     figure()
-plot(XAmb.Data(1:end,3),'k','LineWidth',2)
+plot(XAmb.Data(1:end,3:4:12),'k','LineWidth',2)
 hold on
-plot(XAmb.Data(1:end,4),':k','LineWidth',2)
+plot(XAmb.Data(1:end,4:4:12),':k','LineWidth',2)
 xlabel('Time')
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$','Interpreter','Latex')
-legend('Dist-P1','Dist-P2')
 
 print(gcf,'-dpng',[PlotPath 'LongSampleDist.png'])
 
@@ -167,10 +160,10 @@ print(gcf,'-dpng',[PlotPath 'LongSampleDist.png'])
     % Agent 1 (Agent 2) dist model
     figure()
     subplot(1,2,1)
-hist(XAmb.Data(end*.5:end,3),100)
+hist(XAmb.Data(end*.5:end,3:4:12),100)
 title('$\theta_1 < \infty$,Dist Model Agent 1','Interpreter','Latex')
 subplot(1,2,2)
-hist(XAmb.Data(end*.5:end,4),100)
+hist(XAmb.Data(end*.5:end,4:4:12),100)
 ylabel(YLabel,'Interpreter','Latex')
 title('$\theta_1 < \infty$,Dist Model Agent 2','Interpreter','Latex')
 
