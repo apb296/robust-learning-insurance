@@ -31,6 +31,8 @@ VSuperMax=Para.VSuperMax;
             case {2, 3, 4}
             exitflag=-2;
             x=xInit;
+            disp('z v pi')
+            disp([z v pi])
         end
 
 % ------------------------------------------------------------------------
@@ -190,10 +192,14 @@ Emlogm_distmarg_agent1=sum((dist_marg_agent1./EffProb).*log((dist_marg_agent1./E
 Emlogm_distmarg_agent2=sum((dist_marg_agent2./EffProb).*log((dist_marg_agent2./EffProb)).*EffProb);
 GrowthRateY=Y./Y(z);
 PK=delta*dist_marg_agent1.*(ConsStar/cons)'.^(-ra)./EffProb;
+LogMRS=log(PK);
+ELogMRS=EffProb*LogMRS';
+sigmaLogMRS=(EffProb*(LogMRS-ELogMRS)'.^2)^(.5);
 Zeta=(dist_marg_agent1.*(ConsStar/cons)'.^(-ra).*(Y(z)./Y)'.^(-ra))./EffProb;
 MuPK= EffProb*PK';
 SigmaPK=(EffProb*(PK-MuPK)'.^2)^.5;
 MPR=SigmaPK/MuPK;
+MPR=sigmaLogMRS;
 Entropy_M=[pi 1-pi]*mlogm_M';
 
 

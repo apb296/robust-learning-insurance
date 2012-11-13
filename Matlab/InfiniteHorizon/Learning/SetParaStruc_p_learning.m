@@ -28,9 +28,9 @@ CompEconPath=[ BaseDirectory 'compecon2011' SL 'CEtools' SL];
 
 addpath(genpath(CompEconPath));
 
-PlotPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL 'Persistent' SL 'Plots' SL];
-TexPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL 'Persistent' SL 'Tex' SL];
-DataPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL 'Persistent' SL 'Data' SL];
+PlotPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL  'Plots' SL];
+TexPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL  'Tex' SL];
+DataPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL  'Data' SL];
 NoLearningPath=[BaseDirectory 'InfiniteHorizon' SL ];
 LearningPath=[BaseDirectory 'InfiniteHorizon' SL 'Learning' SL];
 
@@ -42,9 +42,9 @@ mkdir(DataPath)
 addpath(genpath(CompEconPath));
 ybar=1;
 g=.3;
-theta11=.50000000;
+theta11=.750000000;
 theta12=.50000000;
-delta=.8;
+delta=.9;
 theta11*delta/theta12-1;
 ra=.5;
 pi1=.5;
@@ -126,7 +126,7 @@ Pi=[pi pi];
 C=['r','r','b','b'];
 ZSize=4;
 ctol=1e-7;
-grelax=.9;
+grelax=.98;
 
 % Parameters for the approximation
 
@@ -142,15 +142,14 @@ PiGridDensityFactor=2;
 % Parameters for the approximation
 ApproxMethod='spli';
 OrderOfApproximation=3;
-OrderOfApproximationPi=5;
-OrderOfApproximationV=20;
+OrderOfApproximationPi=20;
+OrderOfApproximationV=25;
 OrderOfSpline=3;
 VGridDensityFactor=2;
 PiGridDensityFactor=2;
 
 
-
-NIter=50;
+NIter=125;
 % store the para struc
 Para.CompEconPath=CompEconPath;
 Para.PlotPath=PlotPath;

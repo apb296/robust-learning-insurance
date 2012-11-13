@@ -104,7 +104,7 @@ if isempty(err)
     
     
     if(matlabpool('size') > 0)
-        matlabpool close
+        matlabpool close force local
     end
     
     matlabpool open local;
@@ -121,6 +121,22 @@ disp(Para.Theta)
 disp('PM')
 disp(Para.P_M)
 % ------------------------------------------------------------------------
+% shape constraints 
+CheckPiGridSize=3;
+CheckPiGrid=linspace(0,1,CheckPiGridSize);
+CheckVGridSize=10;
+xCheckShape=[];
+for z=1:Para.ZSize;
+    CheckVGrid=[linspace(min(VGrid(z,:)),min(VGrid(z,:))*2,CheckVGridSize/2)...
+        linspace(max(VGrid(z,:))*.9,max(VGrid(z,:)),CheckVGridSize/2)];
+
+for piInd=1:CheckPiGridSize
+    for vInd=1:CheckVGridSize
+        xCheckShape=[xCheckShape; z CheckPiGrid(piInd) CheckVGrid(vInd)];
+    end
+end
+end
+
 
 % --SETUP THE ARRAYS FOR THE BELLMAN ITERATION-----------------------------
 res(1:Para.GridSize,1) = struct();
@@ -165,7 +181,7 @@ for i=2:Para.NIter
     ExitFlag(3*GridSize/4+1:GridSize)=ExitFlag(GridSize/2+1:3*GridSize/4);
     
     
-    
+    UnResolvedPoints;
     UpdateValueFunction
     cdiff(i,:)=sum(abs(cOld-c));
     toc

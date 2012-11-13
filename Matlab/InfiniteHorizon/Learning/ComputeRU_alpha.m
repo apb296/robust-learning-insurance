@@ -42,7 +42,7 @@ Coeff_alpha=Coeff_alpha_0;
 
 
 %--- NOW ITERATE ON FOR THE ROBUST UTILITY -----------------------------------
-for i=1:NIter
+for i=1:NIter*5
     
     %tic
     for z=1:Para.ZSize

@@ -6,7 +6,7 @@ Exer{1}=['theta_1_finite/Transitory/'];
 Exer{2}=['theta_1_finite/Persistent/'];
 Exer{3}=['theta_1_infty/Transitory/'];
 Exer{4}=['theta_1_infty/Persistent/'];
-for ex=1:4
+for ex=4:4
 ThetaPM=Exer{ex}
 CompStr=computer;
 switch CompStr
@@ -30,11 +30,11 @@ SL='/';
 end
 
 CompEconPath=[BaseDirectory 'compecon2011' SL 'CEtools' SL];
-PlotPath=[BaseDirectory 'Learning/Persistent' SL 'Plots' SL ThetaPM];
+PlotPath=[BaseDirectory 'Learning' SL 'Plots' SL ThetaPM];
 PlotPath='tempPlots/'
 mkdir(PlotPath)
-TexPath=[BaseDirectory 'Learning/Persistent'  SL 'Tex' SL ThetaPM];
-DataPath=[BaseDirectory 'Learning/Persistent' SL 'Data' SL ThetaPM];
+TexPath=[BaseDirectory 'Learning'  SL 'Tex' SL ThetaPM];
+DataPath=[BaseDirectory 'Learning' SL 'Data' SL ThetaPM];
 NoLearningPath=[BaseDirectory];
 LearningPath=[BaseDirectory 'Learning' SL];
 load([ DataPath 'FinalC.mat'])
@@ -54,6 +54,7 @@ xInit=GetInitalPolicyApprox([z pi VFineGrid(z,vind)],x_state,PolicyRules);
 resQNew=getQNew(z,pi,VFineGrid(z,vind),c,Q,Para,xInit);
 ExitFlag(z,pi_ind,vind)=resQNew.ExitFlag*( max(resQNew.VStar-max(Para.VGrid,[],2)')<0);
 ConsStarRatio(z,pi_ind,vind,:)=(resQNew.ConsStar./(Y))./(resQNew.Cons/(Y(z)));
+Lambda(z,pi_ind,vind)=resQNew.Lambda;
 LambdaStarL(z,pi_ind,vind,:)=resQNew.LambdaStarL;
 QNew(vind)=resQNew.Q;
 DelVStar(z,pi_ind,vind,:)=resQNew.VStar-VFineGrid(z,vind);
@@ -318,7 +319,23 @@ title('$y(z)=y_h$','Interpreter','Latex')
 print(gcf, '-dpng', [ Para.PlotPath 'LambdaStarLLearning.png'] );
 %%
 
-Para.N=200;
+
+% Lambdastar growth rate
+pi_ind=2;
+%PANEL LEFT -y(z)=y_l
+z=1;
+figure()
+zstar=1;
+plot(VGrid(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),'k','LineWidth',1)
+hold on
+z=3
+plot(VGrid(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),':k','LineWidth',1)
+xlabel('Agent 2 promised value - v')
+ylabel('$\frac{\lambda^*}{\lambda}$','Interpreter','Latex')
+
+
+
+Para.N=15000;
 BurnSample=.2;
 z_draw0=1;
 V0=VGrid(z_draw0,3);
@@ -505,4 +522,76 @@ resQNew=getQNew(z,pi,VGrid(z,vind),c,Q,Para,xInit);
 resQNew.PricingKernel
 resQNew.Zeta
 MaxMinRatio=max(resQNew.PricingKernel)/min(resQNew.PricingKernel)
+clear all
+SolData=load ('Data/Theta_1_infty/Transitory/FinalC.mat');
+P=SolData.Para.P;
+theta1=SolData.Para.Theta(1,1);
+theta2=SolData.Para.Theta(1,2);
+Y=SolData.Para.Y;
+ra=SolData.Para.RA;
+delta=SolData.Para.delta;
+P_M=SolData.Para.P_M;
+z=1;
+pi=1;
+vbar=fsolve(@(v) ResVBar(v,z,pi,SolData), [mean(SolData.Para.VGrid(z,:))])
+xInit=GetInitalPolicyApprox([z pi vbar],SolData.x_state,SolData.PolicyRules);
+resQNew=getQNew(z,pi,vbar,SolData.c,SolData.Q,SolData.Para,xInit);
 
+%startionary value function with alpha =0.5
+[Coeff_alphamin,Q_alphamin]=ComputeRU_alpha(0.5,SolData.Para,linspace(0,1,20),1,25);
+% stattionary values 
+
+            pi_m=[pi 1-pi];  % vector pi
+            
+            % Applying Bayes Law given P,P_M and pi
+            for zstar=1:4
+                
+                % Updating the filter using bayes law (checked the code with
+                % HMMFilter.m)
+                for m_star_indx=1:2
+                    Num=0;
+                    for m_indx=1:2
+                        Num=Num+P(z,zstar,m_indx)*P_M(m_indx,m_star_indx)*pi_m(m_indx);
+                    end
+                    pi_m(m_star_indx)= Num;
+                end
+                D=sum(pi_m(:));
+                pi_m_star= pi_m(:)/D;
+                pistar(zstar)=pi_m_star(1);
+                
+            end
+            
+for zInd=1:4
+vbarGuess(zInd)=funeval(Coeff_alphamin(zInd,:)',Q_alphamin(zInd),pistar(zInd));
+end
+% Do these satisfy the PK constraint
+   for m=1:2
+                T1(m)=u(0.5*Y(z),ra)-theta1*delta*log(sum(P(z,:,m).*exp(-vbarGuess/theta1)))   ;
+            end
+            
+            % Apply T2 operator
+            T2=-theta2*log(exp(-T1/theta2)*([pi; 1-pi]));
+           
+            
+funeval(Coeff_alphamin(z,:)',Q_alphamin(z),pi)-T2
+funeval(Coeff_alphamin(z,:)',Q_alphamin(z),pi)-funeval(SolData.c(z,:)' ,SolData.Q(z), [pi T2])
+
+
+resQNew=getQNew(z,pi,T2,SolData.c,SolData.Q,SolData.Para,[0.5*SolData.Para.Y(z) vbarGuess]);
+funeval(SolData.c(z,:)' ,SolData.Q(z), [pi T2])-resQNew.Q
+funeval(Coeff_alphamin(z,:)',Q_alphamin(z),pi)-resQNew.Q
+
+
+[resQNew.VStar;vbarGuess]
+
+for zInd=1:4
+vbarGuess(zInd)=fsolve(@(v) ResVBar(v,zInd,resQNew.pistar(zInd),SolData), [mean(SolData.Para.VGrid(zInd,:))])
+end
+
+resQNew=getQNew(z,pi,vbar,SolData.c,SolData.Q,SolData.Para,[0.5*SolData.Para.Y(z) vbarGuess]);
+resQNew.Lambda+funeval(SolData.c(z,:)' ,SolData.Q(z), [pi vbar],[0 1])
+resQNew.Q-funeval(SolData.c(z,:)' ,SolData.Q(z), [pi vbar])
+
+resQNew.ConsStar./SolData.Para.Y
+resQNew.DistP_agent1
+resQNew.DistP_agent2

@@ -26,7 +26,7 @@ MSize=Para.MSize;
 VSuperMax=Para.VSuperMax;
 ra=Para.RA;
 
-if (and(cons<Y(z),cons>0))                                                  % Check for non negativity
+if (cons<Y(z) && cons>0 && min(VStar)>0)                                                  % Check for non negativity
     
     
 % FOC (1) -----------------------------------------------------------------
