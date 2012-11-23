@@ -8,14 +8,14 @@ SetParaStruc_p_learning
     warning off all
      cd(Para.NoLearningPath)
      m_true=1;
-      Main_NL(m_true,Para)
+ %     Main_NL(m_true,Para)
        m_true=2;
-       Main_NL(m_true,Para)   
+  %     Main_NL(m_true,Para)   
      cd(Para.LearningPath)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Para.P_M=[1 0;0 1];
 % Theta(i,j)=agent(i) operator(j)
-theta11=.7500000000;
+theta11=.500000000;
 theta12=.50000000;
 theta21=theta11;
 theta22=theta12;
@@ -28,7 +28,7 @@ clear Para
 %CASE II - theta_1,theta_2 <infty,PM=P
 SetParaStruc_p_learning
 Para.P_M=[.9 .1;.1 .9];
-theta11=.7500000000;
+theta11=.500000000;
 theta12=.50000000;
 theta21=theta11;
 theta22=theta12;

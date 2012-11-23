@@ -6,7 +6,7 @@ Exer{1}=['theta_1_finite/Transitory/'];
 Exer{2}=['theta_1_finite/Persistent/'];
 Exer{3}=['theta_1_infty/Transitory/'];
 Exer{4}=['theta_1_infty/Persistent/'];
-for ex=4:4
+for ex=1:4
 ThetaPM=Exer{ex}
 CompStr=computer;
 switch CompStr
@@ -31,7 +31,6 @@ end
 
 CompEconPath=[BaseDirectory 'compecon2011' SL 'CEtools' SL];
 PlotPath=[BaseDirectory 'Learning' SL 'Plots' SL ThetaPM];
-PlotPath='tempPlots/'
 mkdir(PlotPath)
 TexPath=[BaseDirectory 'Learning'  SL 'Tex' SL ThetaPM];
 DataPath=[BaseDirectory 'Learning' SL 'Data' SL ThetaPM];
@@ -326,40 +325,35 @@ pi_ind=2;
 z=1;
 figure()
 zstar=1;
-plot(VGrid(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),'k','LineWidth',1)
+plot(VFineGrid(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),'k','LineWidth',1)
 hold on
 z=3
-plot(VGrid(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),':k','LineWidth',1)
+plot(VFineGrid(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),':k','LineWidth',1)
 xlabel('Agent 2 promised value - v')
 ylabel('$\frac{\lambda^*}{\lambda}$','Interpreter','Latex')
 
 
 
-Para.N=15000;
-BurnSample=.2;
-z_draw0=1;
-V0=VGrid(z_draw0,3);
-pi_bayes0=.5;
+
+% Lambdastar growth rate
+pi_ind=2;
+%PANEL LEFT -y(z)=y_l
+z=1;
+figure()
+zstar=1;
+plot(Lambda(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),'k','LineWidth',1)
+hold on
+z=3
+plot(Lambda(z,logical(ExitFlag(z,pi_ind,:)==1)),squeeze(LambdaStarL(z,pi_ind,logical(ExitFlag(z,pi_ind,:)==1),1:4)),':k','LineWidth',1)
+xlabel('Agent 2 promised value - v')
+ylabel('$\frac{\lambda^*}{\lambda}$','Interpreter','Latex')
 
 
-
+BurnSample=0.5
 %% SIMULATIONS
 if Para.P_M(1,2)==0
-    disp('Transitory ')
-    m_draw0=2;
-    disp('simulating Non IID model')
-SimulateV(m_draw0,z_draw0,V0,pi_bayes0,Para,c,Q,x_state,PolicyRules,BurnSample)
-SimDataNonIID=load([Para.DataPath 'SimData.mat']);
-save([Para.DataPath 'SimDataNonIID.mat' ],'SimDataNonIID')
-%load([Para.DataPath 'SimDataNonIID.mat' ],'SimDataNonIID')
-m_draw0=1;
-disp('simulatingIID model')
-SimulateV(m_draw0,z_draw0,V0,pi_bayes0,Para,c,Q,x_state,PolicyRules,BurnSample)
-SimDataIID=load([Para.DataPath 'SimData.mat']);
-save([Para.DataPath 'SimDataIID.mat' ],'SimDataIID')
-%load([Para.DataPath 'SimDataIID.mat' ],'SimDataIID')
-% Steady State distributions
-
+SimDataIID=load ([DataPath 'SimDataIID.mat']);
+SimDataNonIID=load ([DataPath  'SimDataNonIID.mat']);
 figure()
 subplot(1,2,2)
 hist(SimDataNonIID.V(Para.N*BurnSample:Para.N),100)
@@ -405,13 +399,13 @@ print(gcf, '-dpng', [ Para.PlotPath 'PiDist2SS.png'] );
   
 % sample draws
 T=100;
-SimDataNonIID.z_drawTrunc=SimDataNonIID.z_draw(end-T+1:end);
-SimDataNonIID.VTrunc=SimDataNonIID.V(end-T+1:end);
-SimDataNonIID.Lambda_drawTrunc=SimDataNonIID.Lambda_draw(end-T+1:end);
-SimDataNonIID.MPR_drawTrunc=SimDataNonIID.MPR_draw(end-T+1:end);
-SimDataNonIID.pi_bayesTrunc=SimDataNonIID.pi_bayes(end-T+1:end);
-SimDataNonIID.pi_dist1=SimDataNonIID.pi_dist1(end-T+1:end);
-SimDataNonIID.pi_dist2=SimDataNonIID.pi_dist2(end-T+1:end);
+SimDataNonIID.z_drawTrunc=SimDataNonIID.z_draw(1:T);
+SimDataNonIID.VTrunc=SimDataNonIID.V(1:T);
+SimDataNonIID.Lambda_drawTrunc=SimDataNonIID.Lambda_draw(1:T);
+SimDataNonIID.MPR_drawTrunc=SimDataNonIID.MPR_draw(1:T);
+SimDataNonIID.pi_bayesTrunc=SimDataNonIID.pi_bayes(1:T);
+SimDataNonIID.pi_dist1=SimDataNonIID.pi_dist1(1:T);
+SimDataNonIID.pi_dist2=SimDataNonIID.pi_dist2(1:T);
 
 InxNonIID=find(SimDataNonIID.z_drawTrunc<3);
     for i=1:length(InxNonIID)-1
@@ -419,13 +413,13 @@ InxNonIID=find(SimDataNonIID.z_drawTrunc<3);
     end
 
 
-SimDataIID.z_drawTrunc=SimDataIID.z_draw(end-T+1:end);
-SimDataIID.VTrunc=SimDataIID.V(end-T+1:end);
-SimDataIID.Lambda_drawTrunc=SimDataIID.Lambda_draw(end-T+1:end);
-SimDataIID.MPR_drawTrunc=SimDataIID.MPR_draw(end-T+1:end);
-SimDataIID.pi_bayesTrunc=SimDataIID.pi_bayes(end-T+1:end);
-SimDataIID.pi_dist1=SimDataIID.pi_dist1(end-T+1:end);
-SimDataIID.pi_dist2=SimDataIID.pi_dist2(end-T+1:end);
+SimDataIID.z_drawTrunc=SimDataIID.z_draw(1:T);
+SimDataIID.VTrunc=SimDataIID.V(1:T);
+SimDataIID.Lambda_drawTrunc=SimDataIID.Lambda_draw(1:T);
+SimDataIID.MPR_drawTrunc=SimDataIID.MPR_draw(1:T);
+SimDataIID.pi_bayesTrunc=SimDataIID.pi_bayes(1:T);
+SimDataIID.pi_dist1=SimDataIID.pi_dist1(1:T);
+SimDataIID.pi_dist2=SimDataIID.pi_dist2(1:T);
 
 
 
@@ -437,25 +431,22 @@ InxIID=find(SimDataIID.z_drawTrunc<3);
 figure()
 subplot(2,1,2)
 plot(SimDataNonIID.MPR_drawTrunc)
-axis([1 T min(SimDataNonIID.MPR_drawTrunc)*.9 max(SimDataNonIID.MPR_drawTrunc)*1.1])
+%axis([1 T min(SimDataNonIID.MPR_drawTrunc)*.9 max(SimDataNonIID.MPR_drawTrunc)*1.1])
 ShadePlotForEmpahsis( bbNonIID,'r',.05);
   ylabel('MPR','Interpreter','Latex')
 title('$\pi=0$','Interpreter','Latex')
 
   subplot(2,1,1)
 plot(SimDataIID.MPR_drawTrunc)
-axis([1 T min(SimDataIID.MPR_drawTrunc)*.9 max(SimDataIID.MPR_drawTrunc)*1.1])
+%axis([1 T min(SimDataIID.MPR_drawTrunc)*.9 max(SimDataIID.MPR_drawTrunc)*1.1])
   ShadePlotForEmpahsis( bbIID,'r',.05);
     ylabel('MPR','Interpreter','Latex')
 title('$\pi=1$','Interpreter','Latex')
 
 print(gcf, '-dpng', [ Para.PlotPath 'MPRDraw.png'] );
 else
+    SimData=load ([DataPath 'SimData.mat']);
     
-m_draw0=1;
-disp('Persistent')
-SimulateV(m_draw0,z_draw0,V0,pi_bayes0,Para,c,Q,x_state,PolicyRules,BurnSample)
-SimData=load([Para.DataPath 'SimData.mat']);
 
 % Steady State distributions
 
@@ -491,13 +482,13 @@ print(gcf, '-dpng', [ Para.PlotPath 'RelPiDistSS.png'] );
 
 % sample draws
 T=100;
-SimData.z_drawTrunc=SimData.z_draw(end-T+1:end);
-SimData.VTrunc=SimData.V(end-T+1:end);
-SimData.Lambda_drawTrunc=SimData.Lambda_draw(end-T+1:end);
-SimData.MPR_drawTrunc=SimData.MPR_draw(end-T+1:end);
-SimData.pi_bayesTrunc=SimData.pi_bayes(end-T+1:end);
-SimData.pi_dist1Trunc=SimData.pi_dist1(end-T+1:end);
-SimData.pi_dist2Trunc=SimData.pi_dist2(end-T+1:end);
+SimData.z_drawTrunc=SimData.z_draw(1:T);
+SimData.VTrunc=SimData.V(1:T);
+SimData.Lambda_drawTrunc=SimData.Lambda_draw(1:T);
+SimData.MPR_drawTrunc=SimData.MPR_draw(1:T);
+SimData.pi_bayesTrunc=SimData.pi_bayes(1:T);
+SimData.pi_dist1Trunc=SimData.pi_dist1(1:T);
+SimData.pi_dist2Trunc=SimData.pi_dist2(1:T);
 Inx=find(SimData.z_drawTrunc<3);
     for i=1:length(Inx)-1
         bb{i}=Inx(i):Inx(i+1);
@@ -511,11 +502,15 @@ axis([1 T min(SimData.MPR_drawTrunc)*.9 max(SimData.MPR_drawTrunc)*1.1])
    print(gcf, '-dpng', [ Para.PlotPath 'MPRDraw.png'] );
 end
 end
-DiagnosticsMPR
+%DiagnosticsMPR
 %% test area
 z=1
-pi=.5
-vind=2
+pi=0.9
+v=4.9031
+xInit=GetInitalPolicyApprox([z pi v],SolData.x_state,SolData.PolicyRules);
+xInit=xInit*(1+.1*rand)
+resQNew=getQNew(z,pi,v,SolData.c,SolData.Q,SolData.Para,xInit);
+
 VGrid=Para.VGrid;
 xInit=GetInitalPolicyApprox([z pi VGrid(z,vind)],x_state,PolicyRules);
 resQNew=getQNew(z,pi,VGrid(z,vind),c,Q,Para,xInit);
@@ -523,7 +518,7 @@ resQNew.PricingKernel
 resQNew.Zeta
 MaxMinRatio=max(resQNew.PricingKernel)/min(resQNew.PricingKernel)
 clear all
-SolData=load ('Data/Theta_1_infty/Transitory/FinalC.mat');
+SolData=load ('Data/Theta_1_finite/Persistent/FinalC.mat');
 P=SolData.Para.P;
 theta1=SolData.Para.Theta(1,1);
 theta2=SolData.Para.Theta(1,2);
@@ -532,10 +527,12 @@ ra=SolData.Para.RA;
 delta=SolData.Para.delta;
 P_M=SolData.Para.P_M;
 z=1;
-pi=1;
+pi=.1;
 vbar=fsolve(@(v) ResVBar(v,z,pi,SolData), [mean(SolData.Para.VGrid(z,:))])
 xInit=GetInitalPolicyApprox([z pi vbar],SolData.x_state,SolData.PolicyRules);
 resQNew=getQNew(z,pi,vbar,SolData.c,SolData.Q,SolData.Para,xInit);
+resQNew.Lambda
+resQNew.LambdaStar
 
 %startionary value function with alpha =0.5
 [Coeff_alphamin,Q_alphamin]=ComputeRU_alpha(0.5,SolData.Para,linspace(0,1,20),1,25);

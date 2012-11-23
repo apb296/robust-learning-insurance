@@ -3,15 +3,14 @@
 % space model. The hidden states are parameters (regimes) that populate the
 % transition matrix of the signal distribution. 
 clear all
-clc
 %% Model 
 % Size of Model Space M
 MSize=2;
 
 % Transition for M
 
-P_M=[.1 .9;
-     .9 .1];
+P_M=[1 0;
+     0 1];
 % Model space - alpha_m,beta_m
 % Signal Structure
 %Model 1 
@@ -56,16 +55,17 @@ end
 
 %% Simulation
 % Number of draws -  N
-N=5000;
+N=2;
 % Simulate Data of length N from the Model
-m(1)=1;
+m(1)=2;
 z(1)=1;
+z=[1 4]
 for i=2:N
     
     m_dist=P_M(m(i-1),:);
     m(i)=discretesample(m_dist, 1);
     z_dist=P_Z(z(i-1),:,m(i-1));
-    z(i)=discretesample(z_dist, 1);
+   % z(i)=discretesample(z_dist, 1);
 end
 
 %% Filter
@@ -76,14 +76,14 @@ for m_star_indx=1:MSize
     Num=0;
     for m_indx=1:MSize
     %Num=Num+P_Z(z(i-1),z(i),m_star_indx)*P_M(m_indx,m_star_indx)*pi_m(m_indx,i-1);
-    Num=Num+P_Z(z(i-1),z(i),m_indx)*P_M(m_indx,m_star_indx)*pi_m(m_indx,i-1);
+    Num=Num+P_Z(z(i-1),z(i),m_indx)*P_M(m_indx,m_star_indx)*pi_m(m_indx,i-1)
     end
-    pi_m(m_star_indx,i)= Num;
+    pi_m(m_star_indx,i)= Num
 end
-D=sum(pi_m(:,i));
-pi_m(:,i)= pi_m(:,i)/D;
+D=sum(pi_m(:,i))
+pi_m(:,i)= pi_m(:,i)/D
 %pi_m_star= P_M*squeeze(P_Z(z(i-1),z(i),:)).*pi_m(:,i-1)/sum(P_M*squeeze(P_Z(z(i-1),z(i),:)).*pi_m(:,i-1));
 end
-
+pi_m
 BurnSample=N*.7;
 hist(pi_m(1,BurnSample:end))

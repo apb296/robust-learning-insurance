@@ -37,8 +37,9 @@ if (cons<Y(z) && cons>0 && min(VStar)>0)                                        
     
 
 % ---- APPLYING BAYES RULE ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-    pi_m=[pi 1-pi];
     for zstar=1:ZSize
+            pi_m=[pi 1-pi];
+
         % Updating the filter using bayes law (checked the code with
         % HMMFilter.m)
         % pistar(zstar,mstar|z,pi) propto sum_m(pi(m)P_M(m,mstar)P(z,zstar,m))

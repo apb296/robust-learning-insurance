@@ -24,7 +24,7 @@ Exer{1}=['theta_1_finite/Transitory/'];
 Exer{2}=['theta_1_finite/Persistent/'];
 Exer{3}=['theta_1_infty/Transitory/'];
 Exer{4}=['theta_1_infty/Persistent/'];
-N=50000;
+N=25000;
 
 CompStr=computer;
 switch CompStr
@@ -53,7 +53,7 @@ for ex=1:4
 ThetaPM=Exer{ex};
 DataPath=['Data/' ThetaPM];
 SolData(ex)=load([DataPath 'FinalC.mat']);
-Param(ex)=SolData.Para;
+Param(ex)=SolData(ex).Para;
 Param(ex).N=N;
 end
 parfor ex=1:4

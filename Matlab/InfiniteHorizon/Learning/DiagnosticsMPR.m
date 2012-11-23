@@ -5,7 +5,7 @@ Exer{1}=['theta_1_finite\Transitory\'];
 Exer{2}=['theta_1_finite\persistent\'];
 Exer{3}=['theta_1_infty\Transitory\'];
 Exer{4}=['theta_1_infty\persistent\'];
-for ex=1:4
+for ex=4:4
 ThetaPM=Exer{ex}
 CompStr=computer;
 switch CompStr
@@ -36,14 +36,14 @@ Y=Para.Y;
 Para.DataPath=DataPath;
 Para.PlotPath=PlotPath;
 VGrid=Para.VGrid;
-PiPlotGrid=linspace(.01,.99,20);
-VFineGridSize=20;
+PiPlotGrid=linspace(0,1,10);
+VFineGridSize=10;
 for z=1:4
     VFineGrid(z,:)=linspace(min(VGrid(z,:)),max(VGrid(z,1:end)),VFineGridSize);
     for pi_ind=1:length(PiPlotGrid)
  alphabar=(Para.P(1,1,1)+Para.P(1,2,1))*PiPlotGrid(pi_ind)+(1-PiPlotGrid(pi_ind))*(Para.P(1,1,2)+Para.P(1,2,2));
 
-        MPREU(pi_ind,:)=EU_MPR(alphabar,Para.RA,.3);
+        MPREU(pi_ind,:)=sqrt(alphabar*(1-alphabar)) *Para.RA*.3;
         pi=PiPlotGrid(pi_ind);
 for vind=1:VFineGridSize
 xInit=GetInitalPolicyApprox([z pi VFineGrid(z,vind)],x_state,PolicyRules);
@@ -71,7 +71,7 @@ end
 % $\theta_1,\theta_2=\infty$
 figure()
 subplot(1,2,1)
-v_ind=20;
+v_ind=1;
 z=1;
 plot(PiPlotGrid',squeeze(MPR(z,:,v_ind))','k','LineWidth',2)
 hold on
@@ -84,7 +84,7 @@ subplot(1,2,2)
 
 plot(PiPlotGrid',MPREU(:,1),'k','LineWidth',2)
 hold on
-plot(PiPlotGrid',MPREU(:,2),':k','LineWidth',2)
+plot(PiPlotGrid',MPREU(:,1),':k','LineWidth',2)
 xlabel('$\pi$','Interpreter','Latex')
 ylabel('MPR')
 title('$\theta_2 =\infty,\theta_1=\infty$','Interpreter','Latex')
@@ -104,24 +104,24 @@ hold on
 %FIGURE : DISTORTED MODEL PRIORS
 %\caption{This figure plots the $\frac{\tilde{\pi}^2}{\tilde{pi}^1}$ as a function of $v,\pi$. The left (right) panel has $y(z)=y_l (y_h)$     
 figure()
-    subplot(1,2,1)
+   % subplot(1,2,1)
     z=1
     surf(PiPlotGrid',VFineGrid(z,:)',squeeze(pi_tilde_agent2(z,:,:))'./squeeze(pi_tilde_agent1(z,:,:))')
     xlabel('$\pi$','Interpreter','Latex')
     ylabel('v')
     %zlabel('$\frac{\tilde{pi}^2}{\tilde{pi}^1}$','Interpreter','Latex')
-    subplot(1,2,2)
-    z=3
-    surf(PiPlotGrid',VFineGrid(z,:)',squeeze(pi_tilde_agent2(z,:,:))'./squeeze(pi_tilde_agent1(z,:,:))')
-    xlabel('$\pi$','Interpreter','Latex')
-    ylabel('v')
+    %subplot(1,2,2)
+    %z=3
+    %surf(PiPlotGrid',VFineGrid(z,:)',squeeze(pi_tilde_agent2(z,:,:))'./squeeze(pi_tilde_agent1(z,:,:))')
+    %xlabel('$\pi$','Interpreter','Latex')
+    %ylabel('v')
     %zlabel('$\frac{\tilde{pi}^2}{\tilde{pi}^1}$','Interpreter','Latex')
     print(gcf, '-dpng', [ Para.PlotPath 'DistortedPriors.png'] );
 end
 %% test area
 z=1;
-pi=.6;
-vind=20;
+pi=0;
+vind=1;
 VGrid=Para.VGrid;
 xInit=GetInitalPolicyApprox([z pi VGrid(z,vind)],x_state,PolicyRules);
 resQNew=getQNew(z,pi,VGrid(z,vind),c,Q,Para,xInit);
@@ -130,8 +130,8 @@ resQNew.ConsStarRatio
 testMPR(z)=resQNew.MPR;
 
 z=3;
-pi=.6;
-vind=20;
+pi=0;
+vind=1;
 VGrid=Para.VGrid;
 xInit=GetInitalPolicyApprox([z pi VGrid(z,vind)],x_state,PolicyRules);
 resQNew=getQNew(z,pi,VGrid(z,vind),c,Q,Para,xInit);

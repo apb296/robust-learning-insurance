@@ -33,6 +33,10 @@ VSuperMax=Para.VSuperMax;
             x=xInit;
             disp('z v pi')
             disp([z v pi])
+            disp('Para.theta')
+            Para.Theta
+            disp('Para.PM')
+            Para.P_M
         end
 
 % ------------------------------------------------------------------------
@@ -77,8 +81,9 @@ ra=Para.RA;
     
 
 % ---- APPLYING BAYES RULE ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-    pi_m=[pi 1-pi];
     for zstar=1:ZSize
+            pi_m=[pi 1-pi];
+
         % Updating the filter using bayes law (checked the code with
         % HMMFilter.m)
         % pistar(zstar,mstar|z,pi) propto sum_m(pi(m)P_M(m,mstar)P(z,zstar,m))
@@ -86,8 +91,10 @@ ra=Para.RA;
             Num=0;
             for m_indx=1:MSize
                 Num=Num+P(z,zstar,m_indx)*P_M(m_indx,m_star_indx)*pi_m(m_indx);
+               
             end
             pi_m(m_star_indx)= Num;
+                
         end
         D=sum(pi_m(:));
         % Normalizing pistar

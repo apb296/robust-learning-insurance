@@ -42,7 +42,7 @@ mkdir(DataPath)
 addpath(genpath(CompEconPath));
 ybar=1;
 g=.3;
-theta11=.750000000;
+theta11=.50000000;
 theta12=.50000000;
 delta=.9;
 theta11*delta/theta12-1;
@@ -149,7 +149,7 @@ VGridDensityFactor=2;
 PiGridDensityFactor=2;
 
 
-NIter=125;
+NIter=100;
 % store the para struc
 Para.CompEconPath=CompEconPath;
 Para.PlotPath=PlotPath;
