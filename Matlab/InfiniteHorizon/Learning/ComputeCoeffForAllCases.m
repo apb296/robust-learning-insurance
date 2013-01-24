@@ -23,7 +23,7 @@ Theta=[theta11 theta12;theta21 theta22];
 Para.Theta=Theta;
 Para.DataPath=[Para.DataPath 'theta_1_finite' SL 'Transitory' SL];
 mkdir(Para.DataPath)
-MainBellman_L(Para)
+%MainBellman_L(Para)
 clear Para
 %CASE II - theta_1,theta_2 <infty,PM=P
 SetParaStruc_p_learning
@@ -34,9 +34,9 @@ theta21=theta11;
 theta22=theta12;
 Theta=[theta11 theta12;theta21 theta22];
 Para.Theta=Theta;
-Para.DataPath=[Para.DataPath 'theta_1_finite' SL];
+Para.DataPath=[Para.DataPath 'theta_1_finite' SL 'Persistent' SL];
 mkdir(Para.DataPath)
-MainBellman_L(Para)
+%MainBellman_L(Para)
 
 clear Para
 
@@ -51,7 +51,7 @@ Theta=[theta11 theta12;theta21 theta22];
 Para.Theta=Theta;
 Para.DataPath=[Para.DataPath 'theta_1_infty' SL 'Transitory' SL];
 mkdir(Para.DataPath)
-MainBellman_L(Para)
+%MainBellman_L(Para)
 clear Para
 
 %CASE IV - theta_1=Infty,theta_2 <infty,PM=P
@@ -65,7 +65,40 @@ Theta=[theta11 theta12;theta21 theta22];
 Para.Theta=Theta;
 Para.DataPath=[Para.DataPath 'theta_1_infty' SL 'Persistent' SL];
 mkdir(Para.DataPath)
+%MainBellman_L(Para)
+clear Para
+
+
+% CASE V theta_1 < finite theta_2=infty, PM=I
+SetParaStruc_p_learning
+Para.P_M=[1 0;0 1];
+theta11=.500000000;
+theta12=5000000000;
+theta21=theta11;
+theta22=theta12;
+Theta=[theta11 theta12;theta21 theta22];
+Para.Theta=Theta;
+Para.DataPath=[Para.DataPath 'theta_2_infty' SL 'Transitory' SL];
+mkdir(Para.DataPath)
 MainBellman_L(Para)
 clear Para
+
+
+
+
+% CASE VI theta_1 < finite theta_2=infty, PM=P
+SetParaStruc_p_learning
+Para.P_M=[.9 .1;.1 .9];
+theta11=.500000000;
+theta12=5000000000;
+theta21=theta11;
+theta22=theta12;
+Theta=[theta11 theta12;theta21 theta22];
+Para.Theta=Theta;
+Para.DataPath=[Para.DataPath 'theta_2_infty' SL 'Persistent' SL];
+mkdir(Para.DataPath)
+MainBellman_L(Para)
+clear Para
+
 % Run long simulations
-RunSimulations
+%RunSimulations

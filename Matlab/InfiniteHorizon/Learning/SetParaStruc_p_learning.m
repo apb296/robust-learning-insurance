@@ -142,11 +142,11 @@ PiGridDensityFactor=2;
 % Parameters for the approximation
 ApproxMethod='spli';
 OrderOfApproximation=3;
-OrderOfApproximationPi=20;
-OrderOfApproximationV=25;
+OrderOfApproximationPi=15;
+OrderOfApproximationV=20;
 OrderOfSpline=3;
 VGridDensityFactor=2;
-PiGridDensityFactor=2;
+PiGridDensityFactor=1;
 
 
 NIter=100;

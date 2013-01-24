@@ -1,0 +1,7 @@
+ms_enable 1
+ms_maxsolves 25
+ms_num_to_save 2
+ms_savetol 0.01
+hessopt 2
+outlev 1
+gradopt 2

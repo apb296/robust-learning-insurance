@@ -22,7 +22,7 @@ ctol=Para.ctol;
 % ------- Default initialization to EU solution ---------------------------
 
 
-if isempty(x0)
+if isempty(x0) || min(x0)<0
 res=EUSol(z,v,Para);
         ConsEU0=res.alpha1*Para.Y(z);  
        VStarEU0=res.V2';

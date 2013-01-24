@@ -44,6 +44,13 @@ PriceDividendRatio(DataPath,ValueFunctionData,InitData)
 DataPath=['Data/theta_1_infty/Persistent/'];
 ValueFunctionData=load([DataPath 'FinalC.mat']);
 PriceDividendRatio(DataPath,ValueFunctionData,InitData)
+%CASE V - theta_1=Infty,theta_2 <infty,PM=P
+DataPath=['Data/theta_2_infty/Transitory/'];
+ValueFunctionData=load([DataPath 'FinalC.mat']);
+PriceDividendRatio(DataPath,ValueFunctionData,InitData)
+DataPath=['Data/theta_2_infty/Persistent/'];
+ValueFunctionData=load([DataPath 'FinalC.mat']);
+PriceDividendRatio(DataPath,ValueFunctionData,InitData)
 
 
 %  DataPath=['Data/theta_1_finite/transitory/'];

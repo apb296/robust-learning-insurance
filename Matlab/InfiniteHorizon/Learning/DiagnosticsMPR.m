@@ -5,7 +5,7 @@ Exer{1}=['theta_1_finite\Transitory\'];
 Exer{2}=['theta_1_finite\persistent\'];
 Exer{3}=['theta_1_infty\Transitory\'];
 Exer{4}=['theta_1_infty\persistent\'];
-for ex=4:4
+for ex=3:3
 ThetaPM=Exer{ex}
 CompStr=computer;
 switch CompStr
@@ -71,7 +71,7 @@ end
 % $\theta_1,\theta_2=\infty$
 figure()
 subplot(1,2,1)
-v_ind=1;
+v_ind=10;
 z=1;
 plot(PiPlotGrid',squeeze(MPR(z,:,v_ind))','k','LineWidth',2)
 hold on

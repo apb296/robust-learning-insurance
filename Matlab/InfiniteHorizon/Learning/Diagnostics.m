@@ -6,7 +6,7 @@ Exer{1}=['theta_1_finite/Transitory/'];
 Exer{2}=['theta_1_finite/Persistent/'];
 Exer{3}=['theta_1_infty/Transitory/'];
 Exer{4}=['theta_1_infty/Persistent/'];
-for ex=1:4
+for ex=4:4
 ThetaPM=Exer{ex}
 CompStr=computer;
 switch CompStr

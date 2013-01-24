@@ -145,10 +145,10 @@ plot(VFineGrid(z,logical(ExitFlag(z,:)==1)),squeeze(MPR(z,logical(ExitFlag(z,:)=
 %% MARKET PRICE OF RISK with Lambda
 figure()
 z=1
-plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(RelMPR(z,logical(ExitFlag(z,:)==1))),'k','LineWidth',2)
+plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(MPR(z,logical(ExitFlag(z,:)==1))),'k','LineWidth',2)
 hold on
 z=3
-plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(RelMPR(z,logical(ExitFlag(z,:)==1))),':k','LineWidth',2)
+plot(Lambda(z,logical(ExitFlag(z,:)==1)),squeeze(MPR(z,logical(ExitFlag(z,:)==1))),':k','LineWidth',2)
 
 
 

@@ -157,9 +157,16 @@ legend('y^*=y_l','y^*=y_h')
 print(gcf,'-dpng','Graphs/SurvivalGrowthRateLambdaStarLambda.png')
 
 
+
+SetParaStruc;
+addpath(genpath([BaseDirectory SL 'compecon2011']))
+coeffname{1}='Data/FinalCAmb.mat';
+coeffname{2}='Data/FinalCNoAmb.mat';
+%coeffname='Data/FinalCAmbSparse.mat'
+
 ex=2
-y=2
-v= 1.5860
+y=1
+v= 18.79
 
 load([coeffname{ex}])
 VPlotGrid(ex,:)=linspace((max(Q(1).a,Q(2).a)),( min(Q(2).b,Q(1).b)),25);

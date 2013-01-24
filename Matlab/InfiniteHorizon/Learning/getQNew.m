@@ -22,9 +22,13 @@ VSuperMax=Para.VSuperMax;
 
   
 % ------- Solve the FOC with NAG toolbox ----------------------------------
-
+if Para.Theta(1,2)>1000
+[x, fval,~,ifail]=c05qb('resQNAGTheta2Infty',xInit);
+elseif  Para.Theta(1,1)>1000
+[x, fval,~,ifail]=c05qb('resQNAGTheta1Infty',xInit);
+else
 [x, fval,~,ifail]=c05qb('resQNAG',xInit);
-
+end    
        switch ifail
              case {0}
               exitflag=1;

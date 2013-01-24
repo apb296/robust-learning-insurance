@@ -51,20 +51,20 @@ basewidth={0.5em,0.4em}
 \providecommand{\alert}[1]{\textbf{#1}}
 \begin{document}
 
-\title{Ambiguity, Learning and Insurance}
+\title{Model Uncertainty, Learning and Insurance}
 \author{Anmol Bhandari \thanks{Economics Department; New York University \texttt{apb296@nyu.edu}}}
 %\date{03 March 2011}
 \maketitle
-I study  optimal risk sharing in settings characterized with Knightian uncertainty. In general there is a feedback between risk sharing and risk perceptions which impacts the optimal risk sharing arrangement. This paper attempts to identify the key mechanisms affecting insurance in \emph{stylized} environments differing in two dimensions - market completeness and nature of ambiguity
+\noindent I study risk sharing arrangements in settings characterized with Knightian uncertainty. In general both the demand for insurance and risk perceptions are endogenous and interact in this settings. This paper attempts to identify the key mechanisms affecting insurance in \emph{stylized} environments differing in two dimensions - market completeness and nature of ambiguity
 \newpage
 
 \section{Introduction}
-\noindent General equilibrium with complete markets provide a coherent framework to explore risk sharing amongst competitive agents. Attitudes towards risk and class of securities available are the key objects for determining a risk sharing arrangement. The welfare theorems in turn justify the \emph{optimality} of such arrangements. The standard analysis with Von-Neumann preferences,complete information and appropriate selection of assets has very stark predictions for the optimal risk sharing scheme. All idiosyncratic risk is hedged and aggregate risk is borne by the agents depending on their initial wealth distribution. With homothetic preferences we further have consumption as a constant proportion of aggregate endowment and wealth distribution is static. 
+\noindent General equilibrium with complete markets provide a coherent framework to explore risk sharing amongst competitive agents. Attitudes towards risk and class of securities available are the key objects for determining  risk sharing arrangements. The welfare theorems in turn justify the \emph{optimality} of such arrangements. The standard analysis with Von-Neumann preferences,complete information and appropriate selection of assets has very stark predictions for the optimal risk sharing scheme. All idiosyncratic risk is hedged and aggregate risk is borne by the agents depending on their initial wealth distribution. With homothetic preferences we further have consumption as a constant proportion of aggregate endowment and wealth distribution is static. 
 
-\vspace{3mm}
-With incomplete markets agents can \emph{self-insure} some of the idiosyncratic risk. The extent of insurance then depdens on how incomplete the asset markets are. In case of endogenously incomplete markets incentives constraints are key in affecting the level of insurance.
+\vspace{2mm}
+\noindent With incomplete markets agents can \emph{self-insure} some of the idiosyncratic risk. The extent of insurance then depdens on how incomplete the asset markets are. In case of endogenously incomplete markets incentives constraints are key in affecting the level of insurance.
 
-\noindent In this paper I explore the qualitative differences in the optimal risk sharing schemes where the distinction between risk and uncertainty is explicit. The settings will differ in two dimensions  - nature of market completeness and nature of ambiguity. 
+\noindent As a point of departure , in this paper I will explore the qualitative differences in the optimal risk sharing schemes where the distinction between risk and uncertainty is explicit. The settings will differ in two dimensions  - nature of market completeness and nature of ambiguity. 
 
 %% CHECK THE PACKAGE FOR COLUMNS
 
@@ -90,18 +90,33 @@ With incomplete markets agents can \emph{self-insure} some of the idiosyncratic 
 
 
 \section{Key Results}
-\noindent The basic mechanism studied is the interplay between insurance and pessimism in a general equilibrium framework. Ex-ante identical agents may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that agents who fear model uncertainty will choose different decision rules including how they learn about the parameters.
+\noindent Environments characterized by Knightian uncertainty would correspond to scenarios where agents entertain multiple probability specifications for the exogenous randomnes they are faced with and a selection rule that captures how they deal with this mutiplicity. 
+A basic mechanism studied here is the interplay between insurance and concerns for misspecification  in a general equilibrium framework. Ex-ante identical agents may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that agents who fear model mispecification will choose different decision rules including how they learn about the parameters. An expost Bayesian interpretation of this behavior is as if agents had heterogenous beleifs with this belief heterogenity summarizing the feature that concerns for misspecification may affect agents differently. 
 
-\noindent In the complete market setting model with aggregate randomness , uncertainty results in consumption shares depending on realizations of aggregate endowment. When utility is bounded from below wealthy agents who bear most of the aggregate risk over-insure themselves in low endowment states. Further in type (II) ambiguity qualitatively changes the risk sharing arrangement.With parameter uncertainty, consumption shares depend on realization of idiosyncratic endowments due to asymmetric reduction of compound lotteries. This has implications for asset prices and long-term survival. Market price of risk now depends on the relative wealth differences and is higher at the extremes. Further  the fact that agents beliefs (ex-post) diverge from their reference models depending on their wealth affects long run survival. In particular this generates survival possibilities for small perturbations from the correct reference model. This is in stark contrast with expected utility case where arbitrarily small 
-perturbations can cause such agents vanish asymptotically. 
+\noindent A recurring theme will be studying how the rational expectations assumption is subtly modified in Knightian uncertainty settings. Given outcomes and thier consequences agents will settle on their own beleifs and in equilibrium these outcomes have to consistent with these beliefs. The equilibrium thus internally imposes joint restrictions on beleif heterogenity and individual behavior. This route of belief heterogeneity is very different from the ones usually resorted in theory, namely
+\begin{enumerate}
+	\item Exogenous  - Harrison and Kreps
+	\item Asymmetric Information : Grossman Stiglitz
+	\item Rational Inattention  : Sims
+\end{enumerate}
 
-Market incompleteness introduces the prospect of un-insurable idiosyncratic risk. Now agents with higher wealth levels are relatively optimistic about their income distribution. The key force here is \emph{self-insurance}. Having a large amount of wealth reduces the randomness and concerns for misspecification for wealthy agents. This force survives the setting when markets are endogenously incomplete. To this end, I study a simple case where private information frictions affect the extent of risk-sharing. On one hand relative differences in beliefs requires consumption shares to be tilted towards agents who perceive the state more likely. However the extent to which this can be done depends on the incentives (truth-telling) constraints. Overall both these restrictions shape the insurance arrangement.
+\footnote{XXX: Marcet Nicolini and Marcet ,Adams and Nicolini provide a framework for thinking about internally rational agents. These agents do not internalize the equilibrium maps from shocks to endogenous outcomes like prices. Instead of using the model implied rational forecasts they use alternative statistical models that are `close' enough to that generatedi  in a REE.  }
+\noindent Here agents with symmetric information may `choose' to have different beliefs because their continuation values vary differently. More importantly this theory of heterogenous beliefs is tied down with equilibrium objects and is potentially testable through over-identifying restrictions.
+
+
+\noindent In the complete market setting model with aggregate randomness , uncertainty results in consumption shares depending on realizations of aggregate endowment. When utility is bounded from below wealthy agents who bear most of the aggregate risk over-insure themselves in low endowment states. Further in type (II) ambiguity qualitatively changes the risk sharing arrangement.With parameter uncertainty, consumption shares depend on realization of a distributional shock that no way affects the size of the aggregate endowment This is result of asymmetric reduction of compound lotteries with model uncertainty. This has implications for asset prices and long-term survival. Market price of risk now depends on the relative wealth differences and is higher at the extremes. Further parameter uncertanty makes the market price of risk and expected returns countercylical.
+
+The fact that agents beliefs (ex-post) diverge depending on their wealth affects long run survival. In particular this generates survival possibilities for small perturbations from the data generating process. This is in stark contrast with expected utility case where arbitrarily small perturbations can cause such agents who are wrong to vanish asymptotically. 
+
+Market incompleteness introduces the prospect of un-insurable idiosyncratic risk. Now agents with higher wealth levels are relatively optimistic about their income distribution. The key force here is \emph{self-insurance}. Having a large amount of wealth reduces the randomness and concerns for misspecification for wealthy agents. This force survives the setting when markets are endogenously incomplete. To this end, I study a simple case where private information frictions affect the extent of risk-sharing. On one hand relative differences in beliefs requires consumption shares to be tilted towards agents who perceive the state more likely. However the extent to which this can be done depends on the incentives (truth-telling) constraints. Overall both these restrictions shape the insurance arrangement. \footnote{XXX: Discuss implementation of these arrangements. Can we have examples that suggest the implentation of these arrangements are very different with model uncertainty.}
+
+
 
 \section{Preferences towards Knightian uncertainty}
 \noindent Knightian uncertainty in this context refers to an environment where risk cannot be perfectly quantified by an an agent. A specific source of Knightian uncertainty is the statistical closeness of different models of risk. \footnote{By ``model of risk' - I refer to a probability measure over future contingencies}.A feature common to any model of Knightian uncertainty as against a Bayesian benchmark is the presence of multiple priors and a rule describing how the decision maker selects a relevant prior. To complete a description of how agents behave in this setting we must specify a theory of how they deal with this multiplicity. Most models of ambiguity \footnote{refer to a subset of papers } try to recast the decision making problem by positing a prior selection rule confirming certain behavioral regularities. This prior selection rule opens up c channel of linking `ex-post' beliefs to other endogenous aspects of the environment. In this paper I follow Hansen Sargent (2007) version of recursive 
 multiplier preferences. With these preferences the decision maker confronts alternative models of risk by following a \textbf{\emph{robust}} approach. In particular he makes use of an hypothetical `malevolent agent' to design decision rules that are robust to the potential misspecification he is worried about. 
 
-\noindent A recurring theme in the formulation of ``statistical closeness'' will be the notion of ``Relative Entropy''. \footnote{This is also referred to the \emph{Kullback-Leiblar divergence} . It arises as the exponent of the probability error in an hypothesis test between two distributions}
+\noindent A feature that will show up later is the formulation of ``statistical closeness'' will be the notion of ``Relative Entropy''. \footnote{This is also referred to the \emph{Kullback-Leiblar divergence} . It arises as the exponent of the probability error in an hypothesis test between two distributions}
 \begin{definition}
 Consider two P and Q two absolutely continuous measures over a set X, the relative entropy between P, and Q is defined as 
 \[\mathcal{E}_{P,Q} = \int_{X}\log\frac{{dP}}{dQ}dP\]
@@ -166,8 +181,6 @@ With $\gamma > 1$, however, $\tilde{p}_i(\underline{Y})$ increases as $\alpha_i$
 
 \noindent  This roughly means that agents with low shares of aggregate endowmwnt are realtively more optimistic when the there is a lower bound on the utility. With $\gamma < 1$, we have a natural lower bound on utility i.e 0. With $\gamma > 1$ utility diverges to $\infty$ as cosumption goes to zero. This highlights the forces that will affect relative beliefs as wealth shares move around. Also the distiction between $\gamma$ less than and greater than one plays an important role in the survival analysis discussed later
 
-\vspace{10 mm}
-\noindent Now in a general equilibrium setup- agents this interplay will affect the demand for insurance and optimal risk sharing.In particular ex-ante identical guys may be subject to different continuation trajectories depending how idiosyncratic and aggregate risk/uncertainty is resolved in equilibrium. These different continuation trajectories will imply that ambiguity averse agents who fear for the worst model will choose different decision rules including how they learn about hidden state variables.
 
 Note that this depends on $\alpha$ as long as $\gamma\neq 1$. As will be shown later $\gamma=1$ case boils down to the special case of Epstien-Zin preferences. The homotheticity properties of these preference imply that in absence of preference heterogenity the risk sharing scheme is independent of concerns for model ambiguity as long as markets are complete
 
@@ -194,16 +207,6 @@ p \exp\left \{-\frac {[W(1+\kappa)]^{1-\gamma}}  {\theta (1-\gamma)} \right \}
 
 
 
-
-\vspace{10 mm}
-\noindent  A further observation is that this mechanism has a space for \emph{endogenous} emergence of heterogeneous beliefs. This route of belief heterogeneity is very different from the ones usually resorted in theory, namely
-\begin{enumerate}
-	\item Exogenous  - Harrison and Kreps
-	\item Asymmetric Information : Grossman Stiglitz
-	\item Rational Inattention  : Sims
-\end{enumerate}
-
-\noindent Here agents with symmetric information may `choose' to have different beliefs because their continuation values vary differently. More importantly this theory of heterogenous beliefs is tied down with equilibrium objects and is potentially testable through over-identifying restrictions.
 
 \section{Model}
 In this section I will specify the key ingredients of the setup for the complete markets environment. Both the exogenous and endogenous incomplete markets will modify this setup.
@@ -519,7 +522,7 @@ Now we activate learning by allowing the agent to entertain different and potent
 
 \item \emph{Distorted Filtering } - The agent now has access to data on $z$ which is informative about the hidden state $M$. Ideally he would use this information to update priors about $M$ and as long as both agents start off with identical priors they would filter the public signal $z$ in the same way. However now the agents have doubts about the stochastic structure of $z$. This affects how they filter these signals. With the ``no-commiittment'' version of the preferences we take stand that the agent applys Bayes to obtain a posterior and then uses his across models utility consequences to distort this outcome. This adjusted Bayes rule leads to a distorted filtering process. 
 \end{enumerate}
-
+\footnote{XXX Discuss how this is diferent than Al-Najjar and Weinstein (2009)}
 \noindent In presence of hidden states (here models), the relevant beliefs are model averaged conditional probabilities. Due to the fact that wealth differences lead to differential twisting for priors over model and transition probabities given a  model, model averaged conditionals may wary across agents for states of the world with same aggregate endowment. However this wont happen if the underlying model space is not rich enough or preferences are such that the non-linearity in compounding disappears. The following proposition elaborates this
 
 
@@ -800,18 +803,73 @@ Comparing expressions \ref{eq-mpr-eu} and  \ref{eq-mpr-type-1-amb} we have the s
 
 \begin{proposition}
 \label{propo-mpr}
-Let $MPR^{\theta_1,\theta_2}[z,v,\pi]$ be the market price of risk. We have 
-\[\lim_{v\to0} MPR^{\theta_1,\theta_2}[z,v,\pi] >MPR^{\infty}[z,v,\pi] \]
-\[\lim_{v\to0} MPR^{\theta_1,\theta_2}[y(z)=y_l,v,\pi] > \lim_{v\to0} MPR^{\theta_1,\theta_2}[y(z)=y_h,v,\pi] \]
+Let $MPR^{\theta_1}[z,vi]$ be the market price of risk in the Ambiguity (I) setting , We have 
+\[\lim_{v\to0} MPR^{\theta_1}[z,v] >MPR^{\infty,\infty}[z,v] \]
+\[\lim_{v\to0} MPR^{\theta_1}[y(z)=y_l,v] = \lim_{v\to0} MPR^{\theta_1}[y(z)=y_hvi] \]
 \end{proposition}
 
 
 
 
-Proposition \ref{propo-mpr} exploits the fact that in the limit $\zeta[z^*|z,v,\pi]$ is just the distorted liklihood ratio of the agent who bears the entire aggregate endowment and verifies the conditions in \ref{propo-7} to conclude that with Type(I) Ambiguity we have higher and countercylical market price of risk.   
+Proposition \ref{propo-mpr} exploits the fact that in the limit $\zeta[z^*|z,v,\pi]$ is just the distorted liklihood ratio of the agent who bears the entire aggregate endowment and verifies the conditions in \ref{propo-7} to conclude that with Type(I) Ambiguity we have higher but acyclic market price of risk
 
 
+%
+%
+%
+\begin{proposition}
+\label{propo-mpr}
+Consider an economy with $|\mathcal{M}|=2$ and $\alpha_2>\alpha_1=\frac{1}{2}$. 
 
+Let $MPR^{\theta_2}[z,vi,pi]$ be the market price of risk in the Ambiguity (II) setting with $\theta_1=\infty$, We have 
+\[\lim_{v\to0} MPR^{\theta_2}[y(z)=y_l,v,\pi] >  \lim_{v\to0} MPR^{\theta_2}[y(z)=y_h,v,\pi] \]
+\end{proposition}
+
+\begin{proof}
+
+Let $\pi$ denote the probability of $\alpha_m=\frac{1}{2}$ or the Bayesian common prior about the IID model.
+
+When $v \to 0$, the economy converges to a single agent world. The cylical properties of MPR now depend onthe conditional volatility of the distorted log liklihood ratio. 
+\[MPR(\pi,y)=\sigma\left[\left\{ \log \frac{\sum_{m} \tilde{\pi}[m|y(z)]P_z(z^*|y(z)=y )}{\sum_{m} \pi[m|y(z)]P_z(z^*|y(z)=y )}\right\}|y(z)=y\right]\]
+ 
+\begin{lemma}
+$MPR(\pi,y_l)>MPR(\pi,y_h)$ if $\tilde{\pi}[y_h]+\tilde{\pi}[y_l]<2\pi \quad \forall \pi $
+\end{lemma}
+\begin{proof}
+For an arbitrary $\pi,\tilde{\pi}(y_l),\tilde{\pi}(y_h)$ define the function $L$ 
+\[L[\pi,\tilde{pi}(y_l),\tilde{\pi}(y_h)]=\sigma\left[\left\{ \log \frac{\sum_{m} \tilde{\pi}[m|y(z)]P_z(z^*|y(z)=y_l )}{\sum_{m} \pi[m|y(z)]P_z(z^*|y(z)=y_l )}\right\}|y(z)=y_l\right]-  \sigma\left[\left\{ \log \frac{\sum_{m} \tilde{\pi}[m|y(z)]P_z(z^*|y(z)=y_h )}{\sum_{m} \pi[m|y(z)]P_z(z^*|y(z)=y_l )}\right\}|y(z)=y_h\right]\]
+
+It can be verified that $L$ satifies the following properties
+\begin{itemize}
+\item $L(\pi,\tilde{\pi}(y_l),\max\{2\pi-\tilde{\pi}(y_l)\}) >0$ for all $\tilde{\pi}(y_l)\leq \pi$
+\item $\frac{\partial L}{\partial \tilde{\pi}(y_h)}>0$
+\end{itemize}
+
+When $y=y_l$ the agent will distort the mixture probability away from the IID model and hence $\tilde{\pi}(y_l)\leq \pi$
+\end{proof}
+
+\begin{lemma}
+$\mathbb{E}[ v^{max}(y(z^*),\pi^*) |y(z)=y_h,\pi,m=2]>\mathbb{E}[ v^{max}(y(z^*),\pi^*) |y(z)=y_l,\pi,m=2]$ implies $\tilde{\pi}[y_h]+\tilde{\pi}[y_l]<2\pi \quad \forall \pi$
+\end{lemma}
+
+\begin{proof}
+
+Let $\Delta(y,\pi)= \| \mathbb{E}[ v^{max}(y(z^*),\pi^*) |y(z)=y,\pi,m=2] - \mathbb{E}[ v^{max}(y(z^*),\pi^*) |y(z)=y,\pi,m=1]  \|$
+
+\[\|\frac{\tilde{\pi}(y)-\pi}{\pi}\|=\frac{1}{\pi+(1-\pi)\exp\left\{ \frac{\delta}{\theta_2} \Delta(y,\pi) \right\}}\]
+
+Since $\alpha_{1}=\frac{1}{2}$ or $m=1$ is the IID model we have  $\mathbb{E}[ v^{max}(y(z^*),\pi^*) |y(z)=y_h,\pi,m=1] = \mathbb{E}[ v^{max}(y(z^*),\pi^*) |y(z)=y_l,\pi,m=1]$. Applying the triangle inequality we can conclude the lemma 
+\end{proof}
+%
+%
+%
+%Combining the two lemmas we have countercylical market price of risk in this limiting economy
+%
+\end{proof}
+%
+\begin{remark}
+Since the MPR is symmetric with respect to $v$, the properties generally hold for all intermediate wealth shares too
+\end{remark}
 
 % -OLD MPR STUFF --
 %\begin{proposition}
@@ -903,77 +961,140 @@ Note that when learning is active and we are in the case where consumption is se
 \subsection{Market selection and Ambiguity}
 The market selection hypothesis articulated by Friedman (1953) states that agents who make \emph{systematic} errors in evaluation of future risk loose wealth on an average and will be driven out of market. The setup described suggests that worst case beleifs could diverge from the data generating model. However this divergence is endogenous and not systematic. In particular it depends on the wealth distribution. In this environment there are two belief selection mechanisms which interact with each other. While the market weeds out incorrect beliefs via wealth transfers and the agents themselves are dealing with multiple priors. For $\gamma < 1$, the over-insurance and pessimism channels mean that agents whose approximating models are different from the data generating model need not necessarily vanish. The following example \footnote{modified from Blume and Easley (2000) } illustrates how ambiguity and survival could interact.
 
-\subsubsection{Survival - Example}
-Consider a case when the agents differ in the approximating model	,in particular
+\subsubsection{Survival}
+Consider a special case of Ambiguty (I) setting  where the agents differ in the approximating model, in particular
 \begin{enumerate}
-\item $P_Z(z^*|z)=P_Z(z^*)=P^2_Z(z^*)$
-\item $P_Z^1(z^*) \neq P_Z(z^*)$
+\item $P^2_Z(z^*|z)=P^2_Z(z^*)=P^2_Z(z^*)$
+\item $P_Z^1(z^*) \neq P^2_Z(z^*)$
 \end{enumerate}
-and $P_Z,P^1_Z$ imply that $z^t$ is i.i.d over time under both the measures
+and $P^2_Z,P^1_Z$ imply that $z^t$ is i.i.d over time under both the approximating models. 
 
-The FOC of the Planner are 
+Modifying the \ref{eq:FOC_vstar} we get 
 %
 \[\frac{\lambda_{T+1}}{\lambda_{T}} =\left[\frac{\tilde{P}^2_Z(z_{T+1})}{\tilde{P}^1_{Z}(z_{T+1})}\right]\]
 %Where 
 \[\tilde{P}^1_Z \propto P^1_Z \exp \left\{-\frac{Q_{T+1}}{\theta_1}\right\}\]
-\[\tilde{P}^2_Z \propto P_Z \exp \left\{-\frac{v_{T+1}}{\theta_1}\right\}\]
+\[\tilde{P}^2_Z \propto P^2_Z \exp \left\{-\frac{v_{T+1}}{\theta_1}\right\}\]
 
-Taking logs and iterating backwards we have
-
-\begin{eqnarray*}
-\frac{1}{T}\lambda_{T}&=\frac{1}{T}\sum_{t=0}^{T}\log\tilde{m}^2_{t,t+1}-\frac{1}{T}\sum_{t=0}^{T}\log \tilde{m}^1_{t,t+1}+\\ &+ \left( \frac{1}{T}\sum_{t=0}^{T}\log[P_Z(z_{T+1})]\right)\\
-&- \left( \frac{1}{T}\sum_{t=0}^{T}\log[P^1_Z(z_{T+1})]\right)]
-\end{eqnarray*}
+Taking logs and integrating under the data generating measure $P^0(z*|z)$  we have
 
 
-Now if $\lambda_{T}\to \infty$ then we have
+\begin{equation}
+\mathbb{E}^0 \log\frac{\lambda_{T+1}}{\lambda_{T}} = \tilde{\mathbb{I}}^{0,1}_{T}-\tilde{\mathbb{I}}^{0,2}_{T}
+\end{equation}
+
+Where $\tilde{\mathbb{I}}^{0,i}$ is the realtive entropy of the distorted model of Agent i' with respect to the data generating measure induced by $P^0$
+
+Let us denote the expected growth rate of $\lambda_T$ by $\mathcal{G}_{\lambda,T}$.
+
+On paths when either $\lambda_T\to \infty$ or $\lambda_T\to 0$ we can apply the LLN to conclude that the limiting growth rate is constant and approaches
 \begin{itemize}
-\item $v_{T}\to v^{max}$
-\item $Q_{T}\to 0$
-\item $\tilde{m}^1_{T,T+1} \to 1$
-\item $\tilde{m}^2_{T,T+1} \to \frac{\exp \{-\frac{v^{max}}{\theta_1}\}}{\mathbb{E}_2 \exp\{-\frac{v^{max}}{\theta_1}\}} \quad (`m`)$
+\item  $\{\lambda_T \to \infty\}$ implies
+\[\lim_{T}\mathcal{G}_{\lambda,T}=\mathcal{G}^{\infty}_{\lambda}=\mathbb{I}^{0,1}+\mathbb{E}^0 \log m^2 - \mathbb{I}^{0,2}\]
+\[\lambda_{T+s} \approx \lambda_{T} e^{T \mathcal{G}^{\infty}_{\lambda} }\]
+With the restriction that $\mathcal{G}^{\infty}_{\lambda}>0$
+
+\item  $\{\lambda_T \to 0\}$ implies
+\[\lim_{T}\mathcal{G}_{\lambda,T}=\mathcal{G}^{0}_{\lambda}=\mathbb{I}^{0,1}-\mathbb{E}^0 \log m^1 - \mathbb{I}^{0,2}\]
+\[\lambda_{T+s} \approx \lambda_{T} e^{T \mathcal{G}^{0}_{\lambda} }\]
+With the restriction that $\mathcal{G}^{\infty}_{\lambda}<0$
 \end{itemize}
-Using the LLN, for large T,
 
-\[\lambda_T=e^{[\mathbb{I}_1 + \mathbb{E} log m]T} \]
+Where $m^i=\frac{exp\{ -v^{max}(y)/\theta\}}{\mathbb{E}^i exp\{ -v^{max}/\theta_1\}}$
+Using Jensen's inequality we can conclude that $\mathbb{E}^i \log m^i <log \mathbb{E}^i m^i=0$
+The preceeding calculation establishes that the necessary conditions for either agent to dominate (and the other to vanish) 
+\begin{equation}
+ \mathbb{I}^{0,1}-\mathbb{I}^{0,2} \notin (\mathbb{E}^0\log m^1,-\mathbb{E}^0\log m^2)
+\end{equation}
 
-Since $\mathbb{E}m=1$, generally $\mathbb{E} log m$ will be negative
-and it means that the relative entropy of Agent 1 ($\mathbb{I}_1$) has to suffciently
-high for him to vanish or $\lambda_T$ to diverge.
+This necesary condition can be contrasted with Blume Easely (2000)  interms of the `entropy wedge'. Without concerns for ambiguity arbitrary differences in beliefs lead to asymptotic dominance of Agent whose relative entropy is smallest with respect to the data generating measure. With $\gamma < 1$ and model uncertainty, the paths on which an agent dominates are also the paths which his pessimisim creates a wedge between his reference model and his ex-post beleifs. This favors the vanishing agent if the data generating measures and the reference measures are close enough. This can eventually lead to limits in which neither Agent vanishes.  We can characterize the stationary point as follows
 
-\section{An example}
+
+
+$\hat{Q}$ and $\hat{v}$ solve the following recursions
+
+\begin{itemize}
+\item $\hat{Q}(\alpha , y) = u(\alpha,y)-\delta \theta_1 \log \sum_{y^*} \exp\left\{ -\frac{\hat{Q}(\alpha,y^*)}{\theta_1}\right\} P^1(y^*|y)$
+\item $\hat{v}(1-\alpha , y) = u[(1-\alpha)y]-\delta \theta_1 \log \sum_{y^*} \exp\left\{ -\frac{\hat{v}(1-\alpha,y^*)}{\theta_1}\right\} P^2(y^*|y)$
+\end{itemize}
+
+Denote $\Delta^1 = \hat{Q}(1, y_h)-\hat{Q}(1 , y_l)$ and  $\Delta^2 = \hat{v}(1, y_h)-\hat{v}(1 , y_l)$
+
+\begin{proposition}
+If 
+
+\[ \log \frac{P^2(y_h)}{P^1(y_h)}- \log \frac{P^2(y_l)}{P^1(y_l)} \in (-\Delta^1,\Delta^2) \] , there exists a constant $\bar{\lambda}$ independent of the $y$ and the data generating process such that
+
+\[\lambda_T= \bar{\lambda} \implies \lambda_{T+s}=\bar{\lambda} \quad \forall s>0\]
+
+\end{proposition}
+
+
+\begin{proof}
+
+Let $\hat{Q}(\alpha,y), \hat{v}(1-\alpha,y)$ be the values of Agent 1 and 2 respectively from consuming a constant share of the aggregate endowment.  Let $\bar{\alpha}$ solve ,
+
+
+\[   \frac{P^2(y_h)}{P^1(y_h)} \exp\{\frac{ \hat {Q}(\alpha,y_h)- v(1-\alpha,y_h)}{\theta_1} \}  =   \frac{P^2(y_l}{P^1(y_l)} \exp\{\frac{ \hat {Q}(\alpha,y_l)- v(1-\alpha,y_l)}{\theta_1} \} \]
+
+The sufficient conditions on probsbilities ensure that there exists a  root in $\alpha=\bar{\alpha}$.  Now starting with $v=\hat{v}(1-\bar{\alpha},y)$ we have that $Q(\hat{v},y)=\hat{Q}(\bar{\alpha},y)$ or stationary value function solves the Bellman equation with different approximating models. Thus we can recover the derivatives of $Q(v,y)|_{v=\hat{v}}$ by using the stationary value functions.
+
+
+\[ \frac{\partial Q(v,y) }{\partial v}|_{v=\hat{v}} = \frac{  \hat{Q}_{\alpha}(\alpha,y)  } { \hat{v}_{\alpha}(1-\alpha,y)} |_{\alpha=\bar{\alpha}} \] 
+
+
+This gives $\bar{\lambda} = \frac{\bar{\alpha}^{-\gamma}}{(1-\bar{\alpha})^{\gamma}}$
+
+
+\end{proof}
+
+\begin{remark}
+With $\theta_1=\infty$ we have $\frac{\lambda[y_h|y,v]}{\lambda(y,v)} \neq \frac{\lambda[y_l|y,v]}{\lambda(y,v)} $ for all $v$. As against this when $\theta <\infty$, we can have these curves ' crossing'  at $v=\hat{v}(1-\bar{\alpha},y)$. This `crosing` comes from the policy rules and the point independent of the data generating process.
+\end{remark}
+
+
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[width=	\textwidth]{Matlab/InfiniteHorizon/Survival/Graphs/SurvivalGrowthRateLambdaStar.png}
+	  \caption{ The figure plots the log change in the lagrange multiplier as a function of the continuation value. The solid (dotted) line refers to$ y(z^*)=y_l (y_h)$. The left (right) panel has $\theta_1<\infty  (\theta_1=\infty $)}	  
+\label{fig:SurvivalGrowthRateLambdaStar}
+\end{figure}
+
+
+\begin{remark}
+Unde the assumptiom that approximating models are sufficiently close, we have that $\mathcal{G}_{lambda} (v,y) =0 $ at the stationary points. Away from the stationary points i.e for example $v \to 0$ Agent 1's pessimism can drive his relative entropy to be higher than that of Agent 2. This makes $\mathcal{G}(v,y) >0$ and $\lambda$ (or $v$) gets a positive drift towards $\bar{lambda}$.
+\end{remark}
+
+
+
+\begin{remark}
+The outcomes interms of the convergence rate can depend on the underlying data generating process. Suppose $P^0$ is either Agent's approximating model (or a convex combination of them). At the stationary point the relative entropies of both agent are strictly positive but equal hence $\mathcal{G}_{\lambda}$ is zero. As against this if the data generating process is either Agent's worst case model, at the stationary point both the relative entropies are equal to 0. Since relative entropy is a convex measure of distance, a small pertubation of the system will cause a much larger change in the magnitude of $\mathcal{G}_{\lambda}$ under the former case than the later. This means that the speed of adjustment will be very slow under the Agent's respective worst case beliefs.   Figures \ref{fig:Agent1ConsumptionShareLongSample} and \ref{fig:Agent1ConsumptionShareLongSampleDist} depicts the long run dymaics under alternative measures
+\end{remark}
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Survival/Graphs/Agent1ConsumptionShareLongSample.png}
+	  \caption{ This figure plots a simulated path for the consumption share of Agent 1$\eta_1$ starting from 3 different initial conditions. The dotted (solid) line plots outcome under Agent 1 (Agent 2's) reference beliefs }	  
+\label{fig:Agent1ConsumptionShareLongSample}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Survival/Graphs/Agent1ConsumptionShareLongSampleDist.png}
+	  \caption{ This figure plots a simulated path for the consumption share of Agent 1$\eta_1$ starting from 3 different initial conditions. The dotted (solid) line plots outcome under Agent 1 (Agent 2's) worst case beliefs}	  
+\label{fig:Agent1ConsumptionShareLongSampleDist}
+\end{figure}
+
+
+
+
+\section{Numerical example}
 For the rest of the section I will use the  paramters in \ref{tab:Param} to highlight the qualitative features of other interesting objects like market price of risk, survival dyanamics etc. The model space consists of two models  - an IID model and a non-IID model.  The planners problem is solved numerically by approximating $\mathcal{Q}$ with cubic splines. Appendix \ref{appdx-Diagnostic} has the details and other diagnostics about the approximation.
 
-\subsection{Consumption Shares}
-%\noindent Figures \ref{fig:ConsStarRatioIID}, \ref{fig:ConsStarRatioNonIID} summarize how consumption shares vary with the initial promised value to Agent 2 - $v$. The four panels correspond to values of $z$ and each panel plots the gross consumption growth rate for Agent 1 - $\frac{c^1(z^*)}{c^1(z)}$ as a function of $v$. This curve becomes flatter and asymptotes to 1 as  $\theta \to \infty$. The downward sloping black line reflects that as Agent 2 gets wealthier he over-insures (and hence Agent 1 under-insures) himself in the possibility that the next period $y(z^*)=y_l$. For the IID model ( figure \ref{fig:ConsStarRatioIID}) we see that the inital state $z$ does not matter and all the four panels have the same plots. For the non-IID model ( figure \ref{fig:ConsStarRatioNonIID}) note that the  distributional shock - $s$ does not matter but the aggregate endowment  - $y$ does. In particular the slopes of the black lines are very different in the panels corresponding to $y_l$ and $y_h$. The flatter black 
-line when $y(z^*)=y_l$ captures the fact that the persistence  in the underlying model makes it more (relative to $y(z^*)=y_h)$ likely that the next period will feature a low realization of aggregate endowment. This makes the pessimistic twistting less severe in $y(z^*)=y_l$ case. Consider the following heuristic example to see this more clearly. Let $V_l$ and $V_h$ be the utility consequences in the low and high endowment states and $(p_l,1-p_l)$ the corresponding reference probabilities The pessimstic twisting requires, 
-%\[\frac{\tilde{p}_l}{p_l}=\frac{\exp\{\frac{-V_l}{\theta}\}}{p_l\exp\{\frac{-V_l}{\theta}\}+(1-p_l)\exp\{\frac{-V_h}{\theta}\}}\]
-%Note that the relative distortion (on the LHS) in decreasing in $p_l$ as long as $V_l < V_h$.
-%\noindent Figure \ref{figConsStarShareLearning} shows the evolution of consumption shares in the learning case for $\pi=\frac{1}{2}$. The dotted lines now refer to the realizations of $z^*$ corresponding to $s(z^*)=s_h$. The fact that the solid lines and the dotted lines do not overlaps correponds to effect described in proposition \ref{propo-5}. In this case the condition (2) is not satisfied. The gap between the dotted lines and solid lines is due the effects of learning. For example in the case when $z=(y_l,s_l)$ as $v \to v_{max}$ we have the dotted black line above the solid black line. This means that Agent 1 over-insures the state $z^{*}=(y_{l},s_{h})$ as against $z^{*}=(y_{l},s_{l})$. This is due to the following reasoning - Given that the current state has low aggregate endowment, Agent 2 over-estimates (relative to Agent 1)the probability of the underlying model being NonIID. Since the NonIID model has a lower conditional probability of $s_h$, the Agents disagree on the conditional probability of 
-$s(z^*)=s_h$, in particular Agent 1 considering it more likely. This ultimately results in him buying more insurance against this shock than Agent 2. 
-%
-%
-%\begin{figure}[htbp]
-%\centering
-%	  \includegraphics[scale=0.5]{Matlab/InfiniteHorizon/Learning/Persistent/Plots/Fig_ConsStarRatioIID.png}
-%	  \caption{This figure plots the gross consumption growth of Agent 1 as a function of the initial promised value of Agent 2 in the IID case. The solid black (red) line represents low (high) aggregate endowment state The four panels represent the outcomes for different realizations of z.}
-%	  \label{fig:ConsStarRatioIID}
-%\end{figure}
-%
-%
-%\begin{figure}[htbp]
-%\centering
-%	  \includegraphics[scale=0.5]{Matlab/InfiniteHorizon/Learning/Persistent/Plots/Fig_ConsStarRatioNonIID.png}
-%	  \caption{This figure plots the gross consumption growth of Agent 1 as a function of the initial promised value of Agent 2 in the NonIID case. The four panels represent the outcomes for different realizations of z and $\pi=\frac{1}{2}$}
-%	  \label{fig:ConsStarRatioNonIID}
-%\end{figure}
-%
-%\begin{figure}[htbp]
-%\centering
-%	  \includegraphics[scale=0.5]{Matlab/InfiniteHorizon/Learning/Persistent/Plots/Fig_ConsStarRatioLearning.png}
-%	  \caption{This figure plots the gross consumption growth of Agent 1 as a function of the initial promised value of Agent 2 in the case with learning. The four panels represent the outcomes for different realizations of z.}
-%	  \label{fig:ConsStarRatioLearning}
-%\end{figure}
+
+
 
 \section{Consumption Shares}
 
@@ -1026,7 +1147,7 @@ Notice that this ratio limits to $1$ when $\pi \to 1$ and to $\left(\frac{V(\tex
 \centering
 	  \includegraphics[scale=0.5]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_infty/Transitory/DistortedPriors.png}
 
-	\caption{This figure plots the $\frac{\tilde{\pi}^2}{\tilde{pi}^1}$ as a function of $v,\pi$. The left (right) panel has $y(z)=y_l (y_h)$ }
+	\caption{This figure plots the $\frac{\tilde{\pi}^2}{\tilde{\pi}^1}$ as a function of $v,\pi$ with  $y(z)=y_l $ }
  
 	\label{fig:DistPriors}
 \end{figure} 
@@ -1043,12 +1164,12 @@ with \ref{propo-6} the right panel has uniformly pro-cyclic market price of risk
 	\caption{\small {This figure plots the MPR as a function of the initial promised
 value to Agent 2- v. The  solid (dotted) line refers to $y(z)=y_l (y_h)$. The
 left (right) panel has $\pi=1 (\pi=0)$}}
-	\label{fig:MPRNoLearning}
+	\label{fig:MarketPriceOfRiskNoLearning}
 \end{figure} 
 
 \begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_infty/Transitory/MPRLearningPi.png}
+	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_infty/Transitory/MPRLearningPi.png}
 
 	\caption{ This figure plots the conditional market price of risk as function of $\pi$. The solid (dotted) line is $y(z)=y_l (y_h)$. The left panel has $\theta_2<\infty,\theta_1=\infty $ and the right panel has both $\theta_1,\theta_2=\infty$}
  
@@ -1180,72 +1301,72 @@ In this case the effects of learning persist in the limit. The steady state dist
 
 
 
-Note that in \ref{fig:SS_theta_1_finite_persistent}, \ref{fig:fig:SS_theta_1_infty_persistent} the chain for $\lambda$  does not cluster around at $1$.
 
 
 \subsection{Dynamics of Market Price of Risk}
+As discussed in section \ref{sec-Pricing Kernel}  and \ref{sec-MPR} the conditional market price of risk depends on the state - $(z,\pi,v)$. When learning is transient ($P_M=\mathbb{I})$ the long run market price of risk approaches a constant as wealth shares stabalize. In the short run with
 
-%XXXX WHEN IS MARKET PRICE OF RISK COUNTERCYLICAL. REWORD THIS SECTION AFTER YOU FIGURE OUT MORE DETAILS ABOUT CYLICITY OF MPR
-%
-%
-As discussed in section \ref{sec-Pricing Kernel}  and \ref{sec-MPR} the conditional market price of risk depends on the state - $(z,\pi,v)$. The dynamics of $v$ thus feed into the dynamics of market price of risk . As long as $\pi$ is not degenerate, the market price of risk displays volatility conditioned on the aggregate shocks.  
-%
-%Even in the Benchmark Model presence of hidden state by itself adds some time-variation in market price of risk since posteriors converge to the steady state distribution. Is this time-variation also state dependent ? Note that the symmetry in the way the transition matrices are constructed under each model makes market price of risk acyclic. With $\theta_1,\theta_2 = \infty$, we have
-%\[MPR_t \approx \gamma \sigma_t(\Delta y_{t+1})\]
-%Under both models the change is $(\Delta y_{t+1})^2$ is independent of the the current state.  
-%\footnote{In an Linear Gaussian setup this is naturally true since the posterior variances are independent of signal realizations} However, with ambiguity the agents additionally tilts the outcome of learning towards the Non-IID model in low endowment states and vice versa. This leads to countercyclical market price of risk.
-%
-In the figures below I simulate a path for the market price of risk from the same stationary distributions as in the previous sections. Figure \ref{fig:MPRDraw_theta_1_finite_transitory} depict the dynamics of MPR for type (I) ambiguity. With the IID model we have the MPR is flat (but higher than what it would have been with $\theta_1=\infty$). The Non-IID transient model has the block like structure where MPR is constant across realizations of the distributive shock -$s^*$. Finally figure \ref{fig:MPRDraw_theta_1_finite_persistent} and \ref{fig:MPRDraw_persistent} depict dynamics when $P_M\neq \mathbb{I}$ and type (II) ambiguity is active asymptotically. The MPR now moves around within periods of low (high) realizations of aggregate endowment.
-\begin{figure}[htbp]
-\centering
-	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_finite/Transitory/MPRDraw.png}
-
-	\caption{\small {This figure plots a sample path of MPR from the ergodic distribution for $\theta_1,\theta_2 =.5$ and $P_M=\mathbb{I}$}. The shaded bars have $y(z)=y_l$}
-
-	\label{fig:MPRDraw_theta_1_finite_transitory}
-\end{figure} 
-
-\begin{figure}[htbp]
-\centering
-\subfloat[MPR $\theta_1<\infty,\theta_2<\infty$]{
-	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_finite/Persistent/MPRDraw.png}
-	}
-	\subfloat [MPR $\theta_1=\infty,\theta_2<\infty$]{
-
-	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_infty/Persistent/MPRDraw.png}
-}
-%\caption{\small {This figure plots the ergodic distribution for $v^*$,$\lambda^*$ with $\theta_1=\infty,\theta_2 =.5$ and $P_M\neq \mathbb{I}$}}
-\label{fig:MPRDdraw_persistent}
-\end{figure} 
-
+%%XXXX WHEN IS MARKET PRICE OF RISK COUNTERCYLICAL. REWORD THIS SECTION AFTER YOU FIGURE OUT MORE DETAILS ABOUT CYLICITY OF MPR
+%%
+%%
+%As discussed in section \ref{sec-Pricing Kernel}  and \ref{sec-MPR} the conditional market price of risk depends on the state - $(z,\pi,v)$. The dynamics of $v$ thus feed into the dynamics of market price of risk . As long as $\pi$ is not degenerate, the market price of risk displays volatility conditioned on the aggregate shocks.  
+%%
+%%Even in the Benchmark Model presence of hidden state by itself adds some time-variation in market price of risk since posteriors converge to the steady state distribution. Is this time-variation also state dependent ? Note that the symmetry in the way the transition matrices are constructed under each model makes market price of risk acyclic. With $\theta_1,\theta_2 = \infty$, we have
+%%\[MPR_t \approx \gamma \sigma_t(\Delta y_{t+1})\]
+%%Under both models the change is $(\Delta y_{t+1})^2$ is independent of the the current state.  
+%%\footnote{In an Linear Gaussian setup this is naturally true since the posterior variances are independent of signal realizations} However, with ambiguity the agents additionally tilts the outcome of learning towards the Non-IID model in low endowment states and vice versa. This leads to countercyclical market price of risk.
+%%
+%In the figures below I simulate a path for the market price of risk from the same stationary distributions as in the previous sections. Figure \ref{fig:MPRDraw_theta_1_finite_transitory} depict the dynamics of MPR for type (I) ambiguity. With the IID model we have the MPR is flat (but higher than what it would have been with $\theta_1=\infty$). The Non-IID transient model has the block like structure where MPR is constant across realizations of the distributive shock -$s^*$. Finally figure \ref{fig:MPRDraw_theta_1_finite_persistent} and \ref{fig:MPRDraw_persistent} depict dynamics when $P_M\neq \mathbb{I}$ and type (II) ambiguity is active asymptotically. The MPR now moves around within periods of low (high) realizations of aggregate endowment.
 %\begin{figure}[htbp]
 %\centering
-%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/Fig_MPR1.png}
+%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_finite/Transitory/MPRDraw.png}
 %
-%	\caption{This figure plots the Market Price of Risk for sample of 150 periods from the
-%          ergodic  distribution.. The shaded bars are periods of low aggregate endowment}
-%	\label{fig:MPRPL}
-%\end{figure} 
+%	\caption{\small {This figure plots a sample path of MPR from the ergodic distribution for $\theta_1,\theta_2 =.5$ and $P_M=\mathbb{I}$}. The shaded bars have $y(z)=y_l$}
 %
-%
-%\begin{figure}[htbp]
-%\centering
-%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/Fig_MPR2.png}
-%
-%	\caption{This figure plots the Market Price of Risk for sample of 150 periods from the
-%          ergodic  distribution.. The shaded bars are periods of low aggregate endowment}
-%	\label{fig:MPRPL}
+%	\label{fig:MPRDraw_theta_1_finite_transitory}
 %\end{figure} 
 %
 %\begin{figure}[htbp]
 %\centering
-%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Persistent/Plots/Fig_MPR1.png}
+%\subfloat[MPR $\theta_1<\infty,\theta_2<\infty$]{
+%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_finite/Persistent/MPRDraw.png}
+%	}
+%	\subfloat [MPR $\theta_1=\infty,\theta_2<\infty$]{
 %
-%	\caption{This figure plots the Market Price of Risk for sample of 150 periods from the
-%          ergodic  distribution.. The shaded bars are periods of low aggregate endowment}
-%	\label{fig:MPRPL}
+%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/theta_1_infty/Persistent/MPRDraw.png}
+%}
+%%\caption{\small {This figure plots the ergodic distribution for $v^*$,$\lambda^*$ with $\theta_1=\infty,\theta_2 =.5$ and $P_M\neq \mathbb{I}$}}
+%\label{fig:MPRDdraw_persistent}
 %\end{figure} 
-
+%
+%%\begin{figure}[htbp]
+%%\centering
+%%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/Fig_MPR1.png}
+%%
+%%	\caption{This figure plots the Market Price of Risk for sample of 150 periods from the
+%%          ergodic  distribution.. The shaded bars are periods of low aggregate endowment}
+%%	\label{fig:MPRPL}
+%%\end{figure} 
+%%
+%%
+%%\begin{figure}[htbp]
+%%\centering
+%%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Plots/Fig_MPR2.png}
+%%
+%%	\caption{This figure plots the Market Price of Risk for sample of 150 periods from the
+%%          ergodic  distribution.. The shaded bars are periods of low aggregate endowment}
+%%	\label{fig:MPRPL}
+%%\end{figure} 
+%%
+%%\begin{figure}[htbp]
+%%\centering
+%%	  \includegraphics[scale=0.4]{Matlab/InfiniteHorizon/Learning/Persistent/Plots/Fig_MPR1.png}
+%%
+%%	\caption{This figure plots the Market Price of Risk for sample of 150 periods from the
+%%          ergodic  distribution.. The shaded bars are periods of low aggregate endowment}
+%%	\label{fig:MPRPL}
+%%\end{figure} 
+%
 \section{Review - Complete Markets}
 
 \section{Incomplete Markets}
@@ -1289,7 +1410,7 @@ Since $\tilde{p}(y)=p(y)m^*(y,b)$ we have that the richer the agent overweights 
 Figure \ref{fig:StaticBondEconomy} shows an example with $\theta=1$ and $\gamma=.5$ and a risky endowment $y$ that has a density propotional to a standard normal. The solid line depicts the density under the approximating model. The two dotted lines show how the worst case density ``shifts'' we change the asset levels. In particular the dotted red line being closer to the benchmark illustrates the self-insurance effect of high assets. Figure \ref{fig:StaticYBar} shows how the threshold $\bar{y}(b)$ flattens out as $b$ increases. The shaded region are the realizations of $y$ that are relatively overweigted by the marginally `rich' agent.
 	\begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/Plots/StaticBondEconomy.png}
+	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/Plots/StaticBondEconomy.png}
 
 	\caption{This figure shows the reference and worst case models for two levels of assets in the static example with $\theta=1$,$\gamma=0.5$}
 	\label{fig:StaticBondEconomy}
@@ -1297,7 +1418,7 @@ Figure \ref{fig:StaticBondEconomy} shows an example with $\theta=1$ and $\gamma=
 
 	\begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/Plots/StaticYBar.png}
+	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/Plots/StaticYBar.png}
 
 	\caption{This figure plots $\bar{y} (b)$ for the static example with $\theta=1$,$\gamma=0.5$. The shaded region are realizations of $y$ for which $m^*_b(y,b)>0$}
 	\label{fig:StaticYBar}
@@ -1343,14 +1464,14 @@ Figure \ref{fig:StaticBondEconomy} shows an example with $\theta=1$ and $\gamma=
 top panel) now shows the ``relative pessimism'' $\mathcal{R}$ as defined above. We see that it dimishes with $b_{0,1}$. The bottom pael shows the distorted model priors for both the agent.  With $b_{0,1}$ low , Agent 1 (solid line) tilts the prior ($\pi=0.5$) towards the persistent model when he receives the low income shock. This twisting is moderated and $\tilde{\pi}$ goes towards $\pi$ as $b_{0,1}$ becomes large. The opposite holds for Agent 2
 %	\begin{figure}[htbp]
 %\centering
-%	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/Plots/BondEconomyOucomes.png}
+%	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/Plots/BondEconomyOucomes.png}
 %
 %	\caption{The top panel plots the bond price , Agent 1's bond demand as a function of his initial bond holdings $b_{0,1}$. The dotted line are the outcomes in the benchmark case without ambiguity. The bottom panel plots Agent 1's consumption and $\bar{y}(b^*_1)$ respectively. In all the plots $z=1$ and $\pi=.5$}
 %	\label{fig:BondEconomyOucomes}
 %\end{figure} 
 %	\begin{figure}[htbp]
 %\centering
-%	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/Plots/BondEconomyBeleifs.png}
+%	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/Plots/BondEconomyBeleifs.png}
 %
 %	\caption{The top panel plots the relative pessimism as a function of Agent 1's share of initial assets-$b_{0,1}$. The bottom panel plots $\tilde{\pi}$ for both the agents with the solid line depicting Agent 1. In all the plots $z=1$ and $\pi=.5$ }
 %	\label{fig:BondEconomyBeleifs}
@@ -1514,7 +1635,7 @@ are very different. In particular $\tilde{pi}^1$ is not monotonic. Since the age
 
 \begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figDeltaSavingsNoLearning.png}
+	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figDeltaSavingsNoLearning.png}
 
 	\caption{ }
  
@@ -1525,7 +1646,7 @@ are very different. In particular $\tilde{pi}^1$ is not monotonic. Since the age
 
 \begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figEBondPricesNoLearning.png}
+	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figEBondPricesNoLearning.png}
 
 	\caption{ }
  
@@ -1536,7 +1657,7 @@ are very different. In particular $\tilde{pi}^1$ is not monotonic. Since the age
 
 \begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figDistP.png}
+	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figDistP.png}
 
 	\caption{ }
  
@@ -1547,7 +1668,7 @@ are very different. In particular $\tilde{pi}^1$ is not monotonic. Since the age
 
 \begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figDistPi.png}
+	  \includegraphics[width=	\textwidth]{Matlab/IncompleteMarkets/InfiniteHorizon/Plots/theta_1_finite/Transitory/figDistPi.png}
 
 	\caption{ This plots $\tilde{pi}^1$ given $\pi=\frac{1}{2}$. The top (bottom) panel is $s=s_l$ ($s=s_h$)}
  
@@ -1715,7 +1836,7 @@ Note that this proposition compares the outcomes with benchmark keeping $\lambda
 Figure{\ref{fig:StaticPIConsumptionPlan}} illustrates this in a numerical example with $\pi=1,\theta_1=1,\gamma=.5,\frac{\Delta}{y}=.3$.
 \begin{figure}[htbp]
 \centering
-	  \includegraphics[scale=0.5]{Matlab/PrivateInformation/Plots/StaticPIConsumptionPlan.png}
+	  \includegraphics[scale=0.4]{Matlab/PrivateInformation/Plots/StaticPIConsumptionPlan.png}
 
 	\caption{The plot depicts consumption of Agent 1 in $t=1$, state $z_1$. The dotted line is the benchmark without concerns for model ambiguity.}
 	\label{fig:BondEconomyOucomes}

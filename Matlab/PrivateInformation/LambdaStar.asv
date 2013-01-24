@@ -1,0 +1,54 @@
+function [lambdastar Qstar cstar]=LambdaStar(v,z,Para,flagRob)
+% get components from Para struc
+P=Para.P(:,:,1);
+ra=Para.RA;
+delta=Para.delta;
+y=Para.y;
+sl=Para.sl;
+sh=Para.sh;
+Delta=y*(sh-sl);
+Theta=Para.Theta;
+theta_11=Theta(1,1);
+theta_21=Theta(2,1);
+
+if flagRob==0
+cstar0=u_inv(v,ra);
+ options=optimset('Display','off');
+cstar = fsolve(@(cstar) TerminalPKEU(cstar,v,z,Para),cstar0,options);
+        % From the FOC of the terminal period
+        lambdastar=[der_u(cstar,ra) der_u(cstar+Delta,ra)]*P(z,:)'/([der_u(y-cstar,ra) der_u(y-cstar-Delta,ra)]*P(z,:)');
+        Qstar=u(cstar,ra)*P(z,1)+u(cstar+Delta,ra)*P(z,2);
+end
+
+if flagRob==1
+      cstar0=y-u_inv(v,ra);
+        options=optimset('Display','off');
+        
+        % This solves the promise keeping for agent 2 in the terminal state
+        % for vstar(z)
+        
+        cstar = fsolve(@(cstar) TerminalPKRU(cstar,v,z,Para),cstar0,options);
+        
+     %Now we use the consumption plan in the terminal period (c*,c*+Delta) to construct the worst case distibutions for both the agents
+     
+tilde_p_agent_1(1)=P(z,1)*exp(-u(cstar,ra)/theta_11);
+tilde_p_agent_1(2)=P(z,2)*exp(-u(cstar+Delta,ra)/theta_21);
+tilde_p_agent_1=tilde_p_agent_1./sum(tilde_p_agent_1);
+
+
+% tilde_p_agent_2
+tilde_p_agent_2(1)=P(z,1)*exp(-u(y-cstar,ra)/theta_21);
+tilde_p_agent_2(2)=P(z,2)*exp(-u(y-cstar-Delta,ra)/theta_21);
+tilde_p_agent_2=tilde_p_agent_2./sum(tilde_p_agent_2);
+
+        
+        
+        
+        
+        % From the FOC of the terminal period we can back out lambda*(v*_1(z),z)
+        
+        lambdastar=[der_u(cstar,ra) der_u(cstar+Delta,ra)]*tilde_p_agent_1'/([der_u(y-cstar,ra) der_u(y-cstar-Delta,ra)]*tilde_p_agent_2');
+      % Now we compute the terminal utility of agent 1 a v*(z'),z)
+      
+        Qstar=-theta_11*log(P(z,1)*exp(-u(cstar,ra)/theta_11)+P(z,2)*exp(-u(cstar+Delta,ra)/theta_11));
+end

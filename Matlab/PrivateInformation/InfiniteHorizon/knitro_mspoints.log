@@ -1,0 +1,4 @@
+// KNITRO 8.1.0 Multi-start Repository for feasible points.
+// Each point contains information about the problem and the point.
+// Points are sorted by objective value, from best to worst.
+

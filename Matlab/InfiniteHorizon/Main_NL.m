@@ -27,7 +27,7 @@ if isempty(err)
     
     
     if(matlabpool('size') > 0)
-        matlabpool close
+        matlabpool close force local
     end
     
     matlabpool open local;
@@ -47,7 +47,7 @@ Para.VGridSize=VGridSize;
 % functional space for the value function iteration.
 % Set up the minimum and maximum share of the aggregate endowment
 %alphamin=.05;
-alphamin=0.05
+alphamin=0.05;
 alphamax=(1-alphamin*1.5);
 [Q,VGrid,VSuperMax,GridSize]=BuildGrid(Para,alphamin,alphamax);
 Para.GridSize=GridSize;

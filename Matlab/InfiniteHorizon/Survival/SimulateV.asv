@@ -38,7 +38,30 @@ for i=2:Para.N
     
 xtest=[y_draw(i-1) VHist(i-1)];
 xInit=GetInitalPolicyApprox(xtest,x_state,PolicyRules);
+if min(xInit)<.0001
+    xInit=xInit+.01;
+end
 resQNew=getQNew(y_draw(i-1),VHist(i-1),c,Q,Para,xInit);
+exitflag=resQNew.ExitFlag;
+switch dgp
+        case 'RefModelAgent1'
+           y_dist=P1(y_draw(i-1),:);
+        case 'RefModelAgent2'
+           y_dist=P2(y_draw(i-1),:);
+            case 'DistModelAgent1'
+            y_dist=P1(y_draw(i-1),:).*resQNew.Distfactor1;   
+            case 'DistModelAgent2'
+            y_dist=P2(y_draw(i-1),:).*resQNew.Distfactor2;   
+            case 'ConvexCombination'
+            y_dist=P2(y_draw(i-1),:)*WeightP2+(1-WeightP2)*P1;
+           
+    end
+    if strcmpi(flagExistingDraws,'yes')
+        y_draw(i)=yHist(i);
+    else
+    y_draw(i)=discretesample(y_dist, 1);
+    end
+    
 
 % retriving the results
 VStar=resQNew.VStar;                                                        % Continuation values
@@ -57,29 +80,10 @@ MRS=(der_u(ConsStar,Para.gamma)./der_u(Cons,Para.gamma)).*Distorted_P_agent1./y_
 else
 MRS=(der_u(Y',Para.gamma)./der_u(Y(y_draw(i-1)),Para.gamma)).*Distorted_P_agent1./y_dist;                    % MRS (RU) = usual MRS x Radon Nikodyn for Agent 1 
 end    
-MuMRS= sum(y_dist.*MRS);                                                        % Mean(MRS) for Robust Utility under the Reference Model
-SigmaMRS=sum((y_dist.*(MRS-(MuMRS)*ones(1,YSize)).^2).^.5);                                      % Std (MRS) for Robust Utility under the Reference Model
-MPR=SigmaMRS/MuMRS;                                                        % Market Price of Risk  (MRS) for Robust Utility under the dgp
+MulogMRS= sum(y_dist.*log(MRS));                                                        % Mean(logMRS) for Robust Utility under the Reference Model
+SigmalogMRS=sum((y_dist.*(log(MRS)-((MulogMRS))*ones(1,YSize)).^2).^.5);                                      % Std (logMRS) for Robust Utility under the Reference Model
+MPR=SigmalogMRS;                                                        % Market Price of Risk  (MRS) for Robust Utility under the dgp
  
-switch dgp
-        case 'RefModelAgent1'
-           y_dist=P1(y_draw(i-1),:);
-        case 'RefModelAgent2'
-           y_dist=P2(y_draw(i-1),:);
-            case 'DistModelAgent1'
-            y_dist=P1(y_draw(i-1),:).*Distfactor1;   
-            case 'DistModelAgent2'
-            y_dist=P2(y_draw(i-1),:).*Distfactor2;   
-            case 'ConvexCombination'
-            y_dist=P2(y_draw(i-1),:)*WeightP2+(1-WeightP2)*P1;
-           
-    end
-    if strcmpi(flagExistingDraws,'yes')
-        y_draw(i)=yHist(i);
-    else
-    y_draw(i)=discretesample(y_dist, 1);
-    end
-    
 % Storing the history for simulations
 % 0. YShock
 % 1. Continuation Value
@@ -92,11 +96,11 @@ Emlogm_distmarg_agent2Hist(i-1)=Emlogm_distmarg_agent2;
 % 4. Market Price of Risk
 MPRHist(i-1)=MPR;
 
-
-if VHist(i) > VMax(y_draw(i))
-    VHist(i)=VMax(y_draw(i));
-end
-if VHist(i) < VMin(y_draw(i))
+if VHist(i)> VMax(y_draw(i))
+    VHist(i)=
+    
+    
+if ConsRatioAgent1Hist(i)> 0.999
     VHist(i)=VMin(y_draw(i));
 end
 
