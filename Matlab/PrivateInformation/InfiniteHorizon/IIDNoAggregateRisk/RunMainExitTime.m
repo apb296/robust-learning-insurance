@@ -1,0 +1,9 @@
+NumSim=15000;
+NumStarts=16;
+NumPaths=200;
+Para.StoreFileName='PrivateInformationNoAmb.mat';
+ExitTime
+save('Data/ExitTimePrivateInformationNoAmb.mat','TSim','ET','v0','ExitProbabilities')
+Para.StoreFileName='PrivateInformationHighAmb.mat';
+ExitTime
+save('Data/ExitTimePrivateInformationHighAmb.mat','TSim','ET','v0','ExitProbabilities')
