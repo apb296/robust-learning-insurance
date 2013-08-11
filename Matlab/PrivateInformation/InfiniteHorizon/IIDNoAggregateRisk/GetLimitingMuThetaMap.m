@@ -1,10 +1,12 @@
-if matlabpool('size')==0
-matlabpool open local
-end
+
 
 % Set default parameters
 clear all
 close all
+
+if matlabpool('size')==0
+matlabpool open local
+end
 SetParaStruc
 
 Para.beta=.9;

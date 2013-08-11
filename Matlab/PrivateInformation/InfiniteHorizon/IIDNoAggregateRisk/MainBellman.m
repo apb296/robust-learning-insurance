@@ -34,9 +34,9 @@ Para.KTR.lb=[0 Para.Delta Para.vSuperMin Para.vSuperMin];
 Para.KTR.ub=[Para.y-Para.Delta Para.y Para.vSuperMax Para.vSuperMax];
 Para.KTR.opts.DerivativeCheck='off';
 %% OPEN MATLAB PARALLEL WORKERS
-%if matlabpool('size')==0
-%matlabpool open local
-%end
+if matlabpool('size')==0
+matlabpool open local
+end
 %% ITERATE ON THE VALUE FUNCTION
 % This block iterates on the bellman equation
 % Slicing the state space for parfor loop
@@ -56,7 +56,7 @@ for iter=2:Para.MaxIter
     % optimization will solve
     PolicyRulesStoreOld=PolicyRulesStore;
    %InitContract=PolicyRulesStore(end,:);
-    for ctr=1:Para.vGridSize        
+    parfor ctr=1:Para.vGridSize        
    %    for ctrx=1:Para.vGridSize        
        % INITAL GUESS FOR THE INNER OPTIMIZATION
        %ctr= Para.vGridSize      +1-ctrx;  
